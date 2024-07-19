@@ -17,10 +17,10 @@ void ft_draw_square(t_cube *game, int x , int y)
     int pixel;
 	pixel = 0;
 	int pixel1 = 0;
-	while(pixel < box_size)
+	while(pixel < box_size -1)
 	{
 		pixel1 = 0;
-		while(pixel1< box_size){
+		while(pixel1< box_size-1){
 			mlx_put_pixel(game->img , y + pixel1 , x + pixel, 0xFF0000FF);
 			pixel1++;
 		}
