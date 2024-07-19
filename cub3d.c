@@ -46,7 +46,7 @@ void dda(t_cube *game,int x1, int y1, int x2, int y2)
 
 void new_ray(t_cube *game)
 {
-	dda(game , game->player_y , game->player_x , game->player_y + cos(game->ray_angle) * 60 , game->player_x + sin(game->ray_angle) * 60);
+	dda(game , game->player_y , game->player_x , game->player_y + cos(game->ray_angle) , game->player_x + sin(game->ray_angle));
 }
 double ft_normalize(double angel)
 {
