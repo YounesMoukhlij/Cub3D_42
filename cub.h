@@ -25,7 +25,7 @@
 
 # define BUFFER_SIZE 1
 # define player_speed 10
-# define box_size 30
+# define box_size 40
 # define player_size 3
 # define PI 3.14159265358979323846
 # define reation_speed 7 * (PI / 180)
