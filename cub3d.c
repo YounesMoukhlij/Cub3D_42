@@ -14,7 +14,7 @@
 
 double	fov_angle = 60 * (PI / 180);
 double  roation_angle = PI / 2;
-double	num_ray = (24 * box_size ) / 4;
+double	num_ray = (35 * box_size ) / 4;
 
 void dda(t_cube *game,int x1, int y1, int x2, int y2)
 {
@@ -62,14 +62,16 @@ int ft_calcule_distance(double x1, double y1, double x2 , double y2)
 void ray_cast(int colum , t_cube *game)
 {
 	game->ray_angle =  ft_normalize(game->ray_angle);
+	game->is_facingDown = game->ray_angle > 0 && game->ray_angle < PI;
+	game->is_facingup = !game->is_facingDown;
+	game->is_facingRight = game->ray_angle < (0.5 * PI) || game->ray_angle > (1.5 * PI);
+	game->is_facingLeft = !game->is_facingRight;
 	double intercept_y = 0;
 	double intercept_x = 0;
 	double step_x = 0;
 	double step_y = 0;
-	game->is_facingDown = game->ray_angle > 0 && game->ray_angle < PI;
-	game->is_facingup = !game->is_facingDown;
-	game->is_facingRight = game->ray_angle < 0.5 * PI || game->ray_angle > 1.5 * PI;
-	game->is_facingLeft = !game->is_facingRight;
+
+	
 	(void)colum;
 	intercept_y = floor((game->player_x / box_size)) * box_size;
 	intercept_y += game->is_facingDown ? box_size : 0 ;
@@ -86,6 +88,7 @@ void ray_cast(int colum , t_cube *game)
 	double next_horizontal_y  =  intercept_y;
 	if (game->is_facingup)
 		next_horizontal_y--;
+	// printf("%d %d\n",  game->map_widht  /box_size ,game->map_height/ box_size );
 	while(next_horizontal_x >= 0 && next_horizontal_x <= game->map_widht && next_horizontal_y >= 0 && next_horizontal_y <= game->map_height){
 		if (!ft_check_walls(game, next_horizontal_x , next_horizontal_y))
 		{
@@ -100,7 +103,8 @@ void ray_cast(int colum , t_cube *game)
 		}
 	}
 
-    /////////
+    ///////////////////////////+
+
 	int found_vertical_wall = 0;
 	double wall_x = 0;
 	double wall_y = 0;
@@ -149,6 +153,7 @@ void ray_cast(int colum , t_cube *game)
 			game->distance = horizontal_wall_distance;
 		}
 		else{
+			printf("hx =>%f hy==>%f vx%f vy===>%f \n",wall_horizontal_x ,wall_horizontal_y , wall_vertical_x , wall_vertical_y );
 			wall_x = wall_vertical_x;
 			wall_y = wall_vertical_y;
 			game->distance = vertical_wall_distance;
@@ -236,45 +241,40 @@ void  ft_check_move(struct mlx_key_data ll ,void *tmp)
 	game = (t_cube *)tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 	{
-		// ft_draw_line(game, game->player_y, game->player_x, game->player_new_y, game->player_new_x , 1);
 		roation_angle += 1 * reation_speed;
-		game->player_new_y =  game->player_y + cos(roation_angle);
-		game->player_new_x =  game->player_x + sin(roation_angle);
+		// game->player_new_y =  game->player_y + cos(roation_angle);
+		// game->player_new_x =  game->player_x + sin(roation_angle);
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	{
-		// ft_draw_line(game, game->player_y, game->player_x, game->player_new_y, game->player_new_x , 1);
 		game->move = 1 * player_speed;
 		
 		if (ft_check_walls( game,game->player_y + cos(roation_angle) ,  game->player_x + sin(roation_angle))){
 			game->player_y += cos(roation_angle) * game->move;
 			game->player_x += sin(roation_angle) * game->move;
-			game->player_new_y =  game->player_y + cos(roation_angle);
-			game->player_new_x =  game->player_x + sin(roation_angle);
+			// game->player_new_y =  game->player_y + cos(roation_angle);
+			// game->player_new_x =  game->player_x + sin(roation_angle);
 		}
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
-		// ft_draw_line(game, game->player_y, game->player_x, game->player_new_y, game->player_new_x , 1);
 		roation_angle += -1 * reation_speed;
-		game->player_new_y =  game->player_y + cos(roation_angle);
-		game->player_new_x =  game->player_x + sin(roation_angle);
+		// game->player_new_y =  game->player_y + cos(roation_angle);
+		// game->player_new_x =  game->player_x + sin(roation_angle);1
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
-		// ft_draw_line(game, game->player_y, game->player_x, game->player_new_y, game->player_new_x , 1);
 		game->move = -1 * player_speed;
 		if (ft_check_walls( game,game->player_y + cos(roation_angle) ,  game->player_x + sin(roation_angle))){
 			game->player_y += cos(roation_angle) * game->move;
 			game->player_x += sin(roation_angle) * game->move;
-			game->player_new_y =  game->player_y + cos(roation_angle);
-			game->player_new_x =  game->player_x + sin(roation_angle);
+			// game->player_new_y =  game->player_y + cos(roation_angle);
+			// game->player_new_x =  game->player_x + sin(roation_angle);
 		}
 	}
 	ft_drawing_map(game);
 	draw_line_DDA(game);
 	ft_put_player(game);
-	game->move = 0;
 }
 void ft_put_player(t_cube *game)
 {
@@ -290,7 +290,6 @@ void ft_put_player(t_cube *game)
 		}
 		pixel++;
 	}
-	// ft_draw_line(game ,game->player_y ,game->player_x, game->player_new_y ,game->player_new_x, 0);
 }
 void ft_drawing_map_element(t_cube *game)
 {
@@ -357,8 +356,8 @@ int main(int ac, char **av)
 
 	game.img  = mlx_new_image(game.mlx, 1500,650);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
-	game.map_widht = 24 * box_size;
-	game.map_height = 12 * box_size;
+	game.map_widht = 37 * box_size;
+	game.map_height = 14 * box_size;
 	ft_drawing_map(&game);
 	mlx_key_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
