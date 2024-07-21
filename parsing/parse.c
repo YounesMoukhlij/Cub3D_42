@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/01 17:16:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 11:46:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,26 +246,31 @@ int	ft_atoi(const char *str)
 	return (sign * r);
 }
 
-int	get_comma(char *s, int step)
+int	parse_numbers(char *s)
 {
-	int	i;
+	char	**str;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (s[i])
+	str = ft_split(s, ',');
+	while (str[i])
 	{
-		if (s[i] == ',')
+		j = 0;
+		while (str[i][j])
 		{
-			puts("COMMMMA FOUND\n");
-			if (!step)
-				break ;
-			step--;
+			if (!(str[i][j] >= '0' && str[i][j] <= '9'))
+				return (1);
+			j++;
 		}
+		if (ft_atoi(str[i]) > 255 || ft_atoi(str[i]) < 0)
+			return (1);
 		i++;
 	}
-	return (i);
+	return (0);
 }
 
-void	parse_numbers(char *s)
+void	fill_colors(t_cube *game, char *s, int mode)
 {
 	char	**str;
 	int		i;
@@ -274,29 +279,60 @@ void	parse_numbers(char *s)
 	str = ft_split(s, ',');
 	while (str[i])
 	{
-		if (str[i] < '0' && str[i] > '9')
-			return ;
+		if (!mode && !i)
+			game->colors.r_c = ft_atoi(str[i]);
+		else if (!mode && i == 1)
+			game->colors.g_c = ft_atoi(str[i]);
+		else if (!mode && i == 2)
+			game->colors.b_c = ft_atoi(str[i]);
+		else if (mode && !i)
+			game->colors.r_f = ft_atoi(str[i]);
+		else if (mode && i == 1)
+			game->colors.g_f = ft_atoi(str[i]);
+		else if (mode && i == 2)
+			game->colors.b_f = ft_atoi(str[i]);
+		i++;
 	}
-
 }
 
+void	get_path(t_cube *game, int i, char *str)
+{
+	char	*s;
+
+	s = ft_substr(game->map_2d[i], 3, ft_strlen(game->map_2d[i]) - 1);
+	if (!s)
+		return ;
+	if (!ft_strcmp(str, "NO"))
+		game->texture_walls.no = ft_strdup(s);
+	else if (!ft_strcmp(str, "SO"))
+		game->texture_walls.so = ft_strdup(s);
+	else if (!ft_strcmp(str, "EA"))
+		game->texture_walls.ea = ft_strdup(s);
+	else if (!ft_strcmp(str, "WE"))
+		game->texture_walls.we = ft_strdup(s);
+}
 
 void	parse_entry(t_cube *game, int i)
 {
 	char	*s1;
 	char	*s2;
-	int		len;
 
-	len = 0;
 	while (game->map_2d[i] && i < 6)
 	{
-		s1 = ft_substr(game->map_2d[i], 0x0,  2);
+		s1 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x0,  2);
 		if (!ft_strcmp(s1, "C ") || !ft_strcmp(s1, "F "))
 		{
-			s2 = ft_substr(game->map_2d[i], 0x2,  ft_strlen(game->map_2d[i]) - 1);
-			printf("main str ->[%s]\n\n\n", s2);
-			parse_numbers(s2);
+			s2 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x2,  ft_strlen(game->map_2d[i]) - 1);
+			if (parse_numbers(s2))
+				error_message(game, 0);
+			if (!ft_strcmp(s1, "C "))
+				fill_colors(game, s2, 0);
+			else if (!ft_strcmp(s1, "F "))
+				fill_colors(game, s2, 1);
 		}
+		if (!ft_strcmp(s1, "NO") || !ft_strcmp(s1, "SO")
+			|| !ft_strcmp(s1, "EA") || !ft_strcmp(s1, "WE"))
+			get_path(game, i, s1);
 		i++;
 	}
 }
@@ -316,7 +352,20 @@ void	parse(int ac, char *file, t_cube *game)
 	// check_valid_members(game, 0x0, 0x0);
 	heigth_width(game);
 	player_vision(game->map_2d, game);
-
+	
+	puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
+	printf("NO  ---=---[%s]\n", game->texture_walls.no);
+	printf("SO  ---=---[%s]\n", game->texture_walls.so);
+	printf("EA  ---=---[%s]\n", game->texture_walls.ea);
+	printf("WE  ---=---[%s]\n", game->texture_walls.we);
+	
+	puts("\n\n\n\033[32m --->< THE COLORS ><---\033[0m\n\n");
+	printf("C r ---=---[%d]\n", game->colors.r_c);
+	printf("C g ---=---[%d]\n", game->colors.g_c);
+	printf("C b ---=---[%d]\n", game->colors.b_c);
+	printf("F r ---=---[%d]\n", game->colors.r_f);
+	printf("F g ---=---[%d]\n", game->colors.g_f);
+	printf("F b ---=---[%d]\n", game->colors.b_f);
 
 	int i  = 0;
 	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");

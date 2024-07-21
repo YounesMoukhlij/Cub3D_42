@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/14 08:18:44 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/21 11:33:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,11 +341,17 @@ void set_values(t_cube *game)
 	game->player_turn = 0;
 	game->player_walk = 0;
 }
+
+void show(void)
+{
+	system("leaks ./cub3D");
+}
 int main(int ac, char **av)
 {
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
+	// atexit(show);
 	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
 
 
@@ -363,6 +369,7 @@ int main(int ac, char **av)
 	// mlx_key_hook(game.mlx, ft_check_move , &game);
 	// mlx_loop(game.mlx);
 	// finish_him(&game);
+	// ft_malloc(0,0);
 	return (0x0);
 }
 

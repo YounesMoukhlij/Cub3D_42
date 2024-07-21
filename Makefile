@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+         #
+#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/07/09 17:45:20 by abechcha         ###   ########.fr        #
+#    Updated: 2024/07/21 11:42:28 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRC = cub3d.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
+	  utils/garbage_collector.c \
+	  utils/garbage_collector_1.c \
 	  
 
 OBJ = $(SRC:.c=.o)
