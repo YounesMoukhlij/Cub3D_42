@@ -25,7 +25,7 @@
 
 # define BUFFER_SIZE 1
 # define player_speed 10
-# define box_size 40
+# define box_size 5
 # define player_size 3
 # define PI 3.14159265358979323846
 # define reation_speed 7 * (PI / 180)
@@ -42,6 +42,14 @@ typedef struct s_text
 	char	*fF;
 }	t_text;
 
+typedef struct s_ray_info
+{
+	double wall_x;
+	double wall_y;
+	double distance;
+	int coloum;
+	struct s_ray_info *next;
+} t_ray;
 
 typedef struct s_cube
 {
@@ -98,7 +106,8 @@ void 	ft_put_player(t_cube *game);
 void 	ft_draw_floor(t_cube *game, int x , int y);
 void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2 , int flag);
 int 	ft_check_walls(t_cube *game , int x , int y);
-
+void lst_add_back(t_ray **head);
+t_ray *lst_last(t_ray *head);
 
 
 #endif
