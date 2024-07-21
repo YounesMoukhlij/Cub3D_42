@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:13:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 10:31:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:52:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	**ft_split(char *s, char c)
 		{
 			r[i] = ft_create(s, c);
 			if (!r[i++])
-				return (ft_free(r), NULL);
+				return (NULL);
 		}
 		while (*s && *s != c)
 			s++;

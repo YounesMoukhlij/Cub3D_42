@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 14:33:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:00:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,43 +73,33 @@ int	get_length_heigth(char **str, int mode, int i)
 
 int	check_walls(char *s, int i, int stat, t_cube *game)
 {
-	// int	j;
-
-	// j = 0x0;
 	if (stat == 6 || stat == game->real_map_heigth + 5)
 	{
 		while (s[i])
 		{
-			if (s[i] != '1' && s[i] && s[i] != '\n')
+			if (s[i++] != '1')
 				return (1);
-			i++;
 		}
 	}
-	printf("--[%s]\n", s);
 	if (s[0x0] != '1' || s[ft_strlen(s) - 0x1] != '1')
-	{
-		puts("checked\n");
 		return (0x1);
-	}
-	// if (i == 0x6 || i == (length - 0x1))
-	// {
-	// 	while (s[j])
-	// 		if (s[j++] != '1')
-	// 			return (0x1);
-	// }
+	// i = 0;
 	// while (s[i])
 	// {
-	// 	while (s[i] == 32 && s[i])
+	// 	while (s[i] && s[i] == ' ')
 	// 	{
-	// 		if (!(s[i] == 32 && s[i + 1] == '1') && s[i + 1])
-	// 			puts("error\n");
-				
 	// 		i++;
+	// 		if (s[i] == ' ' && s[i + 1] != ' ' && s[i + 1])
+	// 		{
+	// 			puts("YOUNES");
+	// 			return (0x1);
+	// 		}
 	// 	}
 	// 	if (!s[i])
 	// 		break ;
 	// 	i++;
 	// }
+	printf("%s\n", s);
 	return (0x0);
 }
 
@@ -122,6 +112,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 	{
 		j = 0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
+		// printf("%s\n", ft_strtrim(game->map_2d[i], " "));
 		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
 		{
 			puts("ERROR CAPTed \n");
@@ -170,7 +161,6 @@ void	check_texture_intra(t_cube *game, int i)
 			game->cnt.a5++;
 		else if (!ft_strcmp(str, "WE"))
 			game->cnt.a6++;
-		free (str);
 		i++;
 	}
 	if (ultra_check(game))
@@ -244,32 +234,6 @@ void	player_vision(char **s, t_cube *game)
 		}
 		i++;
 	}
-}
-
-int	ft_atoi(const char *str)
-{
-	int		i;
-	int		sign;
-	int		r;
-
-	i = 0;
-	sign = 1;
-	r = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while ((str[i] >= '0' && str[i] <= '9') && str[i])
-	{
-		r = r * 10;
-		r += str[i] - '0';
-		i++;
-	}
-	return (sign * r);
 }
 
 int	parse_numbers(char *s)
@@ -394,12 +358,12 @@ void	parse(int ac, char *file, t_cube *game)
 	printf("F b ---=---[%d]\n", game->colors.b_f);
 
 	// int i  = 0;
-	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
 	// while (game->map_2d[i])
 	// 	printf("%s\n", game->map_2d[i++]);
 	puts("\n");
 	printf("the heigth ---=[%d]\n", game->real_map_heigth);
 	printf("the width ---=[%d]\n", game->real_map_width);
-	puts("good\n");
+	puts("\n\n\n\n \033[41mCONGRATS ----> good \033[0m \n\n\n");
 }
 

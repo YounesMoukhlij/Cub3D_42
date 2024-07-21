@@ -111,6 +111,7 @@ void	parse(int ac, char *file, t_cube *var);
 void	ft_free(char **s);
 int		ft_strlen(char *s);
 char	*ft_strdup(char *s1);
+int		ft_atoi(const char *str);
 char	**ft_split(char *s, char c);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_calloc(int num, int size);
