@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 16:58:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:28:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,21 @@ char	**read_map_from_file(char *map_1d)
 {
 	int		fd;
 	char	*s_read;
-	char	*final_tmp;
-	char	**final;
+	char	*str;
+	char	**s;
 
 	first_check(map_1d);
-	final_tmp = ft_malloc(1,1);
+	str = ft_malloc(0x1,0x1);
 	fd = open(map_1d, O_RDONLY);
 	while (0x1)
 	{
 		s_read = get_next_line(fd);
 		if (s_read == NULL)
 			break ;
-		final_tmp = ft_strjoin(final_tmp, s_read);
-		if (!final_tmp)
+		str = ft_strjoin(str, s_read);
+		if (!str)
 			return (NULL);
 	}
 	close (fd);
-	return (final = ft_split(final_tmp, '\n'), final);
+	return (s = ft_split(str, '\n'), s);
 }

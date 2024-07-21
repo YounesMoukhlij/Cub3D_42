@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 18:12:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:19:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,24 @@ int	get_length_heigth(char **str, int mode, int i)
 
 int	check_walls(char *s, int i, int stat, t_cube *game)
 {
-	if (stat == 6 || stat == game->real_map_heigth + 5)
+	if (stat == 0x6 || stat == game->real_map_heigth + 0x5)
 	{
 		while (s[i])
 		{
 			if (s[i++] != '1')
-				return (1);
+				return (0x1);
 		}
 	}
 	if (s[0x0] != '1' || s[ft_strlen(s) - 0x1] != '1')
 		return (0x1);
-	i = 0;
+	i = 0x0;
 	while (s[i])
 	{
-		if (s[i] != '1' && s[i] != ' ' && s[i + 1] == ' ')
-			return (1);
-		if (s[i] == ' ' && (s[i + 1] != ' ' && s[i + 1] != '1'))
-			return (1);
+		if ((s[i] != '1' && s[i] != ' ' && s[i + 0x1] == ' ')
+			|| (s[i] == ' ' && (s[i + 1] != ' ' && s[i + 0x1] != '1')))
+			return (0x1);
 		i++;
 	}
-	printf("%s\n", s);
 	return (0x0);
 }
 
@@ -100,10 +98,10 @@ void	check_valid_members(t_cube *game, int i, int j)
 {
 	char	*str;
 
-	i= 6;
-	while (game->map_2d[i] && i > 5)
+	i = 0x6;
+	while (game->map_2d[i] && i > 0x5)
 	{
-		j = 0;
+		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
 		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
 			error_message(game, 0x4);
