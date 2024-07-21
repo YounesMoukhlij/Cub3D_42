@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 20:13:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:20:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	small_check(char *s, int i, int flag)
 			|| !ft_strcmp(str, "EA") || !ft_strcmp(str, "WE"))
 			return (0x0);
 	}
+	printf("%s", s);
 	if (ft_strlen(s) >= 0x1)
 	{
 		while (s[i])
@@ -83,15 +84,16 @@ char	**read_map_from_file(char *map_1d)
 	while (0x1)
 	{
 		s_read = get_next_line(fd);
+		if (s_read == NULL)
+			break ;
 		if (!is_map)
 		{
 			if (small_check(s_read, 0x0, 0x0))
 				is_map = 0x1;
 		}
-		if (is_map && !ft_strcmp(s_read, "\n"))
+		printf("flag == %d\n",  is_map);
+		if (is_map == 0x1 && !ft_strcmp(s_read, "\n"))
 			return (close (fd), NULL);
-		if (s_read == NULL)
-			break ;
 		str = ft_strjoin(str, s_read);
 		if (!str)
 			return (close(fd), NULL);

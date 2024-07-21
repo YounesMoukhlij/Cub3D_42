@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 18:19:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:16:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,10 +344,10 @@ void	parse(int ac, char *file, t_cube *game)
 	printf("F g ---=---[%d]\n", game->colors.g_f);
 	printf("F b ---=---[%d]\n", game->colors.b_f);
 
-	// int i  = 0;
-	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	// while (game->map_2d[i])
-	// 	printf("%s\n", game->map_2d[i++]);
+	int i  = 0;
+	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	while (game->map_2d[i])
+		printf("%s\n", game->map_2d[i++]);
 	puts("\n");
 	printf("the heigth ---=[%d]\n", game->real_map_heigth);
 	printf("the width ---=[%d]\n", game->real_map_width);
