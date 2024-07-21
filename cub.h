@@ -25,11 +25,22 @@
 
 # define BUFFER_SIZE 1
 # define player_speed 10
-# define box_size 40
+# define box_size 8
 # define player_size 3
 # define PI 3.14159265358979323846
 # define reation_speed 7 * (PI / 180)
 # define wall_with 4
+
+
+typedef struct s_counter
+{
+	int	a1;
+	int	a2;
+	int	a3;
+	int	a4;
+	int	a5;
+	int	a6;
+}	t_counter;
 
 
 typedef struct s_text
@@ -39,7 +50,7 @@ typedef struct s_text
 	char	*we;
 	char	*ea;
 	char	*c;
-	char	*fF;
+	char	*f;
 }	t_text;
 
 
@@ -67,6 +78,10 @@ typedef struct s_cube
 	char	**map_2d;
 	char	**map;
 	double ray_angle;
+	t_counter	cnt;
+	double	rotation_angle;
+	int		real_map_width;
+	int		real_map_heigth;
 	t_text	*texture_walls;
 }	t_cube;
 

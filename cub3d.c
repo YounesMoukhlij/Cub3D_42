@@ -346,23 +346,23 @@ int main(int ac, char **av)
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
-	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
 
 
 
 
-    ft_get_player_position(&game);
-	set_values(&game);
+    // ft_get_player_position(&game);
+	// set_values(&game);
 
 
-	game.img  = mlx_new_image(game.mlx, 1500,650);
-	mlx_image_to_window(game.mlx, game.img, 0, 0);
-	game.map_widht = 24 * box_size;
-	game.map_height = 12 * box_size;
-	ft_drawing_map(&game);
-	mlx_key_hook(game.mlx, ft_check_move , &game);
-	mlx_loop(game.mlx);
-	finish_him(&game);
+	// game.img  = mlx_new_image(game.mlx, 1500,650);
+	// mlx_image_to_window(game.mlx, game.img, 0, 0);
+	// game.map_widht = game.real_map_width * box_size;
+	// game.map_height = 13 * box_size;
+	// ft_drawing_map(&game);
+	// mlx_key_hook(game.mlx, ft_check_move , &game);
+	// mlx_loop(game.mlx);
+	// finish_him(&game);
 	return (0x0);
 }
 
