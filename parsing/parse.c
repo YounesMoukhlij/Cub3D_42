@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 11:46:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:33:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,45 @@ int	get_length_heigth(char **str, int mode, int i)
 	return (i);
 }
 
-int	check_walls(char *s, int i, int length)
+int	check_walls(char *s, int i, int stat, t_cube *game)
 {
-	int	j;
+	// int	j;
 
-	j = 0x0;
-	if (s[0x0] != '1' || s[ft_strlen(s) - 0x1] != '1')
-		return (0x1);
-	if (i == 0x6 || i == (length - 0x1))
+	// j = 0x0;
+	if (stat == 6 || stat == game->real_map_heigth + 5)
 	{
-		while (s[j])
-			if (s[j++] != '1')
-				return (0x1);
+		while (s[i])
+		{
+			if (s[i] != '1' && s[i] && s[i] != '\n')
+				return (1);
+			i++;
+		}
 	}
+	printf("--[%s]\n", s);
+	if (s[0x0] != '1' || s[ft_strlen(s) - 0x1] != '1')
+	{
+		puts("checked\n");
+		return (0x1);
+	}
+	// if (i == 0x6 || i == (length - 0x1))
+	// {
+	// 	while (s[j])
+	// 		if (s[j++] != '1')
+	// 			return (0x1);
+	// }
+	// while (s[i])
+	// {
+	// 	while (s[i] == 32 && s[i])
+	// 	{
+	// 		if (!(s[i] == 32 && s[i + 1] == '1') && s[i + 1])
+	// 			puts("error\n");
+				
+	// 		i++;
+	// 	}
+	// 	if (!s[i])
+	// 		break ;
+	// 	i++;
+	// }
 	return (0x0);
 }
 
@@ -91,23 +117,23 @@ void	check_valid_members(t_cube *game, int i, int j)
 {
 	char	*str;
 
-	while (game->map_2d[i])
+	i= 6;
+	while (game->map_2d[i] && i > 5)
 	{
 		j = 0;
-		if (i > 5)
+		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
+		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
 		{
-			str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
-			// if (check_walls(str, i, get_length_heigth(game->map_2d, 0x0, 0x0)))
-			// 		error_message(game, 0x4);
-			while (str[j])
-			{
-				if (!(str[j] == '0' || str[j] == '1'
-					|| str[j] == 'N' || str[j] == 'S'
-					|| str[j] == 'W' || str[j] == 'E'))
-					error_message(game, 0x4);
-				j++;
-			}
-			free (str);
+			puts("ERROR CAPTed \n");
+			error_message(game, 0x4);
+		}
+		while (str[j])
+		{
+			if (!(str[j] == '0' || str[j] == '1'
+				|| str[j] == 'N' || str[j] == 'S'
+				|| str[j] == 'W' || str[j] == 'E'))
+				error_message(game, 0x4);
+			j++;
 		}
 		i++;
 	}
@@ -347,10 +373,10 @@ void	parse(int ac, char *file, t_cube *game)
 	if (!game->map_2d)
 		error_message(game, 0x3);
 	init_counter(game);
-	check_texture_intra(game, 0x0);
-	parse_entry(game, 0x0);
-	// check_valid_members(game, 0x0, 0x0);
 	heigth_width(game);
+	check_texture_intra(game, 0x0);
+	check_valid_members(game, 0x0, 0x0);
+	parse_entry(game, 0x0);
 	player_vision(game->map_2d, game);
 	
 	puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
@@ -367,10 +393,10 @@ void	parse(int ac, char *file, t_cube *game)
 	printf("F g ---=---[%d]\n", game->colors.g_f);
 	printf("F b ---=---[%d]\n", game->colors.b_f);
 
-	int i  = 0;
+	// int i  = 0;
 	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	while (game->map_2d[i])
-		printf("%s\n", game->map_2d[i++]);
+	// while (game->map_2d[i])
+	// 	printf("%s\n", game->map_2d[i++]);
 	puts("\n");
 	printf("the heigth ---=[%d]\n", game->real_map_heigth);
 	printf("the width ---=[%d]\n", game->real_map_width);
