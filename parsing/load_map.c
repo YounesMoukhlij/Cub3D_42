@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 18:28:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:13:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,61 @@ void	check_during_read(char *str, int mode)
 			return (error_reading_map(0x2));
 }
 
+int	small_check(char *s, int i, int flag)
+{
+	char	*str;
+
+	if (ft_strlen(s) >= 0x2)
+	{
+		str = ft_substr(s, 0x0, 0x2);
+		if (!ft_strcmp(str, "SO") || !ft_strcmp(str, "NO")
+			|| !ft_strcmp(str, "F ") || !ft_strcmp(str, "C ")
+			|| !ft_strcmp(str, "EA") || !ft_strcmp(str, "WE"))
+			return (0x0);
+	}
+	if (ft_strlen(s) >= 0x1)
+	{
+		while (s[i])
+		{
+			if (s[i] == '1' || s[i] == '0'
+				|| s[i] == 'S' || s[i] == 'N'
+				|| s[i] == 'E' || s[i] == 'W')
+				flag++;
+			i++;
+		}
+	}
+	if ((flag == ft_strlen(s) - 1) && ft_strcmp(s, "\n"))
+		return (0x1);
+	return (0x0);
+}
+
 char	**read_map_from_file(char *map_1d)
 {
 	int		fd;
 	char	*s_read;
 	char	*str;
 	char	**s;
+	int		is_map;
 
+	is_map = 0x0;
 	first_check(map_1d);
-	str = ft_malloc(0x1,0x1);
+	str = ft_strdup("");
 	fd = open(map_1d, O_RDONLY);
 	while (0x1)
 	{
 		s_read = get_next_line(fd);
+		if (!is_map)
+		{
+			if (small_check(s_read, 0x0, 0x0))
+				is_map = 0x1;
+		}
+		if (is_map && !ft_strcmp(s_read, "\n"))
+			return (close (fd), NULL);
 		if (s_read == NULL)
 			break ;
 		str = ft_strjoin(str, s_read);
 		if (!str)
-			return (NULL);
+			return (close(fd), NULL);
 	}
 	close (fd);
 	return (s = ft_split(str, '\n'), s);
