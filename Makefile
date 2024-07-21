@@ -6,7 +6,7 @@
 #    By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/07/09 17:45:20 by abechcha         ###   ########.fr        #
+#    Updated: 2024/07/21 11:43:24 by abechcha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = cub3d.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
+	  utils/tools.c \
 	  
 
 OBJ = $(SRC:.c=.o)

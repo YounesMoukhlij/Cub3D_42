@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/14 08:18:44 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:30:32 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,31 @@
 
 double	fov_angle = 60 * (PI / 180);
 double  roation_angle = PI / 2;
-double	num_ray = (35 * box_size ) / 4;
+double	num_ray = (35 * box_size );
 
+
+void rect(mlx_image_t *game,  int x1, int y1, int x2, int y2, int color)
+{
+    int x, y;
+	(void)color;
+	for (x = x1; x <= x2; x++) {
+        for (y = y1; y <= y2; y++) {
+            mlx_put_pixel(game, x, y, 0x00FF00FF);;
+        }
+    }
+}
+void ft_draw_wall(t_ray *head , t_cube *game)
+{
+	while(head)
+	{
+		// printf("distanse %f\n", head->distance);
+		// printf(" map width %d\n", game->map_height);
+		double projection = (game->map_widht / 2) / tan(fov_angle / 2);
+		double wall_strip = (box_size  / head->distance) * projection;
+		rect(game->img , head->coloum * 1, (game->map_height / 2) - (wall_strip / 2) , 1, wall_strip , 0);
+		head = head->next;
+	}
+}
 void dda(t_cube *game,int x1, int y1, int x2, int y2)
 {
     int dx = abs(x2 - x1);
@@ -59,7 +82,7 @@ int ft_calcule_distance(double x1, double y1, double x2 , double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
-void ray_cast(int colum , t_cube *game)
+void ray_cast( t_ray *head ,int  colum , t_cube *game)
 {
 	game->ray_angle =  ft_normalize(game->ray_angle);
 	game->is_facingDown = game->ray_angle > 0 && game->ray_angle < PI;
@@ -88,7 +111,6 @@ void ray_cast(int colum , t_cube *game)
 	double next_horizontal_y  =  intercept_y;
 	if (game->is_facingup)
 		next_horizontal_y--;
-	// printf("%d %d\n",  game->map_widht  /box_size ,game->map_height/ box_size );
 	while(next_horizontal_x >= 0 && next_horizontal_x <= game->map_widht && next_horizontal_y >= 0 && next_horizontal_y <= game->map_height){
 		if (!ft_check_walls(game, next_horizontal_x , next_horizontal_y))
 		{
@@ -153,13 +175,17 @@ void ray_cast(int colum , t_cube *game)
 			game->distance = horizontal_wall_distance;
 		}
 		else{
-			printf("hx =>%f hy==>%f vx%f vy===>%f \n",wall_horizontal_x ,wall_horizontal_y , wall_vertical_x , wall_vertical_y );
 			wall_x = wall_vertical_x;
 			wall_y = wall_vertical_y;
 			game->distance = vertical_wall_distance;
 		}
+		(void)head;
 		// game->was_vertical = 0;
 		// game->was_vertical = (vertical_wall_distance < horizontal_wall_distance);
+		head->wall_x = wall_x;
+		head->wall_y = wall_y;
+		head->coloum = colum;
+		head->distance = game->distance;
 		ft_draw_line(game , game->player_y , game->player_x  , wall_x , wall_y , 0);
 }
 void draw_line_DDA(t_cube *game) {
@@ -167,14 +193,17 @@ void draw_line_DDA(t_cube *game) {
    	game->rays = malloc(sizeof(float) * num_ray + 1);
    	int i = 0;
 	int colun = 0;
+	t_ray *head = NULL;
    while(i < num_ray)
    {
-		ray_cast(colun , game);
+		lst_add_back(&head);
+		ray_cast(lst_last(head), colun , game);
 		// new_ray(game);
 		game->ray_angle += (fov_angle / num_ray);
 		i++;
 		colun++;
    }
+//    ft_draw_wall(head , game);
 }
 
 void ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2 , int flag)
@@ -249,7 +278,7 @@ void  ft_check_move(struct mlx_key_data ll ,void *tmp)
 	{
 		game->move = 1 * player_speed;
 		
-		if (ft_check_walls( game,game->player_y + cos(roation_angle) ,  game->player_x + sin(roation_angle))){
+		if (ft_check_walls( game,game->player_y + cos(roation_angle)  * game->move,  game->player_x + sin(roation_angle) * game->move)){
 			game->player_y += cos(roation_angle) * game->move;
 			game->player_x += sin(roation_angle) * game->move;
 			// game->player_new_y =  game->player_y + cos(roation_angle);
@@ -265,7 +294,7 @@ void  ft_check_move(struct mlx_key_data ll ,void *tmp)
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
-		if (ft_check_walls( game,game->player_y + cos(roation_angle) ,  game->player_x + sin(roation_angle))){
+		if (ft_check_walls(game,game->player_y + cos(roation_angle)  * game->move,  game->player_x + sin(roation_angle) * game->move)){
 			game->player_y += cos(roation_angle) * game->move;
 			game->player_x += sin(roation_angle) * game->move;
 			// game->player_new_y =  game->player_y + cos(roation_angle);
@@ -354,8 +383,10 @@ int main(int ac, char **av)
 	set_values(&game);
 
 
-	game.img  = mlx_new_image(game.mlx, 1500,650);
+	game.img  = mlx_new_image(game.mlx, 1500,1000);
+	// mlx_image_t *img_1  = mlx_new_image(game.mlx, 1500,1000);///
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
+	// mlx_image_to_window(game.mlx, img_1, 0, 0);
 	game.map_widht = 37 * box_size;
 	game.map_height = 14 * box_size;
 	ft_drawing_map(&game);
