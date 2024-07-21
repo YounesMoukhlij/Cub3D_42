@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 17:23:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:12:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,28 +87,9 @@ int	check_walls(char *s, int i, int stat, t_cube *game)
 	while (s[i])
 	{
 		if (s[i] != '1' && s[i] != ' ' && s[i + 1] == ' ')
-		{
-			printf("[%c]\n", s[i]);
-			puts("MMMMMMMMM\n");
 			return (1);
-		}
-		else if (s[i] == ' ' && s[i + 1] != '0')
-		{
-			printf("[%c]\n", s[i]);
-			puts("MMMMMMMMM\n");
+		if (s[i] == ' ' && (s[i + 1] != ' ' && s[i + 1] != '1'))
 			return (1);
-		}
-		// while (s[i] && s[i] == ' ')
-		// {
-		// 	i++;
-		// 	if (s[i] == ' ' && s[i + 1] != ' ' && s[i + 1])
-		// 	{
-		// 		puts("YOUNES");
-		// 		return (0x1);
-		// 	}
-		// }
-		// if (!s[i])
-		// 	break ;
 		i++;
 	}
 	printf("%s\n", s);
@@ -124,12 +105,8 @@ void	check_valid_members(t_cube *game, int i, int j)
 	{
 		j = 0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
-		// printf("%s\n", ft_strtrim(game->map_2d[i], " "));
 		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
-		{
-			puts("ERROR CAPTed \n");
 			error_message(game, 0x4);
-		}
 		while (str[j])
 		{
 			if (!(str[j] == '0' || str[j] == '1'
