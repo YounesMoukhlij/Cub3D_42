@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 17:00:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:23:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,34 @@ int	check_walls(char *s, int i, int stat, t_cube *game)
 	}
 	if (s[0x0] != '1' || s[ft_strlen(s) - 0x1] != '1')
 		return (0x1);
-	// i = 0;
-	// while (s[i])
-	// {
-	// 	while (s[i] && s[i] == ' ')
-	// 	{
-	// 		i++;
-	// 		if (s[i] == ' ' && s[i + 1] != ' ' && s[i + 1])
-	// 		{
-	// 			puts("YOUNES");
-	// 			return (0x1);
-	// 		}
-	// 	}
-	// 	if (!s[i])
-	// 		break ;
-	// 	i++;
-	// }
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != '1' && s[i] != ' ' && s[i + 1] == ' ')
+		{
+			printf("[%c]\n", s[i]);
+			puts("MMMMMMMMM\n");
+			return (1);
+		}
+		else if (s[i] == ' ' && s[i + 1] != '0')
+		{
+			printf("[%c]\n", s[i]);
+			puts("MMMMMMMMM\n");
+			return (1);
+		}
+		// while (s[i] && s[i] == ' ')
+		// {
+		// 	i++;
+		// 	if (s[i] == ' ' && s[i + 1] != ' ' && s[i + 1])
+		// 	{
+		// 		puts("YOUNES");
+		// 		return (0x1);
+		// 	}
+		// }
+		// if (!s[i])
+		// 	break ;
+		i++;
+	}
 	printf("%s\n", s);
 	return (0x0);
 }

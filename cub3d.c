@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 16:48:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:10:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,7 +351,7 @@ int main(int ac, char **av)
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
-	atexit(show);
+	// atexit(show);
 	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
 
 
@@ -369,7 +369,7 @@ int main(int ac, char **av)
 	// mlx_key_hook(game.mlx, ft_check_move , &game);
 	// mlx_loop(game.mlx);
 	// finish_him(&game);
-	ft_malloc(0,0);
+	// ft_malloc(0,0);
 	return (0x0);
 }
 
