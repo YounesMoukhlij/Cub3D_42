@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/22 13:36:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:18:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,7 @@ void  ft_check_move(struct mlx_key_data ll ,void *tmp)
 			game->player_new_x =  game->player_x + sin(roation_angle);
 		}
 	}
+
 	ft_drawing_map(game);
 	draw_line_DDA(game);
 	ft_put_player(game);
@@ -346,29 +347,41 @@ void show(void)
 {
 	system("leaks cub3D");
 }
+
+void    ft_mouse_move(double xpos, double ypos, void *pointer)
+{
+    t_cube        *game;
+
+    (void)xpos ;
+    (void)ypos ;
+    game = pointer;
+    mlx_get_mouse_pos(game->mlx, &mouse.x, &mouse.y);
+    game->rotation_angle = MOUSE_SPEED(double)(mouse.x - (game->real_map_width / 2));
+    mlx_set_mouse_pos(game->mlx, (game->real_map_width / 2), (game->real_map_heigth / 2));
+}
+
+
 int main(int ac, char **av)
 {
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
 	// atexit(show);
-	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
 
 
+    ft_get_player_position(&game);
+	set_values(&game);
 
 
-    // ft_get_player_position(&game);
-	// set_values(&game);
-
-
-	// game.img  = mlx_new_image(game.mlx, 1500,650);
-	// mlx_image_to_window(game.mlx, game.img, 0, 0);
-	// game.map_widht = game.real_map_width * box_size;
-	// game.map_height = game.real_map_heigth * box_size;
-	// ft_drawing_map(&game);
-	// mlx_key_hook(game.mlx, ft_check_move , &game);
-	// mlx_loop(game.mlx);
-	// ft_malloc(0,0);
+	game.img  = mlx_new_image(game.mlx, 1500,650);
+	mlx_image_to_window(game.mlx, game.img, 0, 0);
+	game.map_widht = game.real_map_width * box_size;
+	game.map_height = game.real_map_heigth * box_size;
+	ft_drawing_map(&game);
+	mlx_key_hook(game.mlx, ft_check_move , &game);
+	mlx_loop(game.mlx);
+	ft_malloc(0,0);
 	return (0x0);
 }
 
