@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/22 10:13:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:08:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void	heigth_width(t_cube *game)
 	game->real_map_heigth = get_length_heigth(game->map_2d, 0, 6);
 }
 
-// PLAYER VISION 
+// PLAYER VISION
 void	player_vision(char **s, t_cube *game)
 {
 	int	i;
@@ -231,7 +231,7 @@ int	parse_numbers(char *s)
 	int		j;
 
 	i = 0;
-	str = ft_split(s, ',');
+	str = ft_split(ft_strtrim(s, " "), ',');
 	while (str[i])
 	{
 		j = 0;
@@ -254,7 +254,7 @@ void	fill_colors(t_cube *game, char *s, int mode)
 	int		i;
 
 	i = 0;
-	str = ft_split(s, ',');
+	str = ft_split(ft_strtrim(s, " "), ',');
 	while (str[i])
 	{
 		if (!mode && !i)
@@ -329,14 +329,14 @@ void	parse(int ac, char *file, t_cube *game)
 	check_texture_intra(game, 0x0);
 	check_valid_members(game, 0x0, 0x0);
 	parse_entry(game, 0x0);
-	player_vision(game->map_2d, game);
-	
+	// player_vision(game->map_2d, game);
+
 	// puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
 	// printf("NO  ---=---[%s]\n", game->texture_walls.no);
 	// printf("SO  ---=---[%s]\n", game->texture_walls.so);
 	// printf("EA  ---=---[%s]\n", game->texture_walls.ea);
 	// printf("WE  ---=---[%s]\n", game->texture_walls.we);
-	
+
 	// puts("\n\n\n\033[32m --->< THE COLORS ><---\033[0m\n\n");
 	// printf("C r ---=---[%d]\n", game->colors.r_c);
 	// printf("C g ---=---[%d]\n", game->colors.g_c);

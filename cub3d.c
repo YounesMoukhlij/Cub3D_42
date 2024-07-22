@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/22 10:27:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:36:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void ray_cast(int colum , t_cube *game)
 }
 void draw_line_DDA(t_cube *game) {
 	game->ray_angle = (roation_angle - (fov_angle / 2));
-   	game->rays = malloc(sizeof(float) * num_ray + 1);
+   	game->rays = ft_malloc(sizeof(float) * num_ray + 1, 1);
    	int i = 0;
 	int colun = 0;
    while(i < num_ray)
@@ -352,23 +352,23 @@ int main(int ac, char **av)
 
 	parse(ac, av[0x1], &game);
 	// atexit(show);
-	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
 
 
 
 
-    ft_get_player_position(&game);
-	set_values(&game);
+    // ft_get_player_position(&game);
+	// set_values(&game);
 
 
-	game.img  = mlx_new_image(game.mlx, 1500,650);
-	mlx_image_to_window(game.mlx, game.img, 0, 0);
-	game.map_widht = 50 * box_size;
-	game.map_height = 50 * box_size;
-	ft_drawing_map(&game);
-	mlx_key_hook(game.mlx, ft_check_move , &game);
-	mlx_loop(game.mlx);
-	ft_malloc(0,0);
+	// game.img  = mlx_new_image(game.mlx, 1500,650);
+	// mlx_image_to_window(game.mlx, game.img, 0, 0);
+	// game.map_widht = game.real_map_width * box_size;
+	// game.map_height = game.real_map_heigth * box_size;
+	// ft_drawing_map(&game);
+	// mlx_key_hook(game.mlx, ft_check_move , &game);
+	// mlx_loop(game.mlx);
+	// ft_malloc(0,0);
 	return (0x0);
 }
 

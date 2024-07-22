@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movment.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:31:04 by abechcha          #+#    #+#             */
-/*   Updated: 2024/07/09 16:15:01 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:35:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void ft_swap(char *c , char *x)
     *c = *x;
     *x = suv;
 }
+
 void ft_get_player_position(t_cube *game)
 {
     int i = 0;

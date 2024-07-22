@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/07/22 10:14:26 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/07/22 12:27:34 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 all : $(NAME)
 
