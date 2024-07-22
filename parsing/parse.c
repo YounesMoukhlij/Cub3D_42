@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 20:16:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:13:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	get_length_heigth(char **str, int mode, int i)
 
 int	check_walls(char *s, int i, int stat, t_cube *game)
 {
+	// printf("%s\n", s);
 	if (stat == 0x6 || stat == game->real_map_heigth + 0x5)
 	{
 		while (s[i])
@@ -320,7 +321,7 @@ void	parse(int ac, char *file, t_cube *game)
 		error_message(game, 0x1);
 	if (check_extension(file) == 0)
 		error_message(game, 0x2);
-	game->map_2d = read_map_from_file(file);
+	game->map_2d = read_map_from_file(file, 0x0, 0x0);
 	if (!game->map_2d)
 		error_message(game, 0x3);
 	init_counter(game);
@@ -330,27 +331,27 @@ void	parse(int ac, char *file, t_cube *game)
 	parse_entry(game, 0x0);
 	player_vision(game->map_2d, game);
 	
-	puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
-	printf("NO  ---=---[%s]\n", game->texture_walls.no);
-	printf("SO  ---=---[%s]\n", game->texture_walls.so);
-	printf("EA  ---=---[%s]\n", game->texture_walls.ea);
-	printf("WE  ---=---[%s]\n", game->texture_walls.we);
+	// puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
+	// printf("NO  ---=---[%s]\n", game->texture_walls.no);
+	// printf("SO  ---=---[%s]\n", game->texture_walls.so);
+	// printf("EA  ---=---[%s]\n", game->texture_walls.ea);
+	// printf("WE  ---=---[%s]\n", game->texture_walls.we);
 	
-	puts("\n\n\n\033[32m --->< THE COLORS ><---\033[0m\n\n");
-	printf("C r ---=---[%d]\n", game->colors.r_c);
-	printf("C g ---=---[%d]\n", game->colors.g_c);
-	printf("C b ---=---[%d]\n", game->colors.b_c);
-	printf("F r ---=---[%d]\n", game->colors.r_f);
-	printf("F g ---=---[%d]\n", game->colors.g_f);
-	printf("F b ---=---[%d]\n", game->colors.b_f);
+	// puts("\n\n\n\033[32m --->< THE COLORS ><---\033[0m\n\n");
+	// printf("C r ---=---[%d]\n", game->colors.r_c);
+	// printf("C g ---=---[%d]\n", game->colors.g_c);
+	// printf("C b ---=---[%d]\n", game->colors.b_c);
+	// printf("F r ---=---[%d]\n", game->colors.r_f);
+	// printf("F g ---=---[%d]\n", game->colors.g_f);
+	// printf("F b ---=---[%d]\n", game->colors.b_f);
 
-	int i  = 0;
-	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	while (game->map_2d[i])
-		printf("%s\n", game->map_2d[i++]);
-	puts("\n");
-	printf("the heigth ---=[%d]\n", game->real_map_heigth);
-	printf("the width ---=[%d]\n", game->real_map_width);
-	puts("\n\n\n\n \033[41mCONGRATS ----> good \033[0m \n\n\n");
+	// int i  = 0;
+	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	// while (game->map_2d[i])
+	// 	printf("%s\n", game->map_2d[i++]);
+	// puts("\n");
+	// printf("the heigth ---=[%d]\n", game->real_map_heigth);
+	// printf("the width ---=[%d]\n", game->real_map_width);
+	// puts("\n\n\n\n \033[41mCONGRATS ----> good \033[0m \n\n\n");
 }
 

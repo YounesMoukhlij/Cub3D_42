@@ -102,7 +102,7 @@ typedef struct s_cube
 
 char	*get_next_line(int fd);
 void	error_reading_map(int mode);
-char	**read_map_from_file(char *map_1d);
+char	**read_map_from_file(char *map_1d, int fd, int is_map);
 void	error_message(t_cube *var, int mode);
 void	parse(int ac, char *file, t_cube *var);
 
