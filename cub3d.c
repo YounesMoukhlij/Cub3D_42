@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 10:24:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:33:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -362,7 +362,11 @@ void show(void)
 
 void ft_mouse_move(double x_pos, double y_pos, void *pointer)
 {
+
+	(void) y_pos;
     t_cube *game = pointer;
+	(void) game;
+	(void) pointer;
     int mouseX = (int)x_pos;
     int deltaX = mouseX - lastMouseX;
 
