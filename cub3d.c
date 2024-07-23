@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/22 18:18:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:24:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 double	fov_angle = 60 * (PI / 180);
 double  roation_angle = PI / 2;
 double	num_ray = (24 * box_size ) / 4;
+double	MOUSE_SENSITIVITY = 0.001; 
+int		lastMouseX = 0; 
+
+
 
 void dda(t_cube *game,int x1, int y1, int x2, int y2)
 {
@@ -157,6 +161,7 @@ void ray_cast(int colum , t_cube *game)
 		// game->was_vertical = (vertical_wall_distance < horizontal_wall_distance);
 		ft_draw_line(game , game->player_y , game->player_x  , wall_x , wall_y , 0);
 }
+
 void draw_line_DDA(t_cube *game) {
 	game->ray_angle = (roation_angle - (fov_angle / 2));
    	game->rays = ft_malloc(sizeof(float) * num_ray + 1, 1);
@@ -348,17 +353,31 @@ void show(void)
 	system("leaks cub3D");
 }
 
-void    ft_mouse_move(double xpos, double ypos, void *pointer)
-{
-    t_cube        *game;
 
-    (void)xpos ;
-    (void)ypos ;
-    game = pointer;
-    mlx_get_mouse_pos(game->mlx, &mouse.x, &mouse.y);
-    game->rotation_angle = MOUSE_SPEED(double)(mouse.x - (game->real_map_width / 2));
-    mlx_set_mouse_pos(game->mlx, (game->real_map_width / 2), (game->real_map_heigth / 2));
+
+
+
+
+
+
+void ft_mouse_move(double x_pos, double y_pos, void *pointer)
+{
+    t_cube *game = pointer;
+    int mouseX = (int)x_pos;
+    int deltaX = mouseX - lastMouseX;
+
+
+    if (deltaX != 0)
+    {
+        roation_angle += deltaX * MOUSE_SENSITIVITY;
+        roation_angle = fmod(roation_angle, 2 * PI); 
+    }
+
+    lastMouseX = mouseX; 
 }
+
+
+
 
 
 int main(int ac, char **av)
@@ -380,6 +399,11 @@ int main(int ac, char **av)
 	game.map_height = game.real_map_heigth * box_size;
 	ft_drawing_map(&game);
 	mlx_key_hook(game.mlx, ft_check_move , &game);
+	mlx_cursor_hook(game.mlx, ft_mouse_move, &game);
+    
+    lastMouseX = 1500 / 2;
+    mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
+
 	mlx_loop(game.mlx);
 	ft_malloc(0,0);
 	return (0x0);
