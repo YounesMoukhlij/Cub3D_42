@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 18:17:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:21:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ double  roation_angle = PI / 2;
 double	num_ray = (24 * box_size ) / 4;
 double	MOUSE_SENSITIVITY = 0.001; 
 int		lastMouseX = 0; 
-
-
 
 
 
