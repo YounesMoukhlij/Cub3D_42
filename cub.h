@@ -24,12 +24,12 @@
 # include <math.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 2
-# define box_size 40
+# define player_speed 50
+# define box_size 100
 # define player_size 3
 # define PI 3.14159265358979323846
 # define reation_speed 7 * (PI / 180)
-# define wall_with 4
+# define wall_with 1
 
 
 typedef struct s_text
@@ -44,27 +44,27 @@ typedef struct s_text
 
 typedef struct s_ray_info
 {
-	double wall_x;
-	double wall_y;
-	double distance;
+	float wall_x;
+	float wall_y;
+	float distance;
 	int coloum;
 	struct s_ray_info *next;
 } t_ray;
 
 typedef struct s_cube
-{
-	int	 	player_x;
-	int 	player_y;
+{	
+	int 	player_x;
+	int  	player_y;
 	float     *rays;
-	double  distance;
+	float    distance;
 	int     was_vertical;
-	double 	player_new_y;
-	double 	player_new_x;
-	double 	is_facingDown;
-	double 	is_facingup;
-	double 	is_facingRight;
-	double 	is_facingLeft;
-	double  move;
+	float 	player_new_y;
+	float 	player_new_x;
+	float 	is_facingDown;
+	float 	is_facingup;
+	float 	is_facingRight;
+	float 	is_facingLeft;
+	float  move;
 	int 	player_walk;
 	int 	player_turn;
 	int     map_widht;
@@ -74,7 +74,7 @@ typedef struct s_cube
 	char	*map_1d;
 	char	**map_2d;
 	char	**map;
-	double ray_angle;
+	float ray_angle;
 	t_text	*texture_walls;
 }	t_cube;
 

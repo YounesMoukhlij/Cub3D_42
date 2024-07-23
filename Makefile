@@ -25,7 +25,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS =  -Ofast #-g -fsanitize=address 
 
 all : $(NAME)
 
