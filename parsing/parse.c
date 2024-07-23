@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/22 15:45:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:11:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,33 @@ void	parse_entry(t_cube *game, int i)
 	}
 }
 
+char	**final_map(t_cube *game, char **str)
+{
+	int		i;
+	int		j;
+	char	**s;
+
+	(void) str;
+	i = 0x0;
+	j = 0x0;
+	printf("heigth == [%d] && width == [%d]\n", game->real_map_heigth, game->real_map_width);
+	printf("[%d]\n", ft_strlen(str[i]));
+	s = ft_malloc(game->real_map_heigth + 0x1, 0x1);
+	if (!s)
+		return (NULL);
+	while (str[i])
+	{
+		if (i > 0x5)
+		{
+			s[j] = ft_strdup(str[i]);
+			j++;
+		}
+		i++;
+	}
+	s[game->real_map_heigth] = 0;
+	return (s);
+}
+
 void	parse(int ac, char *file, t_cube *game)
 {
 	if (ac <= 1 || ac >= 3)
@@ -329,6 +356,7 @@ void	parse(int ac, char *file, t_cube *game)
 	check_texture_intra(game, 0x0);
 	check_valid_members(game, 0x0, 0x0);
 	parse_entry(game, 0x0);
+	game->map = final_map(game, game->map_2d);
 	// player_vision(game->map_2d, game);
 
 	// puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
