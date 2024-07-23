@@ -24,11 +24,11 @@
 # include <math.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 100
-# define box_size 100
+# define player_speed 10
+# define box_size 90
 # define player_size 3
 # define PI 3.14159265358979323846
-# define reation_speed 7 * (PI / 180)
+# define reation_speed 3 * (PI / 180)
 # define wall_with 1
 
 
@@ -61,9 +61,10 @@ typedef struct s_cube
 	float 	player_new_y;
 	float 	player_new_x;
 	float 	is_facingDown;
+	float 	is_facingLeft;
+	int 	hit_v;
 	float 	is_facingup;
 	float 	is_facingRight;
-	float 	is_facingLeft;
 	float  move;
 	int 	player_walk;
 	int 	player_turn;
