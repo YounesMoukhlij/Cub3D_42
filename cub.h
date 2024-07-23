@@ -24,7 +24,7 @@
 # include <math.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 50
+# define player_speed 100
 # define box_size 100
 # define player_size 3
 # define PI 3.14159265358979323846
