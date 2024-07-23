@@ -49,6 +49,7 @@ float	ft_min(float a, float b)
 
 void ft_draw_wall(t_ray *head, t_cube *game , float distance , int index)
 {
+	(void)head;
         int wall_height = (box_size / (distance * cos(roation_angle \
 	- game->ray_angle))) * ((1500 / 2) / tan(PI / 6));
 
@@ -452,14 +453,24 @@ int main(int ac, char **av)
     ft_get_player_position(&game);
 	set_values(&game);
 
-
 	game.img  = mlx_new_image(game.mlx, 1500,1000);
-	// mlx_image_t *img_1  = mlx_new_image(game.mlx, 1500,1000);///
+	game.img_mini_map  = mlx_new_image(game.mlx, 500,200);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
-	// mlx_image_to_window(game.mlx, img_1, 0, 0);
+	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
+	int i = 0;
+	while(i < 200)
+	{
+		int j = 0;
+		while(j < 500)
+		{
+			mlx_put_pixel(game.img_mini_map, j, i, 0xFF0000FF);
+			j++;
+		}
+		i++;
+	}
 	game.map_widht = 64 * box_size;
 	game.map_height = 14 * box_size;
-	// ft_drawing_map(&game);
+	ft_drawing_map(&game);
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
 	finish_him(&game);

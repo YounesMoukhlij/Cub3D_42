@@ -64,6 +64,8 @@ void ft_get_player_position(t_cube *game)
             {
                 game->player_x = i * box_size;
                 game->player_y = j * box_size;
+                game->player_x_mini_map = i * box_size_mini_map;
+                game->player_y_mini_map = j * box_size_mini_map;
                 return ;
             }
             j++;

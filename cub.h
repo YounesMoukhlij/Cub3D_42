@@ -26,6 +26,7 @@
 # define BUFFER_SIZE 1
 # define player_speed 10
 # define box_size 90
+# define box_size_mini_map 10
 # define player_size 3
 # define PI 3.14159265358979323846
 # define reation_speed 3 * (PI / 180)
@@ -55,6 +56,8 @@ typedef struct s_cube
 {	
 	int 	player_x;
 	int  	player_y;
+	int  	player_y_mini_map;
+	int  	player_x_mini_map;
 	float     *rays;
 	float    distance;
 	int     was_vertical;
@@ -72,6 +75,7 @@ typedef struct s_cube
 	int     map_height;
 	mlx_t 	*mlx;
 	mlx_image_t *img;
+	mlx_image_t *img_mini_map;
 	char	*map_1d;
 	char	**map_2d;
 	char	**map;
