@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 11:46:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:15:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -384,22 +384,22 @@ int main(int ac, char **av)
 
 	parse(ac, av[0x1], &game);
 	// atexit(show);
-	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
-    ft_get_player_position(&game);
-	set_values(&game);
-	game.img  = mlx_new_image(game.mlx, 1500,650);
-	mlx_image_to_window(game.mlx, game.img, 0, 0);
-	game.map_widht = game.real_map_width * box_size;
-	game.map_height = game.real_map_heigth * box_size;
-	ft_drawing_map(&game);
-	mlx_key_hook(game.mlx, ft_check_move , &game);
-	mlx_cursor_hook(game.mlx, ft_mouse_move, &game);
+	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+    // ft_get_player_position(&game);
+	// set_values(&game);
+	// game.img  = mlx_new_image(game.mlx, 1500,650);
+	// mlx_image_to_window(game.mlx, game.img, 0, 0);
+	// game.map_widht = game.real_map_width * box_size;
+	// game.map_height = game.real_map_heigth * box_size;
+	// ft_drawing_map(&game);
+	// mlx_key_hook(game.mlx, ft_check_move , &game);
+	// mlx_cursor_hook(game.mlx, ft_mouse_move, &game);
     
-    lastMouseX = 1500 / 2;
-    mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
+    // lastMouseX = 1500 / 2;
+    // mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
 
-	mlx_loop(game.mlx);
-	ft_malloc(0,0);
+	// mlx_loop(game.mlx);
+	// ft_malloc(0,0);
 	return (0x0);
 }
 

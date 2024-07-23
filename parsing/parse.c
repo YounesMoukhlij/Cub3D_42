@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 11:11:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:40:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,22 +323,24 @@ char	**final_map(t_cube *game, char **str)
 
 	(void) str;
 	i = 0x0;
-	j = 0x0;
-	printf("heigth == [%d] && width == [%d]\n", game->real_map_heigth, game->real_map_width);
-	printf("[%d]\n", ft_strlen(str[i]));
-	s = ft_malloc(game->real_map_heigth + 0x1, 0x1);
+	printf("heigth == [%d] && width == [%d]\n\n\n\n\n", game->real_map_heigth, game->real_map_width);
+	s = ft_malloc((sizeof(char *) * game->real_map_heigth) + 0x1, 0x1);
 	if (!s)
 		return (NULL);
+	j = 0x0;
 	while (str[i])
 	{
-		if (i > 0x5)
+		if (i > 0x5 && j < game->real_map_heigth)
 		{
 			s[j] = ft_strdup(str[i]);
+			if (j == 24)
+				printf("%s\n", s[j]);
+			printf("length%d\n", j);
 			j++;
 		}
 		i++;
 	}
-	s[game->real_map_heigth] = 0;
+	// s[game->real_map_heigth] = 0;
 	return (s);
 }
 
@@ -375,8 +377,8 @@ void	parse(int ac, char *file, t_cube *game)
 
 	// int i  = 0;
 	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	// while (game->map_2d[i])
-	// 	printf("%s\n", game->map_2d[i++]);
+	// while (game->map[i])
+	// 	printf("%s\n", game->map[i++]);
 	// puts("\n");
 	// printf("the heigth ---=[%d]\n", game->real_map_heigth);
 	// printf("the width ---=[%d]\n", game->real_map_width);
