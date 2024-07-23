@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 12:14:24 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:01:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	**read_map_from_file(char *map_1d, int fd, int is_map)
 {
 	char	*s_read;
 	char	*str;
-	char	**s;
 
 	first_check(map_1d);
 	str = ft_strdup("");
@@ -88,11 +87,11 @@ char	**read_map_from_file(char *map_1d, int fd, int is_map)
 				is_map = 0x1;
 		}
 		if (is_map && s_read[0x0] == '\n')
-			return (close (fd), NULL);
+			return (close(fd), NULL);
 		str = ft_strjoin(str, s_read);
 		if (!str)
 			return (close(fd), NULL);
 	}
 	close (fd);
-	return (s = ft_split(str, '\n'), s);
+	return (ft_split(str, '\n'));
 }

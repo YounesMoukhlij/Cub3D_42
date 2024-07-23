@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 12:40:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:43:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,26 +321,18 @@ char	**final_map(t_cube *game, char **str)
 	int		j;
 	char	**s;
 
-	(void) str;
 	i = 0x0;
-	printf("heigth == [%d] && width == [%d]\n\n\n\n\n", game->real_map_heigth, game->real_map_width);
-	s = ft_malloc((sizeof(char *) * game->real_map_heigth) + 0x1, 0x1);
+	s = (char **)ft_malloc((game->real_map_heigth + 0x1) * 8, 0x1);
 	if (!s)
 		return (NULL);
 	j = 0x0;
 	while (str[i])
 	{
-		if (i > 0x5 && j < game->real_map_heigth)
-		{
-			s[j] = ft_strdup(str[i]);
-			if (j == 24)
-				printf("%s\n", s[j]);
-			printf("length%d\n", j);
-			j++;
-		}
+		if (i > 0x5)
+			s[j++] = ft_strdup(str[i]);
 		i++;
 	}
-	// s[game->real_map_heigth] = 0;
+	s[j] = 0;
 	return (s);
 }
 
@@ -357,16 +349,14 @@ void	parse(int ac, char *file, t_cube *game)
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
 	check_valid_members(game, 0x0, 0x0);
+	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
 	game->map = final_map(game, game->map_2d);
-	// player_vision(game->map_2d, game);
-
 	// puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
 	// printf("NO  ---=---[%s]\n", game->texture_walls.no);
 	// printf("SO  ---=---[%s]\n", game->texture_walls.so);
 	// printf("EA  ---=---[%s]\n", game->texture_walls.ea);
 	// printf("WE  ---=---[%s]\n", game->texture_walls.we);
-
 	// puts("\n\n\n\033[32m --->< THE COLORS ><---\033[0m\n\n");
 	// printf("C r ---=---[%d]\n", game->colors.r_c);
 	// printf("C g ---=---[%d]\n", game->colors.g_c);
@@ -375,10 +365,13 @@ void	parse(int ac, char *file, t_cube *game)
 	// printf("F g ---=---[%d]\n", game->colors.g_f);
 	// printf("F b ---=---[%d]\n", game->colors.b_f);
 
-	// int i  = 0;
-	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	// while (game->map[i])
-	// 	printf("%s\n", game->map[i++]);
+	int i  = 0;
+	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	while (game->map[i])
+	{
+		printf("------------->   %s\n", game->map[i]);
+		i++;
+	}
 	// puts("\n");
 	// printf("the heigth ---=[%d]\n", game->real_map_heigth);
 	// printf("the width ---=[%d]\n", game->real_map_width);

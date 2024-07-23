@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:22:42 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 16:47:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:47:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
 	r = ft_malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1), 1);
 	if (!r)
 		return (s1 = NULL, NULL);

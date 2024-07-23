@@ -6,120 +6,119 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 16:57:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:46:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static int	ft_lookfor_newline(char *s)
+int	ft_find_nl(const char *s, int c)
 {
-	int		i;
+	int	i;
 
+	i = 0;
 	if (!s)
 		return (0);
-	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
-		if (s[i] == '\n')
-			return (0);
+		if ((char)c == s[i])
+			return (i + 1);
 		i++;
 	}
-	return (1);
+	if ((char)c == s[i])
+		return (i + 1);
+	return (0);
 }
 
-static char	*ft_get_the_rest(char *str)
-{
-	int		i;
-	int		j;
-	char	*rest_of;
 
-	i = 0;
-	j = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (!str[i])
+static char	*ft_read_fd(int fd, char *rest)
+{
+	int		readed_bytes;
+	char	*tmp;
+
+	readed_bytes = 1;
+	tmp = ft_malloc((sizeof(char) * BUFFER_SIZE) + 1, 1);
+	if (!tmp)
 		return (NULL);
-	rest_of = ft_malloc(ft_strlen(str) - (i - 1), 1);
-	if (!rest_of)
-		return (str = NULL, NULL);
-	i++;
-	while (str[i])
-		rest_of[j++] = str[i++];
-	rest_of[j] = '\0';
-	return (rest_of);
+	while (1)
+	{
+		if (ft_find_nl(rest, '\n'))
+			break ;
+		readed_bytes = read(fd, tmp, BUFFER_SIZE);
+		if (readed_bytes == -1)
+			return (NULL);
+		tmp[readed_bytes] = 0;
+		if (readed_bytes == 0)
+			break ;
+		rest = ft_strjoin(rest, tmp);
+	}
+	return (rest);
 }
 
-static char	*ft_get_the_line(char *s)
+static char	*ft_line_extract(char *line, char *rest)
 {
-	char	*new_str;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (s[i] == '\n')
-		i++;
-	new_str = ft_malloc(i + 1, 1);
-	if (!new_str)
-		return (NULL);
 	j = 0;
+	if (!rest || *rest == '\0')
+		return (NULL);
+	i = ft_find_nl(rest, '\n');
+	if (!i)
+		i = ft_strlen(rest);
+	line = ft_malloc(i + 1, 1);
 	while (j < i)
 	{
-		new_str[j] = s[j];
+		line[j] = rest[j];
 		j++;
 	}
-	new_str[j] = '\0';
-	return (new_str);
+	line[j] = '\0';
+	return (line);
 }
 
-static char	*ft_read_from_fd(char *str, int fd, int indice)
+static char	*ft_buckup(char *rest)
 {
-	char	*my_buffer;
+	int		i;
+	int		j;
+	char	*tmp;
 
-	while (ft_lookfor_newline(str) && indice > 0)
-	{
-		my_buffer = ft_malloc(sizeof(char) * (BUFFER_SIZE + 1), 1);
-		if (!my_buffer)
-			return (str = NULL, NULL);
-		indice = read(fd, my_buffer, BUFFER_SIZE);
-		if (indice < 0)
-			return (NULL);
-		if (indice == 0)
-			break ;
-		my_buffer[indice] = '\0';
-		str = ft_strjoin(str, my_buffer);
-		if (!str)
-			return (NULL);
-	}
-	if (!ft_strlen(str))
+	j = 0;
+	i = 0;
+	tmp = NULL;
+	while (rest[i] != '\0' && rest[i] != '\n')
+		i++;
+	if (rest[i] == '\n')
+		i++;
+	if (rest[i] == '\0')
 		return (NULL);
-	return (str);
+	tmp = ft_malloc((ft_strlen(&rest[i])) + 1, 1);
+	while (rest[i])
+		tmp[j++] = rest[i++];
+	tmp[j] = '\0';
+	return (tmp);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
-	char		*get_line;
-	int			indice;
+	static char	*rest;
+	char		*line;
 
-	indice = 1;
-	if (BUFFER_SIZE <= 0 || fd < 0 || BUFFER_SIZE > INT_MAX || fd >= OPEN_MAX)
+	line = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!str)
+ 	if (!rest)
 	{
-		str = ft_malloc(1, 1);
-		if (!str)
+		rest = ft_malloc(1, 1);
+		if (!rest)
 			return (NULL);
-		str[0] = '\0';
+		rest[0] = '\0';
 	}
-	str = ft_read_from_fd(str, fd, indice);
-	if (!str)
-		return (str = NULL, NULL);
-	get_line = ft_get_the_line(str);
-	if (!get_line)
-		return (str = NULL, NULL);
-	str = ft_get_the_rest(str);
-	return (get_line);
+	rest = ft_read_fd(fd, rest);
+	if (rest == NULL)
+		return (NULL);
+	line = ft_line_extract(line, rest);
+	if (!line)
+		return (NULL);
+	rest = ft_buckup(rest);
+	return (line);
 }

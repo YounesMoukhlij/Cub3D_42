@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 12:15:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:44:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,9 +227,9 @@ int ft_check_walls(t_cube *game , int x , int y)
 {
 	x = x / box_size;
 	y = y / box_size;
-	if (game->map_2d[y][x])
+	if (game->map[y][x])
 	{
-		if (game->map_2d[y][x] != '1' )
+		if (game->map[y][x] != '1' )
 			return 1;
 	}
 	return 0;
@@ -302,14 +302,14 @@ void ft_drawing_map_element(t_cube *game)
 {
 	int i = 0;
 	int j ;
-	while (game->map_2d[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while(game->map_2d[i][j])
+		while(game->map[i][j])
 		{
-			if (game->map_2d[i][j] == '1')
+			if (game->map[i][j] == '1')
 				ft_draw_square(game , i * box_size , j * box_size);
-			else if (game->map_2d[i][j] == '0' || game->map_2d[i][j] == 'N')
+			else if (game->map[i][j] == '0' || game->map[i][j] == 'N')
 				ft_draw_floor(game , i * box_size , j * box_size);
 			j++;
 		}
@@ -321,10 +321,10 @@ void map_dem(t_cube *game)
 	int i;
 	i = 0;
 	int j;
-	while(game->map_2d[i])
+	while(game->map[i])
 	{
 		j = 0;
-		while(game->map_2d[i][j])
+		while(game->map[i][j])
 			j++;
 		i++;
 	}
@@ -339,7 +339,7 @@ void ft_drawing_map(t_cube *game)
 
 void	finish_him(t_cube *game)
 {
-	ft_free(game->map_2d);
+	ft_free(game->map);
 }
 
 void set_values(t_cube *game)
@@ -384,22 +384,22 @@ int main(int ac, char **av)
 
 	parse(ac, av[0x1], &game);
 	// atexit(show);
-	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
-    // ft_get_player_position(&game);
-	// set_values(&game);
-	// game.img  = mlx_new_image(game.mlx, 1500,650);
-	// mlx_image_to_window(game.mlx, game.img, 0, 0);
-	// game.map_widht = game.real_map_width * box_size;
-	// game.map_height = game.real_map_heigth * box_size;
-	// ft_drawing_map(&game);
-	// mlx_key_hook(game.mlx, ft_check_move , &game);
-	// mlx_cursor_hook(game.mlx, ft_mouse_move, &game);
+	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+    ft_get_player_position(&game);
+	set_values(&game);
+	game.img  = mlx_new_image(game.mlx, 1500,650);
+	mlx_image_to_window(game.mlx, game.img, 0, 0);
+	game.map_widht = game.real_map_width * box_size;
+	game.map_height = game.real_map_heigth * box_size;
+	ft_drawing_map(&game);
+	mlx_key_hook(game.mlx, ft_check_move , &game);
+	mlx_cursor_hook(game.mlx, ft_mouse_move, &game);
     
-    // lastMouseX = 1500 / 2;
-    // mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
+    lastMouseX = 1500 / 2;
+    mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
 
-	// mlx_loop(game.mlx);
-	// ft_malloc(0,0);
+	mlx_loop(game.mlx);
+	ft_malloc(0,0);
 	return (0x0);
 }
 
