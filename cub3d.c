@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/23 11:10:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:46:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,12 +385,8 @@ int main(int ac, char **av)
 	parse(ac, av[0x1], &game);
 	// atexit(show);
 	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
-
-
     ft_get_player_position(&game);
 	set_values(&game);
-
-
 	game.img  = mlx_new_image(game.mlx, 1500,650);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	game.map_widht = game.real_map_width * box_size;
