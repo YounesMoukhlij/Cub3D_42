@@ -57,7 +57,13 @@ void ft_draw_wall(t_ray *head, t_cube *game , float distance , int index)
 		int i;
 
 		for (i = top; i < bottom; i++)
-			mlx_put_pixel(game->img,  index, i, ft_color(255, 255, 255, 255 * exp(-0.0001 * distance)));
+		{
+
+			if (game->hit_v)
+			mlx_put_pixel(game->img,  index, i, ft_color(255, 0, 0, 255 * exp(-0.0001 * distance)));
+		else
+			mlx_put_pixel(game->img,  index, i, ft_color(0, 0, 255, 255 * exp(-0.0001 * distance)));
+		}
 
 
         // if (top < 0)
@@ -206,11 +212,13 @@ void ray_cast( t_ray *head ,int  colum , t_cube *game)
 			wall_x = wall_horizontal_x;
 			wall_y = wall_horizontal_y;
 			game->distance = horizontal_wall_distance;
+			game->hit_v = 0;
 		}
 		else{
 			wall_x = wall_vertical_x;
 			wall_y = wall_vertical_y;
 			game->distance = vertical_wall_distance;
+			game->hit_v = 1;
 		}
 		(void)head;
 		game->was_vertical = 0;
@@ -306,12 +314,11 @@ void ft_test(t_cube *game)
 		i++;
 	}
 }
-void  ft_check_move(struct mlx_key_data ll ,void *tmp)
+void  ft_check_move(void *tmp)
 {
 	t_cube *game;
-	(void)ll;
 	game = (t_cube *)tmp;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 	{
 		roation_angle += 1 * reation_speed;
 		// game->player_new_y =  game->player_y + cos(roation_angle);
@@ -328,7 +335,7 @@ void  ft_check_move(struct mlx_key_data ll ,void *tmp)
 			// game->player_new_x =  game->player_x + sin(roation_angle);
 		}
 	}
-	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
 		roation_angle += -1 * reation_speed;
 		// game->player_new_y =  game->player_y + cos(roation_angle);
@@ -453,7 +460,7 @@ int main(int ac, char **av)
 	game.map_widht = 64 * box_size;
 	game.map_height = 14 * box_size;
 	// ft_drawing_map(&game);
-	mlx_key_hook(game.mlx, ft_check_move , &game);
+	mlx_loop_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
 	finish_him(&game);
 	return (0x0);
