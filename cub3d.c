@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/14 08:18:44 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:50:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 double	fov_angle = 60 * (PI / 180);
 double  roation_angle = PI / 2;
 double	num_ray = (24 * box_size ) / 4;
+double	MOUSE_SENSITIVITY = 0.001; 
+int		lastMouseX = 0; 
+
+
 
 void dda(t_cube *game,int x1, int y1, int x2, int y2)
 {
@@ -157,9 +161,10 @@ void ray_cast(int colum , t_cube *game)
 		// game->was_vertical = (vertical_wall_distance < horizontal_wall_distance);
 		ft_draw_line(game , game->player_y , game->player_x  , wall_x , wall_y , 0);
 }
+
 void draw_line_DDA(t_cube *game) {
 	game->ray_angle = (roation_angle - (fov_angle / 2));
-   	game->rays = malloc(sizeof(float) * num_ray + 1);
+   	game->rays = ft_malloc(sizeof(float) * num_ray + 1, 1);
    	int i = 0;
 	int colun = 0;
    while(i < num_ray)
@@ -222,9 +227,9 @@ int ft_check_walls(t_cube *game , int x , int y)
 {
 	x = x / box_size;
 	y = y / box_size;
-	if (game->map_2d[y][x])
+	if (game->map[y][x])
 	{
-		if (game->map_2d[y][x] != '1' )
+		if (game->map[y][x] != '1' )
 			return 1;
 	}
 	return 0;
@@ -271,6 +276,7 @@ void  ft_check_move(struct mlx_key_data ll ,void *tmp)
 			game->player_new_x =  game->player_x + sin(roation_angle);
 		}
 	}
+
 	ft_drawing_map(game);
 	draw_line_DDA(game);
 	ft_put_player(game);
@@ -296,14 +302,14 @@ void ft_drawing_map_element(t_cube *game)
 {
 	int i = 0;
 	int j ;
-	while (game->map_2d[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while(game->map_2d[i][j])
+		while(game->map[i][j])
 		{
-			if (game->map_2d[i][j] == '1')
+			if (game->map[i][j] == '1')
 				ft_draw_square(game , i * box_size , j * box_size);
-			else if (game->map_2d[i][j] == '0' || game->map_2d[i][j] == 'N')
+			else if (game->map[i][j] == '0' || game->map[i][j] == 'N')
 				ft_draw_floor(game , i * box_size , j * box_size);
 			j++;
 		}
@@ -315,10 +321,10 @@ void map_dem(t_cube *game)
 	int i;
 	i = 0;
 	int j;
-	while(game->map_2d[i])
+	while(game->map[i])
 	{
 		j = 0;
-		while(game->map_2d[i][j])
+		while(game->map[i][j])
 			j++;
 		i++;
 	}
@@ -333,7 +339,7 @@ void ft_drawing_map(t_cube *game)
 
 void	finish_him(t_cube *game)
 {
-	ft_free(game->map_2d);
+	ft_free(game->map);
 }
 
 void set_values(t_cube *game)
@@ -341,28 +347,59 @@ void set_values(t_cube *game)
 	game->player_turn = 0;
 	game->player_walk = 0;
 }
+
+void show(void)
+{
+	system("leaks cub3D");
+}
+
+
+void ft_mouse_move(double x_pos, double y_pos, void *pointer)
+{
+
+	(void) y_pos;
+    t_cube *game = pointer;
+	(void) game;
+	(void) pointer;
+    int mouseX = (int)x_pos;
+    int deltaX = mouseX - lastMouseX;
+
+
+    if (deltaX != 0)
+    {
+        roation_angle += deltaX * MOUSE_SENSITIVITY;
+        roation_angle = fmod(roation_angle, 2 * PI); 
+    }
+
+    lastMouseX = mouseX; 
+}
+
+
+
+
+
 int main(int ac, char **av)
 {
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
-	// game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+	// atexit(show);
+	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+    ft_get_player_position(&game);
+	set_values(&game);
+	game.img  = mlx_new_image(game.mlx, 1500,650);
+	mlx_image_to_window(game.mlx, game.img, 0, 0);
+	game.map_widht = game.real_map_width * box_size;
+	game.map_height = game.real_map_heigth * box_size;
+	ft_drawing_map(&game);
+	mlx_key_hook(game.mlx, ft_check_move , &game);
+	mlx_cursor_hook(game.mlx, ft_mouse_move, &game);
+    
+    lastMouseX = 1500 / 2;
+    mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
 
-
-
-
-    // ft_get_player_position(&game);
-	// set_values(&game);
-
-
-	// game.img  = mlx_new_image(game.mlx, 1500,650);
-	// mlx_image_to_window(game.mlx, game.img, 0, 0);
-	// game.map_widht = game.real_map_width * box_size;
-	// game.map_height = 13 * box_size;
-	// ft_drawing_map(&game);
-	// mlx_key_hook(game.mlx, ft_check_move , &game);
-	// mlx_loop(game.mlx);
-	// finish_him(&game);
+	mlx_loop(game.mlx);
+	ft_malloc(0,0);
 	return (0x0);
 }
 

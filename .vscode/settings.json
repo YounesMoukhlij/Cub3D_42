@@ -1,3 +1,9 @@
 {
+<<<<<<< HEAD
     "cmake.sourceDirectory": "/Users/youmoukh/Desktop/Cub3D_42/MLX42"
+=======
+    "files.associations": {
+        "sstream": "c"
+    }
+>>>>>>> YounesMoukhlij
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movment.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:31:04 by abechcha          #+#    #+#             */
-/*   Updated: 2024/07/09 16:15:01 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:45:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,17 @@ void ft_swap(char *c , char *x)
     *c = *x;
     *x = suv;
 }
+
 void ft_get_player_position(t_cube *game)
 {
     int i = 0;
     int j;
-    while(game->map_2d[i])
+    while(game->map[i])
     {
         j = 0;
-        while(game->map_2d[i][j])
+        while(game->map[i][j])
         {
-            if (game->map_2d[i][j] == 'N' || game->map_2d[i][j] == 'S' || game->map_2d[i][j] == 'W' ||game->map_2d[i][j] == 'E')
+            if (game->map[i][j] == 'N' || game->map[i][j] == 'S' || game->map[i][j] == 'W' ||game->map[i][j] == 'E')
             {
                 game->player_x = i * box_size;
                 game->player_y = j * box_size;

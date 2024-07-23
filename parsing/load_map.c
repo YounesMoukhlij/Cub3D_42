@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/01 15:49:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:01:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	first_check(char *file)
 	str = get_next_line(fd);
 	close (fd);
 	if (!str)
-		return (free (str), error_reading_map(0x2));
-	free (str);
+		return (error_reading_map(0x2));
 }
 
 void	check_during_read(char *str, int mode)
@@ -32,35 +31,67 @@ void	check_during_read(char *str, int mode)
 	if (mode == 0)
 	{
 		if ((str[0] == '\n' && str[1] == '\0') || str[0] == '\0')
-			return (free(str), error_reading_map(0x2));
+			return (error_reading_map(0x2));
 		if (str[ft_strlen(str)] == '\n')
-			return (free(str), error_reading_map(0x2));
+			return (error_reading_map(0x2));
 	}
 	if (mode == 1)
 		if (str[ft_strlen(str) - 1] == '\n')
-			return (free(str), error_reading_map(0x2));
+			return (error_reading_map(0x2));
 }
 
-char	**read_map_from_file(char *map_1d)
+int	small_check(char *s, int i, int flag)
 {
-	int		fd;
+	char	*str;
+
+	if (ft_strlen(s) >= 0x2)
+	{
+		str = ft_substr(s, 0x0, 0x2);
+		if (!ft_strcmp(str, "SO") || !ft_strcmp(str, "NO")
+			|| !ft_strcmp(str, "F ") || !ft_strcmp(str, "C ")
+			|| !ft_strcmp(str, "EA") || !ft_strcmp(str, "WE"))
+			return (0x0);
+	}
+	if (ft_strlen(s) >= 0x1)
+	{
+		while (s[i])
+		{
+			if (s[i] == '1' || s[i] == '0'
+				|| s[i] == 'S' || s[i] == 'N'
+				|| s[i] == 'E' || s[i] == 'W')
+				flag++;
+			i++;
+		}
+	}
+	if ((flag == ft_strlen(s) - 1) && ft_strcmp(s, "\n"))
+		return (0x1);
+	return (0x0);
+}
+
+char	**read_map_from_file(char *map_1d, int fd, int is_map)
+{
 	char	*s_read;
-	char	*final_tmp;
-	char	**final;
+	char	*str;
 
 	first_check(map_1d);
-	final_tmp = ft_strdup("");
+	str = ft_strdup("");
 	fd = open(map_1d, O_RDONLY);
 	while (0x1)
 	{
 		s_read = get_next_line(fd);
 		if (s_read == NULL)
 			break ;
-		final_tmp = ft_strjoin(final_tmp, s_read);
-		if (!final_tmp)
-			return (free (final_tmp), free (s_read), NULL);
-		free (s_read);
+		if (!is_map)
+		{
+			if (small_check(ft_strtrim(s_read, " "), 0x0, 0x0))
+				is_map = 0x1;
+		}
+		if (is_map && s_read[0x0] == '\n')
+			return (close(fd), NULL);
+		str = ft_strjoin(str, s_read);
+		if (!str)
+			return (close(fd), NULL);
 	}
 	close (fd);
-	return (final = ft_split(final_tmp, '\n'), free (final_tmp), final);
+	return (ft_split(str, '\n'));
 }
