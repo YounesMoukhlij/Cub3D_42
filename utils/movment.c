@@ -44,13 +44,6 @@ void ft_draw_floor(t_cube *game, int x , int y)
 	}
 }
 
-void ft_swap(char *c , char *x)
-{
-    char suv;
-    suv = *c;
-    *c = *x;
-    *x = suv;
-}
 void ft_get_player_position(t_cube *game)
 {
     int i = 0;
