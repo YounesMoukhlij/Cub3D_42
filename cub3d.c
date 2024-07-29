@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/29 11:05:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:14:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,7 +323,7 @@ void  ft_check_move(void *tmp)
 	game = (t_cube *)tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 	{
-		rotation_angle += 1 * reation_speed;
+		rotation_angle += 1 * rotation_speed;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	{
@@ -336,12 +336,12 @@ void  ft_check_move(void *tmp)
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
-		rotation_angle += -1 * reation_speed;
+		rotation_angle += -1 * rotation_speed;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S)||mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
-		if (ft_check_walls(game,game->player_y + cos(rotation_angle)  * game->move,  game->player_x + sin(rotation_angle) * game->move)){
+		if (ft_check_walls(game, game->player_y + cos(rotation_angle)  * game->move,  game->player_x + sin(rotation_angle) * game->move)){
 			game->player_y += cos(rotation_angle) * game->move;
 			game->player_x += sin(rotation_angle) * game->move;
 		}
@@ -352,17 +352,17 @@ void  ft_check_move(void *tmp)
 	}
 	// else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	// {
-	// 	if (ft_check_walls( game,game->player_y + cos(rotation_angle + reation_speed) ,  game->player_x + sin(rotation_angle + reation_speed))){
-	// 		game->player_y += cos(rotation_angle + reation_speed );
-	// 		game->player_x += sin(rotation_angle + reation_speed);
+	// 	if (ft_check_walls( game,game->player_y + cos(rotation_angle + rotation_speed) ,  game->player_x + sin(rotation_angle + rotation_speed))){
+	// 		game->player_y += cos(rotation_angle + rotation_speed );
+	// 		game->player_x += sin(rotation_angle + rotation_speed);
 	// 	}
 	// }
 	// else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 	// {
-	// 	// if (ft_check_walls(game,game->player_y + cos(rotation_angle - reation_speed) ,  game->player_x + sin(rotation_angle -  reation_speed))){
-	// 		// rotation_angle += -1 * reation_speed;
-	// 		game->player_y += cos(rotation_angle  + ( -1 * reation_speed));
-	// 		game->player_x += sin(rotation_angle  + ( -1 * reation_speed));
+	// 	// if (ft_check_walls(game,game->player_y + cos(rotation_angle - rotation_speed) ,  game->player_x + sin(rotation_angle -  rotation_speed))){
+	// 		// rotation_angle += -1 * rotation_speed;
+	// 		game->player_y += cos(rotation_angle  + ( -1 * rotation_speed));
+	// 		game->player_x += sin(rotation_angle  + ( -1 * rotation_speed));
 	// 	// }
 	// }
 	ft_test(game);
