@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 11:19:10 by abechcha          #+#    #+#             */
-/*   Updated: 2024/07/21 11:59:31 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:44:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_ray *lst_new(void)
 {
     t_ray *p;
-    p = malloc(sizeof(t_ray));
+    p = ft_malloc(sizeof(t_ray), 1);
     if (!p)
         error_message(NULL , 5);
     p->wall_x = 0;

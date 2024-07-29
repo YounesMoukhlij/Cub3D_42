@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+         #
+#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/07/21 11:43:24 by abechcha         ###   ########.fr        #
+#    Updated: 2024/07/29 10:48:00 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,14 @@ SRC = cub3d.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
 	  utils/tools.c \
+	  utils/garbage_collector.c \
+	  utils/garbage_collector_utils.c \
 	  
 
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = cub3D
-CFLAGS =  -Ofast -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS =  -Ofast  -Wall -Wextra -Werror  -g #-fsanitize=address
 
 all : $(NAME)
 

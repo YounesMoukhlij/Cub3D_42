@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/29 09:47:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:04:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,24 +348,13 @@ void	parse(int ac, char *file, t_cube *game)
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
-	check_valid_members(game, 0x0, 0x0);
+	// check_valid_members(game, 0x0, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
 	game->map = final_map(game, game->map_2d);
-	// puts("\n\n\n\033[32m --->< THE PATHs ><---\033[0m\n\n");
-	// printf("NO  ---=---[%s]\n", game->texture_walls.no);
-	// printf("SO  ---=---[%s]\n", game->texture_walls.so);
-	// printf("EA  ---=---[%s]\n", game->texture_walls.ea);
-	// printf("WE  ---=---[%s]\n", game->texture_walls.we);
-	// puts("\n\n\n\033[32m --->< THE COLORS ><---\033[0m\n\n");
-	// printf("C r ---=---[%d]\n", game->colors.r_c);
-	// printf("C g ---=---[%d]\n", game->colors.g_c);
-	// printf("C b ---=---[%d]\n", game->colors.b_c);
-	// printf("F r ---=---[%d]\n", game->colors.r_f);
-	// printf("F g ---=---[%d]\n", game->colors.g_f);
-	// printf("F b ---=---[%d]\n", game->colors.b_f);
 
-	int i  = 0;
+
+	int i = 0;
 	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
 	while (game->map[i])
 	{

@@ -56,7 +56,7 @@ char	*ft_strtrim(char *s1, char *set)
 		else
 			break ;
 	}
-	r = malloc(sizeof(char) * (len + 1));
+	r = ft_malloc(sizeof(char) * (len + 1), 1);
 	if (!r)
 		return (0);
 	ft_strlcpy(r, s1, len + 1);
@@ -69,7 +69,7 @@ void	*ft_calloc(int num, int size)
 	int		i;
 
 	i = 0;
-	res = malloc(num * size);
+	res = ft_malloc(num * size, 1);
 	if (!res)
 		return (NULL);
 	while (i < (num * size))
@@ -78,4 +78,30 @@ void	*ft_calloc(int num, int size)
 		i++;
 	}
 	return ((void *)res);
+}
+
+int	ft_atoi(const char *str)
+{
+	int		i;
+	int		sign;
+	int		r;
+
+	i = 0;
+	sign = 1;
+	r = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while ((str[i] >= '0' && str[i] <= '9') && str[i])
+	{
+		r = r * 10;
+		r += str[i] - '0';
+		i++;
+	}
+	return (sign * r);
 }
