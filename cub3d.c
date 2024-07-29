@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/29 11:14:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:04:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 float	fov_angle = 60 * (PI / 180);
 float  rotation_angle = 0;
-float	num_ray = (24 * box_size ) / 4;
-float	MOUSE_SENSITIVITY = 0.001; 
-int		lastMouseX = 0; 
+float	num_ray = (1500);
 
 
 void rect(mlx_image_t *game,  int x1, int y1, int x2, int y2, int color)
@@ -154,7 +152,7 @@ void ray_cast( t_ray *head ,int  colum , t_cube *game)
 	if (game->is_facingup)
 		next_horizontal_y--;
 	while(next_horizontal_x >= 0 && next_horizontal_x <= game->map_widht && next_horizontal_y >= 0 && next_horizontal_y <= game->map_height){
-		if (!ft_check_walls(game, next_horizontal_x, next_horizontal_y))
+		if (!ft_check_walls(game, next_horizontal_x , next_horizontal_y))
 		{
 			found_horizontal_wall = 1;
 			wall_horizontal_x = next_horizontal_x;
@@ -341,7 +339,7 @@ void  ft_check_move(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S)||mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
-		if (ft_check_walls(game, game->player_y + cos(rotation_angle)  * game->move,  game->player_x + sin(rotation_angle) * game->move)){
+		if (ft_check_walls(game,game->player_y + cos(rotation_angle)  * game->move,  game->player_x + sin(rotation_angle) * game->move)){
 			game->player_y += cos(rotation_angle) * game->move;
 			game->player_x += sin(rotation_angle) * game->move;
 		}
@@ -415,56 +413,39 @@ void ft_drawing_map(t_cube *game)
 	ft_put_player(game);
 }
 
-
+void	finish_him(t_cube *game)
+{
+	ft_free(game->map_2d);
+}
 
 void set_values(t_cube *game)
 {
 	game->player_turn = 0;
 	game->player_walk = 0;
 }
-
-
-void mouse_mouse(float x_pos, float y_pos, void *pointer)
-{
-    (void) y_pos;
-    t_cube *game = pointer;
-	(void) game;
-    int mouseX = (int)x_pos;
-    int deltaX = mouseX - lastMouseX;
-
-    if (deltaX != 0)
-    {
-        rotation_angle += deltaX * MOUSE_SENSITIVITY;
-        rotation_angle = fmod(rotation_angle, 2 * PI); 
-    }
-
-    lastMouseX = mouseX;
-}
-
-
-
 int main(int ac, char **av)
 {
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
 	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+
+
+
+
     ft_get_player_position(&game);
 	set_values(&game);
+
 	game.img  = mlx_new_image(game.mlx, 1500,1000);
 	game.img_mini_map  = mlx_new_image(game.mlx, 200,200);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
-	game.map_widht = game.real_map_width * box_size;
-	game.map_height = game.real_map_heigth * box_size;
-	printf("real width == %d\n", game.real_map_width);
-	printf("real heigth == %d\n", game.real_map_heigth);
+	game.map_widht = 64 * box_size;
+	game.map_height = 14 * box_size;
 	// ft_drawing_map(&game);
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
-	mlx_cursor_hook(game.mlx, mouse_mouse, &game);
-    lastMouseX = 1500 / 2;
-    mlx_set_mouse_pos(game.mlx, lastMouseX, 1000 / 2);
 	mlx_loop(game.mlx);
+	finish_him(&game);
 	return (0x0);
 }
 
