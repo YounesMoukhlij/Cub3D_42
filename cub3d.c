@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 14:30:32 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:57:33 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@ float  roation_angle = 0;
 float	num_ray = (1500);
 
 
-void rect(mlx_image_t *game,  int x1, int y1, int x2, int y2, int color)
-{
-    int x, y;
-	(void)color;
-	for (x = x1; x <= x2; x++) {
-        for (y = y1; y <= y2; y++) {
-            mlx_put_pixel(game, x, y, 0x00FF00FF);
-        }
-    }
-}
 
 int 	ft_color(int  r, int  g, int  b, int  a)
 {
@@ -65,18 +55,6 @@ void ft_draw_wall(t_ray *head, t_cube *game , float distance , int index)
 		else
 			mlx_put_pixel(game->img,  index, i, ft_color(0, 0, 255, 255 * exp(-0.0001 * distance)));
 		}
-
-
-        // if (top < 0)
-        //     top = 0;
-        // int btm = top + wall_height;
-        // if (btm > 1000)
-        //     btm = 1000;
-		// int y = top;
-		// while(y < btm -1 ){
-        // 		mlx_put_pixel(game->img,  head->coloum, y, 0x00FF00FF);
-		// 	y++;
-		// }
 }
 
 void dda(t_cube *game,int x1, int y1, int x2, int y2)
@@ -224,8 +202,9 @@ void ray_cast( t_ray *head ,int  colum , t_cube *game)
 		(void)head;
 		game->was_vertical = 0;
 		game->was_vertical = (vertical_wall_distance < horizontal_wall_distance);
+		if (game->map_show == 1)
+			ft_draw_line(game , game->player_y , game->player_x  , wall_x , wall_y , 0);
 		ft_draw_wall(head , game , game->distance , colum);
-		// ft_draw_line(game , game->player_y , game->player_x  , wall_x , wall_y , 0);
 }
 void draw_line_DDA(t_cube *game) {
 	game->ray_angle = (roation_angle - (fov_angle / 2));
@@ -236,12 +215,10 @@ void draw_line_DDA(t_cube *game) {
    {
 		lst_add_back(&head);
 		ray_cast(lst_last(head), colun , game);
-		// new_ray(game);
 		game->ray_angle += (fov_angle / num_ray);
 		i++;
 		colun++;
    }
-//    ft_draw_wall(head , game);
 }
 
 void ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2 , int flag)
@@ -315,6 +292,20 @@ void ft_test(t_cube *game)
 		i++;
 	}
 }
+void ft_test_1(t_cube *game)
+{
+	int i = 0;
+	while(i < 200)
+	{
+		int j = 0;
+		while(j < 200)
+		{
+			mlx_put_pixel(game->img_mini_map, j  , i, ft_color(0, 0, 0, 255));
+			j++; 
+		}
+		i++;
+	}
+}
 void  ft_check_move(void *tmp)
 {
 	t_cube *game;
@@ -348,36 +339,34 @@ void  ft_check_move(void *tmp)
 	{
 		mlx_close_window(game->mlx);
 	}
-	// else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-	// {
-	// 	if (ft_check_walls( game,game->player_y + cos(roation_angle + reation_speed) ,  game->player_x + sin(roation_angle + reation_speed))){
-	// 		game->player_y += cos(roation_angle + reation_speed );
-	// 		game->player_x += sin(roation_angle + reation_speed);
-	// 	}
-	// }
-	// else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-	// {
-	// 	// if (ft_check_walls(game,game->player_y + cos(roation_angle - reation_speed) ,  game->player_x + sin(roation_angle -  reation_speed))){
-	// 		// roation_angle += -1 * reation_speed;
-	// 		game->player_y += cos(roation_angle  + ( -1 * reation_speed));
-	// 		game->player_x += sin(roation_angle  + ( -1 * reation_speed));
-	// 	// }
-	// }
+	if (mlx_is_key_down(game->mlx, MLX_KEY_M))
+	{
+		if (game->map_show != 1)
+			game->map_show = 1;
+		else
+			game-> map_show = 0;
+	}
 	ft_test(game);
-	// ft_drawing_map(game);
-	draw_line_DDA(game);
-	// ft_put_player(game);
+	if (game->map_show == 1)
+	{
+		draw_line_DDA(game);
+		ft_drawing_map(game);
+	}
+	else{
+		draw_line_DDA(game);
+	}
+		ft_drawing_map(game);
 }
 void ft_put_player(t_cube *game)
 {
 	int pixel;
 	pixel = 0;
-	int pixel1 = 0;
-	while(pixel < player_size)
+	int pixel1 ;
+	while(pixel <= player_size_mini_map)
 	{
 		pixel1 = 0;
-		while(pixel1< player_size){
-			mlx_put_pixel(game->img,  game->player_y + pixel1, game->player_x + pixel, 0xFF0000FF);
+		while(pixel1 <= player_size_mini_map){
+			mlx_put_pixel(game->img_mini_map,  100+ pixel1, 100 + pixel, 0xFF0000FF);
 			pixel1++;
 		}
 		pixel++;
@@ -385,26 +374,32 @@ void ft_put_player(t_cube *game)
 }
 void ft_drawing_map_element(t_cube *game)
 {
-	int start_px = game->player_y_mini_map - 100;
-	int start_py = game->player_x_mini_map - 100;
-	while(start_py < game->player_x_mini_map + 100)
+	int i = 0;
+	game->player_y_mini_map = (game->player_x / box_size) * box_size_mini_map;
+	game->player_x_mini_map = (game->player_y / box_size) * box_size_mini_map;
+	int start_y  = game->player_y_mini_map - 100 ;
+	while (start_y < game->player_y_mini_map + 100)
 	{
-		start_px =  game->player_y_mini_map - 100;
-		while(start_px < game->player_y_mini_map + 100)
+		int j = 0;
+		int start_x = game->player_x_mini_map - 100;
+		while(start_x < game->player_x_mini_map + 100)
 		{
-			if (start_px  > 0 &&  start_py > 0 &&  start_py <  130)
+			if (start_x / box_size_mini_map >= 0 && start_x / box_size_mini_map <= 37   && start_y / box_size_mini_map >= 0 && start_y / box_size_mini_map <= 13)
 			{
-				printf("%d %d\n",start_py / box_size_mini_map , start_px /box_size_mini_map );
-				if (game->map_2d[start_py / box_size_mini_map ][start_px /box_size_mini_map] == 'N')
-					mlx_put_pixel(game->img_mini_map , start_px ,start_py , 0x00FF00FF);
+				if ( game->map_2d[start_y / box_size_mini_map][start_x / box_size_mini_map] == '1')
+					mlx_put_pixel(game->img_mini_map , j  , i, 0xFF0000FF);
 				else
-					mlx_put_pixel(game->img_mini_map , start_px ,start_py , 0xFF0000FF);
+					mlx_put_pixel(game->img_mini_map , j  , i, 0xFFFFFFFF);
 			}
-			start_px++;
+			else
+				mlx_put_pixel(game->img_mini_map , j  , i, ft_color(0, 0, 0, 255));
+			start_x++;
+			j++;
 		}
-		start_py++;
+		start_y++;
+		i++;
 	}
-
+	// mlx_put_pixel(game->img_mini_map,  game->player_x_mini_map, game->player_y_mini_map , ft_color(11, 156, 49, 2));
 }
 
 void ft_drawing_map(t_cube *game)
@@ -428,7 +423,7 @@ int main(int ac, char **av)
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
-	game.mlx =  mlx_init(1500, 1000, "cub3D", 0);
+	game.mlx =  mlx_init(1500,1000, "cub3D", 0);
 
 
 
@@ -440,9 +435,9 @@ int main(int ac, char **av)
 	game.img_mini_map  = mlx_new_image(game.mlx, 200,200);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
-	game.map_widht = 64 * box_size;
-	game.map_height = 14 * box_size;
-	// ft_drawing_map(&game);
+	game.map_widht = 37 * box_size;
+	game.map_height = 13 * box_size;
+	ft_drawing_map(&game);
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
 	finish_him(&game);

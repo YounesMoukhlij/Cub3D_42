@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:31:04 by abechcha          #+#    #+#             */
-/*   Updated: 2024/07/09 16:15:01 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:20:57 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void ft_get_player_position(t_cube *game)
             {
                 game->player_x = i * box_size;
                 game->player_y = j * box_size;
-                game->player_x_mini_map = i * box_size_mini_map;
-                game->player_y_mini_map = j * box_size_mini_map;
+
                 return ;
             }
             j++;
