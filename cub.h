@@ -24,7 +24,7 @@
 # include <math.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 10
+# define player_speed 15
 # define box_size 100
 # define player_size_mini_map 6
 # define box_size_mini_map 10
@@ -111,7 +111,7 @@ void 	ft_drawing_map(t_cube *game);
 void 	set_values(t_cube *game);
 void 	ft_put_player(t_cube *game);
 void 	ft_draw_floor(t_cube *game, int x , int y);
-void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2 , int flag);
+void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
 int 	ft_check_walls(t_cube *game , int x , int y);
 void lst_add_back(t_ray **head);
 t_ray *lst_last(t_ray *head);
