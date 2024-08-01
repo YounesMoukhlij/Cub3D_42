@@ -6,17 +6,11 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/27 14:57:33 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/01 08:27:12 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-float	fov_angle = 60 * (PI / 180);
-float  roation_angle = 0;
-float	num_ray = (1500);
-
-
 
 int 	ft_color(int  r, int  g, int  b, int  a)
 {
@@ -35,11 +29,22 @@ float	ft_min(float a, float b)
 		return (b);
 	return (a);
 }
-
-
-void ft_draw_wall( t_cube *game , float distance , int index)
+int ft_check_door(t_cube *game , int next_horizontal_x , int next_horizontal_y )
 {
-        int wall_height = (box_size / (distance * cos(roation_angle \
+	int y = next_horizontal_y - game->player_x;
+	int x = next_horizontal_x - game->player_y;
+	x = abs(x);
+	y = abs(y);
+	if (next_horizontal_y / box_size > game->map_widht || next_horizontal_x / box_size > game->map_height)
+		return 0;
+	if (game->map_2d[(next_horizontal_y / box_size)][(next_horizontal_x / box_size)] == 'D' && (x <= box_size / 2 || y <= box_size / 2))
+		return 1;
+	return 0;
+}
+
+void ft_draw_wall( t_cube *game , t_ray *ray)
+{
+        int wall_height = (box_size / (ray->distance * cos(game->roation_angle \
 	- game->ray_angle))) * ((1500 / 2) / tan(PI / 6));
 
         int top = ft_max((1000 / 2) - (wall_height / 2), 0);
@@ -48,45 +53,15 @@ void ft_draw_wall( t_cube *game , float distance , int index)
 
 		for (i = top; i < bottom; i++)
 		{
-			if (game->hit_v)
-			mlx_put_pixel(game->img,  index, i, ft_color(255, 0, 0, 255 * exp(-0.0001 * distance)));
-		else
-			mlx_put_pixel(game->img,  index, i, ft_color(0, 0, 255, 255 * exp(-0.0001 * distance)));
+			if (game->map_2d[((int)ray->wall_y)/ box_size][((int)ray->wall_x)/ box_size] == 'D')
+					mlx_put_pixel(game->img,  ray->index, i, ft_color(255, 0, 255, 255));
+			else if (game->hit_v)
+				mlx_put_pixel(game->img,  ray->index, i, ft_color(255, 0, 0, 255 * exp(-0.0001 * ray->distance)));
+			else
+				mlx_put_pixel(game->img,  ray->index, i, ft_color(0, 0, 255, 255 * exp(-0.0001 * ray->distance)));
 		}
 }
 
-// void dda(t_cube *game,int x1, int y1, int x2, int y2)
-// {
-//     int dx = abs(x2 - x1);
-//     int dy = abs(y2 - y1);
-//     int sx = x1 < x2 ? 1 : -1;
-//     int sy = y1 < y2 ? 1 : -1;
-//     int err = (dx > dy ? dx : -dy) / 2;
-//     int e2;
-
-//     while (1)
-//     {
-//         mlx_put_pixel(game->img, x1, y1, 0x00FF00FF);
-//         if (x1 == x2 && y1 == y2)
-//             break;
-//         e2 = err;
-//         if (e2 > -dx)
-//         {
-//             err -= dy;
-//             x1 += sx;
-//         }
-//         if (e2 < dy)
-//         {
-//             err += dx;
-//             y1 += sy;
-//         }
-//     }
-// }
-
-// void new_ray(t_cube *game)
-// {
-// 	dda(game , game->player_y , game->player_x , game->player_y + cos(game->ray_angle) , game->player_x + sin(game->ray_angle));
-// }
 float ft_normalize(float angel)
 {
 	angel = fmod(angel , 2 * PI);
@@ -111,7 +86,9 @@ void ray_cast(int  colum , t_cube *game)
 	float step_y = 0;
 
 	
-	(void)colum;
+	t_ray *ray = malloc(sizeof(t_ray));
+	if (!ray)
+		error_message(NULL, 1);
 	intercept_y = floor((game->player_x / box_size)) * box_size;
 	intercept_y += game->is_facingDown ? box_size : 0 ;
 	intercept_x = game->player_y + (intercept_y  - game->player_x) / tan(game->ray_angle);
@@ -128,7 +105,7 @@ void ray_cast(int  colum , t_cube *game)
 	if (game->is_facingup)
 		next_horizontal_y--;
 	while(next_horizontal_x >= 0 && next_horizontal_x <= game->map_widht && next_horizontal_y >= 0 && next_horizontal_y <= game->map_height){
-		if (!ft_check_walls(game, next_horizontal_x , next_horizontal_y))
+		if (!ft_check_walls(game, next_horizontal_x , next_horizontal_y) || ft_check_door(game , next_horizontal_x , next_horizontal_y))
 		{
 			found_horizontal_wall = 1;
 			wall_horizontal_x = next_horizontal_x;
@@ -162,7 +139,7 @@ void ray_cast(int  colum , t_cube *game)
 	if (game->is_facingLeft)
 		next_vertical_x--;
 	while(next_vertical_x >= 0 && next_vertical_x <= game->map_widht && next_vertical_y >= 0 && next_vertical_y <= game->map_height){
-		if (!ft_check_walls(game, next_vertical_x , next_vertical_y))
+		if (!ft_check_walls(game, next_vertical_x , next_vertical_y) ||(game->map_2d[(int)(next_vertical_y / box_size)][(int)(next_vertical_x / box_size)] == 'D'))
 		{
 			found_vertical_wall = 1;
 			wall_vertical_x = next_vertical_x;
@@ -197,21 +174,24 @@ void ray_cast(int  colum , t_cube *game)
 			game->distance = vertical_wall_distance;
 			game->hit_v = 1;
 		}
-
+		ray->index = colum;
+		ray->wall_x = wall_x;
+		ray->wall_y = wall_y;
+		ray->distance = game->distance;
 		game->was_vertical = 0;
 		game->was_vertical = (vertical_wall_distance < horizontal_wall_distance);
-		ft_draw_wall( game , game->distance , colum);
+		ft_draw_wall( game , ray);
 }
 void draw_line_DDA(t_cube *game) {
-	game->ray_angle = (roation_angle - (fov_angle / 2));
+	game->ray_angle = (game->roation_angle - (game->fov_angle / 2));
    	int i = 0;
 	int colun = 0;
-   while(i < num_ray)
+   while(i < game->num_ray)
    {
 		ray_cast(colun , game);
-		if (i == num_ray / 2)
+		if (i == game->num_ray / 2)
 			ft_draw_line(game ,103 , 103  , 100 + cos(game->ray_angle) * 20 ,  100 + sin(game->ray_angle) * 20);
-		game->ray_angle += (fov_angle / num_ray);
+		game->ray_angle += (game->fov_angle / game->num_ray);
 		i++;
 		colun++;
    }
@@ -263,6 +243,8 @@ int ft_check_walls(t_cube *game , int x , int y)
 {
 	x = x / box_size;
 	y = y / box_size;
+	if (x > game->map_widht / box_size || y > game->map_height / box_size)
+		return 0;
 	if (game->map_2d[y][x])
 	{
 		if (game->map_2d[y][x] != '1' )
@@ -304,27 +286,27 @@ void  ft_check_move(void *tmp)
 	game = (t_cube *)tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 	{
-		roation_angle += 1 * reation_speed;
+		game->roation_angle += 1 * reation_speed;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	{
 		game->move = 1 * player_speed;
 		
-		if (ft_check_walls( game,game->player_y + cos(roation_angle)  * game->move,  game->player_x + sin(roation_angle) * game->move)){
-			game->player_y += cos(roation_angle) * game->move;
-			game->player_x += sin(roation_angle) * game->move;
+		if (ft_check_walls( game,game->player_y + cos(game->roation_angle)  * game->move,  game->player_x + sin(game->roation_angle) * game->move)){
+			game->player_y += cos(game->roation_angle) * game->move;
+			game->player_x += sin(game->roation_angle) * game->move;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
-		roation_angle += -1 * reation_speed;
+		game->roation_angle += -1 * reation_speed;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S)||mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
-		if (ft_check_walls(game,game->player_y + cos(roation_angle)  * game->move,  game->player_x + sin(roation_angle) * game->move)){
-			game->player_y += cos(roation_angle) * game->move;
-			game->player_x += sin(roation_angle) * game->move;
+		if (ft_check_walls(game,game->player_y + cos(game->roation_angle)  * game->move,  game->player_x + sin(game->roation_angle) * game->move)){
+			game->player_y += cos(game->roation_angle) * game->move;
+			game->player_x += sin(game->roation_angle) * game->move;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -362,9 +344,10 @@ void ft_drawing_map_element(t_cube *game)
 		int start_x = game->player_x_mini_map - 100;
 		while(start_x < game->player_x_mini_map + 100)
 		{
-			if (start_x / box_size_mini_map >= 0 && start_x / box_size_mini_map <= 37   && start_y / box_size_mini_map >= 0 && start_y / box_size_mini_map <= 13)
+			if (start_x / box_size_mini_map >= 0 && start_x / box_size_mini_map <= game->map_widht / box_size  && start_y / box_size_mini_map >= 0 && start_y / box_size_mini_map <= game->map_height / box_size)
 			{
-				if ( game->map_2d[start_y / box_size_mini_map][start_x / box_size_mini_map] == '1')
+				// printf("%d %d\n", start_y / box_size_mini_map  , start_x / box_size_mini_map);
+				if (game->map_2d[start_y / box_size_mini_map][start_x / box_size_mini_map] == '1')
 					mlx_put_pixel(game->img_mini_map , j  , i, 0xFF0000FF);
 				else
 					mlx_put_pixel(game->img_mini_map , j  , i, 0xFFFFFFFF);
@@ -391,31 +374,25 @@ void	finish_him(t_cube *game)
 	ft_free(game->map_2d);
 }
 
-void set_values(t_cube *game)
-{
-	game->player_turn = 0;
-	game->player_walk = 0;
-}
 int main(int ac, char **av)
 {
 	t_cube	game;
 
 	parse(ac, av[0x1], &game);
 	game.mlx =  mlx_init(1500,1000, "cub3D", 0);
-
-
-
-
     ft_get_player_position(&game);
-	set_values(&game);
-
 	game.img  = mlx_new_image(game.mlx, 1500,1000);
 	game.img_mini_map  = mlx_new_image(game.mlx, 200,200);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
+	game.player_turn = 0;
+	game.player_walk = 0;
 	game.map_widht = 37 * box_size;
-	game.map_height = 13 * box_size;
-	ft_drawing_map(&game);
+	game.map_height = 44 * box_size;
+	game.fov_angle = 60 * (PI / 180);
+	game.roation_angle = 0;
+	game.num_ray = (1500);
+	// ft_drawing_map(&game);
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
 	finish_him(&game);

@@ -44,33 +44,30 @@ typedef struct s_text
 	char	*fF;
 }	t_text;
 
-typedef struct s_ray_info
+typedef struct s_ray
 {
-	float wall_x;
-	float wall_y;
 	float distance;
-	int coloum;
-	struct s_ray_info *next;
+	float wall_y;
+	float wall_x;
+	int 	index;
 } t_ray;
-
 typedef struct s_cube
 {	
 	int 	player_x;
 	int  	player_y;
-	int 	map_show;
 	int  	player_y_mini_map;
 	int  	player_x_mini_map;
-	float     *rays;
 	float    distance;
 	int     was_vertical;
-	float 	player_new_y;
-	float 	player_new_x;
+	float	fov_angle;////////
+	float  roation_angle;/////
+	float	num_ray;///////////
 	float 	is_facingDown;
 	float 	is_facingLeft;
 	int 	hit_v;
 	float 	is_facingup;
 	float 	is_facingRight;
-	float  move;
+	float  	move;
 	int 	player_walk;
 	int 	player_turn;
 	int     map_widht;
@@ -113,8 +110,8 @@ void 	ft_put_player(t_cube *game);
 void 	ft_draw_floor(t_cube *game, int x , int y);
 void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
 int 	ft_check_walls(t_cube *game , int x , int y);
-void lst_add_back(t_ray **head);
-t_ray *lst_last(t_ray *head);
+// void lst_add_back(t_ray **head);
+// t_ray *lst_last(t_ray *head);
 
 
 #endif
