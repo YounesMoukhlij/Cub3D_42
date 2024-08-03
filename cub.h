@@ -60,7 +60,7 @@ typedef struct s_cube
 	float    distance;
 	int     was_vertical;
 	float	fov_angle;////////
-	float  roation_angle;/////
+	float  	roation_angle;/////
 	float	num_ray;///////////
 	float 	is_facingDown;
 	float 	is_facingLeft;

@@ -31,13 +31,13 @@ float	ft_min(float a, float b)
 }
 int ft_check_door(t_cube *game , int next_horizontal_x , int next_horizontal_y )
 {
-	int y = next_horizontal_y - game->player_x;
-	int x = next_horizontal_x - game->player_y;
+	int y = next_horizontal_y - (int)game->player_x;
+	int x = next_horizontal_x - (int)game->player_y;
 	x = abs(x);
 	y = abs(y);
 	if (next_horizontal_y / box_size > game->map_widht || next_horizontal_x / box_size > game->map_height)
 		return 0;
-	if (game->map_2d[(next_horizontal_y / box_size)][(next_horizontal_x / box_size)] == 'D' && (x <= box_size / 2 || y <= box_size / 2))
+	if (game->map_2d[(next_horizontal_y / box_size)][(next_horizontal_x / box_size)] == 'D' && (x > box_size / 2 && y > box_size / 2))
 		return 1;
 	return 0;
 }
@@ -139,7 +139,7 @@ void ray_cast(int  colum , t_cube *game)
 	if (game->is_facingLeft)
 		next_vertical_x--;
 	while(next_vertical_x >= 0 && next_vertical_x <= game->map_widht && next_vertical_y >= 0 && next_vertical_y <= game->map_height){
-		if (!ft_check_walls(game, next_vertical_x , next_vertical_y) ||(game->map_2d[(int)(next_vertical_y / box_size)][(int)(next_vertical_x / box_size)] == 'D'))
+		if (!ft_check_walls(game, next_vertical_x , next_vertical_y) ||ft_check_door(game , next_vertical_x , next_vertical_y))
 		{
 			found_vertical_wall = 1;
 			wall_vertical_x = next_vertical_x;
@@ -179,7 +179,7 @@ void ray_cast(int  colum , t_cube *game)
 		ray->wall_y = wall_y;
 		ray->distance = game->distance;
 		game->was_vertical = 0;
-		game->was_vertical = (vertical_wall_distance < horizontal_wall_distance);
+		game->was_vertical = (vertical_wall_distance < horizontal_wall_distance); 
 		ft_draw_wall( game , ray);
 }
 void draw_line_DDA(t_cube *game) {
@@ -285,13 +285,10 @@ void  ft_check_move(void *tmp)
 	t_cube *game;
 	game = (t_cube *)tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-	{
 		game->roation_angle += 1 * reation_speed;
-	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	{
 		game->move = 1 * player_speed;
-		
 		if (ft_check_walls( game,game->player_y + cos(game->roation_angle)  * game->move,  game->player_x + sin(game->roation_angle) * game->move)){
 			game->player_y += cos(game->roation_angle) * game->move;
 			game->player_x += sin(game->roation_angle) * game->move;
@@ -301,7 +298,7 @@ void  ft_check_move(void *tmp)
 	{
 		game->roation_angle += -1 * reation_speed;
 	}
-	if (mlx_is_key_down(game->mlx, MLX_KEY_S)||mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S) || mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
 		if (ft_check_walls(game,game->player_y + cos(game->roation_angle)  * game->move,  game->player_x + sin(game->roation_angle) * game->move)){
@@ -309,11 +306,17 @@ void  ft_check_move(void *tmp)
 			game->player_x += sin(game->roation_angle) * game->move;
 		}
 	}
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		mlx_close_window(game->mlx);
+		
 	}
-	ft_test(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+	{
+
+	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
+	ft_test(game);     //// removed before textures
 	ft_drawing_map(game);
 	draw_line_DDA(game);
 }
@@ -326,7 +329,7 @@ void ft_put_player(t_cube *game)
 	{
 		pixel1 = 0;
 		while(pixel1 <= player_size_mini_map){
-			mlx_put_pixel(game->img_mini_map,  100+ pixel1, 100 + pixel, 0xFF0000FF);
+			mlx_put_pixel(game->img_mini_map,  100 + pixel1, 100 + pixel, 0xFF0000FF);
 			pixel1++;
 		}
 		pixel++;
@@ -346,7 +349,6 @@ void ft_drawing_map_element(t_cube *game)
 		{
 			if (start_x / box_size_mini_map >= 0 && start_x / box_size_mini_map <= game->map_widht / box_size  && start_y / box_size_mini_map >= 0 && start_y / box_size_mini_map <= game->map_height / box_size)
 			{
-				// printf("%d %d\n", start_y / box_size_mini_map  , start_x / box_size_mini_map);
 				if (game->map_2d[start_y / box_size_mini_map][start_x / box_size_mini_map] == '1')
 					mlx_put_pixel(game->img_mini_map , j  , i, 0xFF0000FF);
 				else
@@ -360,7 +362,6 @@ void ft_drawing_map_element(t_cube *game)
 		start_y++;
 		i++;
 	}
-	// mlx_put_pixel(game->img_mini_map,  game->player_x_mini_map, game->player_y_mini_map , ft_color(11, 156, 49, 2));
 }
 
 void ft_drawing_map(t_cube *game)
