@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:13:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/29 10:23:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:14:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_create(char *s, char c)
 
 	len = ft_strlen_word(s, c);
 	i = 0;
-	r = (char *)ft_malloc(sizeof(char) * (len + 1), 1);
+	r = (char *)malloc(sizeof(char) * (len + 1));
 	if (r == NULL)
 		return (NULL);
 	while (i < len)
@@ -78,7 +78,7 @@ char	**ft_split(char *s, char c)
 	char	**r;
 
 	i = 0;
-	r = (char **)ft_malloc(sizeof(char *) * ((count_words(s, c) + 1)), 1);
+	r = (char **)malloc(sizeof(char *) * ((count_words(s, c) + 1)));
 	if (!r)
 		return (0);
 	while (*s)
@@ -89,7 +89,7 @@ char	**ft_split(char *s, char c)
 		{
 			r[i] = ft_create(s, c);
 			if (!r[i++])
-				return (NULL);
+				return (ft_free(r), NULL);
 		}
 		while (*s && *s != c)
 			s++;

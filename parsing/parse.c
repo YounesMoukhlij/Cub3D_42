@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/29 11:04:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:56:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,39 @@ void	parse_entry(t_cube *game, int i)
 	}
 }
 
+char	*fill_chars(t_cube *game, char *s)
+{
+	int		i;
+	int		f;
+	int		j;
+	char	*tmp;
+
+	i = 0;
+	j = 0;
+	f = 0;
+	if (ft_strlen(s) < game->real_map_width)
+		f = 1;
+	if (f)
+	{
+		tmp = ft_malloc(game->real_map_width + 1, 1);
+		if (!tmp)
+			return (NULL);
+		while (s[i])
+		{
+			if (!(s[i] == '1' || s[i] == '0' || s[i] == 'N' || s[i] == 'S' || s[i] == 'E' || s[i] == 'W'))
+				tmp[j] = ' ';
+			else
+				tmp[j] = s[i];
+			i++;
+			j++;
+		}
+		tmp[j] = '\0';
+	}
+	if (!f)
+		return (ft_strdup(s));
+	return (tmp);
+}
+
 char	**final_map(t_cube *game, char **str)
 {
 	int		i;
@@ -322,18 +355,36 @@ char	**final_map(t_cube *game, char **str)
 	char	**s;
 
 	i = 0x0;
-	s = (char **)ft_malloc((game->real_map_heigth + 0x1) * 8, 0x1);
+	s = (char **)ft_malloc((game->real_map_heigth + 0x1) * 8, 1);
 	if (!s)
 		return (NULL);
 	j = 0x0;
 	while (str[i])
 	{
 		if (i > 0x5)
-			s[j++] = ft_strdup(str[i]);
+		{
+			s[j] = fill_chars(game, str[i]);
+			if (!s[j++])
+				return (NULL);
+		}
 		i++;
 	}
 	s[j] = 0;
 	return (s);
+}
+
+
+void	ft_load_textures(t_cube *game)
+{
+	game->png = malloc(sizeof(t_png));
+	// if (!game->png)
+		// error_message(game, 0x3);
+	game->png->no = mlx_load_png(game->texture_walls.no);
+	game->png->so = mlx_load_png(game->texture_walls.so);
+	game->png->ea = mlx_load_png(game->texture_walls.ea);
+	game->png->we = mlx_load_png(game->texture_walls.we);
+	// if (!(game->png->ea || game->png->no || game->png->so || game->png->we))
+	// 	error_message(game, 0x3);
 }
 
 void	parse(int ac, char *file, t_cube *game)
@@ -348,24 +399,29 @@ void	parse(int ac, char *file, t_cube *game)
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
-	// check_valid_members(game, 0x0, 0x0);
+	check_valid_members(game, 0x0, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
+	// ft_load_textures(game);
 	game->map = final_map(game, game->map_2d);
-
-
-	int i = 0;
-	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	while (game->map[i])
+	game->texture = mlx_load_png("./assets/png_4.png");
+	if (!game->texture)
 	{
-		printf("------------->   %s\n", game->map[i]);
-		i++;
+		puts("eeee\n");
+		exit(1);
 	}
+
+	
+
+	// int i = 0;
+	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	// while (game->map[i])
+	// {
+	// 	printf("------------->   [%s]\n", game->map[i]);
+	// 	i++;
+	// }
 	// puts("\n");
 	// printf("the heigth ---=[%d]\n", game->real_map_heigth);
 	// printf("the width ---=[%d]\n", game->real_map_width);
 	// puts("\n\n\n\n \033[41mCONGRATS ----> good \033[0m \n\n\n");
 }
-
-
-

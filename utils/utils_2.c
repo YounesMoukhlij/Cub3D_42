@@ -69,7 +69,7 @@ void	*ft_calloc(int num, int size)
 	int		i;
 
 	i = 0;
-	res = ft_malloc(num * size, 1);
+	res = malloc(num * size);
 	if (!res)
 		return (NULL);
 	while (i < (num * size))
@@ -80,7 +80,7 @@ void	*ft_calloc(int num, int size)
 	return ((void *)res);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int		i;
 	int		sign;
