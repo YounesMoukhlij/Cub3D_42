@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/07/23 16:27:15 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/01 11:02:02 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,15 @@ SRC = cub3d.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
+	  utils/tools.c \
+	  utils/garbage_collector_utils.c \
 	  utils/garbage_collector.c \
-	  utils/garbage_collector_1.c \
 	  
 
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS =  -Ofast  -Wall -Wextra -Werror -g -fsanitize=address
 
 all : $(NAME)
 
@@ -35,7 +36,7 @@ all : $(NAME)
 	@echo "\033[1;30m compiling ...\033[0m"
 
 $(NAME) : $(OBJ)
-	@cc ${CFLAGS} $(OBJ) -o $@ MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	@cc ${CFLAGS} $(OBJ) -o $@ MLX42/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 	@echo "\033[1;31m \n Linking ... \033[0m"
 	@echo "\033[1;32m \n READY To PLAY  \033[1;31m^_*\033[0m"
 

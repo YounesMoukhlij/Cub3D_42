@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 14:58:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 16:59:49 by youmoukh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../cub.h"
 
@@ -91,7 +80,7 @@ void	*ft_calloc(int num, int size)
 	return ((void *)res);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int		i;
 	int		sign;

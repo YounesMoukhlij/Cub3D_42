@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:31:04 by abechcha          #+#    #+#             */
-/*   Updated: 2024/07/23 16:45:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:09:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void ft_draw_square(t_cube *game, int x , int y)
 	while(pixel < box_size -1)
 	{
 		pixel1 = 0;
-		while(pixel1< box_size-1){
+		while(pixel1< box_size-1)
+		{
 			mlx_put_pixel(game->img , y + pixel1 , x + pixel, 0xFF0000FF);
 			pixel1++;
 		}
@@ -44,18 +45,11 @@ void ft_draw_floor(t_cube *game, int x , int y)
 	}
 }
 
-void ft_swap(char *c , char *x)
-{
-    char suv;
-    suv = *c;
-    *c = *x;
-    *x = suv;
-}
-
 void ft_get_player_position(t_cube *game)
 {
     int i = 0;
     int j;
+
     while(game->map[i])
     {
         j = 0;
@@ -65,6 +59,8 @@ void ft_get_player_position(t_cube *game)
             {
                 game->player_x = i * box_size;
                 game->player_y = j * box_size;
+                game->player_x_mini_map = i * box_size_mini_map;
+                game->player_y_mini_map = j * box_size_mini_map;
                 return ;
             }
             j++;
