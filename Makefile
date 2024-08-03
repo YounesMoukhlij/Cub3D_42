@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/03 18:50:49 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/03 19:07:40 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ all : $(NAME)
 	@echo "\033[1;30m compiling ...\033[0m"
 
 $(NAME) : $(OBJ)
-	@cc ${CFLAGS} $(OBJ) -o $@ MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	@cc ${CFLAGS} $(OBJ) -o $@ MLX42/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 	@echo "\033[1;31m \n Linking ... \033[0m"
 	@echo "\033[1;32m \n READY To PLAY  \033[1;31m^_*\033[0m"
 

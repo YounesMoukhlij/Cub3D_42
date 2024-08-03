@@ -13,7 +13,7 @@
 #ifndef CUB_H
 #define CUB_H
 
-# include "MLX42/include/MLX42/MLX42.h"
+# include "MLX42/MLX42.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
