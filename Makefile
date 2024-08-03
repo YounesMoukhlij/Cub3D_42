@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/03 19:07:40 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/03 19:11:47 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRC = cub3d.c \
 	  utils/garbage_collector.c \
 	  utils/garbage_collector_utils.c \
 	  
+
+
 
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
