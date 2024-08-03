@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 10:48:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:02:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -532,11 +532,15 @@ int main(int ac, char **av)
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
 	game.map_widht = game.real_map_width * box_size;
 	game.map_height =  game.real_map_heigth * box_size;
-	// ft_drawing_map(&game);
+
+	game.img_wall =  mlx_texture_to_image(game.mlx, game.texture);
+	if (!game.img_wall)
+	{
+		puts("eeee\n");
+		exit(1);
+	}
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
-	
 	mlx_loop(game.mlx);
-	// ft_malloc(0, 0);
 	return (0x0);
 }
 

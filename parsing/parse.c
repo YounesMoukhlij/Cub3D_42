@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 10:47:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:17:24 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -410,12 +410,7 @@ void	parse(int ac, char *file, t_cube *game)
 		puts("eeee\n");
 		exit(1);
 	}
-	game->img_wall =  mlx_texture_to_image(game->mlx, game->texture);
-	if (!game->img_wall)
-	{
-		puts("eeee\n");
-		exit(1);
-	}
+
 	
 
 	// int i = 0;
