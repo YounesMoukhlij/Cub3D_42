@@ -37,8 +37,6 @@
 # define BOX_SIZE_MINI_MAP 10
 
 
-
-
 typedef struct s_ray_tools
 {
 	float intercept_y;
@@ -112,36 +110,6 @@ typedef struct s_ray_info
 	struct s_ray_info *next;
 } t_ray;
 
-// typedef struct s_cube
-// {	
-// 	int 	player_x;
-// 	int  	player_y;
-// 	int  	player_y_mini_map;
-// 	int  	player_x_mini_map;
-// 	float    distance;
-// 	int     was_vertical;
-// 	float	fov_angle;////////
-// 	float  	roation_angle;/////
-// 	float	num_ray;///////////
-// 	float 	is_facingDown;
-// 	float 	is_facingLeft;
-// 	int 	hit_v;
-// 	float 	is_facingup;
-// 	float 	is_facingRight;
-// 	float  	move;
-// 	int 	player_walk;
-// 	int 	player_turn;
-// 	int     map_widht;
-// 	int     map_height;
-// 	mlx_t 	*mlx;
-// 	mlx_image_t *img;
-// 	mlx_image_t *img_mini_map;
-// 	char	*map_1d;
-// 	char	**map_2d;
-// 	char	**map;
-// 	float ray_angle;
-// 	t_text	*texture_walls;
-// }	t_cube;
 
 typedef struct s_png
 {
