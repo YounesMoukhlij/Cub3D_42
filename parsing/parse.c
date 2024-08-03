@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 11:56:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/03 16:12:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,15 +377,43 @@ char	**final_map(t_cube *game, char **str)
 void	ft_load_textures(t_cube *game)
 {
 	game->png = malloc(sizeof(t_png));
-	// if (!game->png)
-		// error_message(game, 0x3);
+	if (!game->png)
+		error_message(game, 0x3);
 	game->png->no = mlx_load_png(game->texture_walls.no);
 	game->png->so = mlx_load_png(game->texture_walls.so);
 	game->png->ea = mlx_load_png(game->texture_walls.ea);
 	game->png->we = mlx_load_png(game->texture_walls.we);
-	// if (!(game->png->ea || game->png->no || game->png->so || game->png->we))
-	// 	error_message(game, 0x3);
+	if (!(game->png->ea || game->png->no || game->png->so || game->png->we))
+		error_message(game, 0x3);
 }
+
+// char	**get_final_map(t_cube *game, char **str)
+// {
+// 	int i;
+// 	char	**s;
+
+// 	(void) game;
+// 	i = 0;
+// 	j = 0;
+// 	s = NULL;
+// 	while (str[i])
+// 	{
+// 		while (str[i][j])
+// 		{
+// 			while (str[i][j] == ' ' && str[i][j])
+// 			{
+// 				j++;
+				
+				
+// 			}
+// 			j++;
+// 			printf("%s\n", str[i]);
+// 		}
+// 		i++;
+// 	}
+// 	return (s);
+// }
+
 
 void	parse(int ac, char *file, t_cube *game)
 {
@@ -402,26 +430,22 @@ void	parse(int ac, char *file, t_cube *game)
 	check_valid_members(game, 0x0, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
-	// ft_load_textures(game);
+	ft_load_textures(game);
 	game->map = final_map(game, game->map_2d);
-	game->texture = mlx_load_png("./assets/png_4.png");
+	// game->final_map = get_final_map(game, game->map);
+	game->texture = game->png->so;
 	if (!game->texture)
 	{
 		puts("eeee\n");
 		exit(1);
 	}
-
 	
 
-	// int i = 0;
-	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	// while (game->map[i])
-	// {
-	// 	printf("------------->   [%s]\n", game->map[i]);
-	// 	i++;
-	// }
-	// puts("\n");
-	// printf("the heigth ---=[%d]\n", game->real_map_heigth);
-	// printf("the width ---=[%d]\n", game->real_map_width);
-	// puts("\n\n\n\n \033[41mCONGRATS ----> good \033[0m \n\n\n");
+	int i = 0;
+	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	while (game->map[i])
+	{
+		printf("------------->   [%s]\n", game->map[i]);
+		i++;
+	}
 }

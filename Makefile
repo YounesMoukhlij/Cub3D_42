@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/03 11:46:15 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/03 18:50:49 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,16 @@ SRC = cub3d.c \
 	  parsing/load_map.c \
 	  utils/utils_1.c \
 	  utils/utils_2.c \
+	  utils/utils_3.c \
+	  utils/utils_4.c \
+	  utils/utils_5.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
 	  utils/tools.c \
+	  draw/draw.c \
+	  raycast/ray_cast.c \
+	  raycast/ray_cast_utils.c \
 	  utils/garbage_collector.c \
 	  utils/garbage_collector_utils.c \
 	  

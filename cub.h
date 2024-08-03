@@ -39,6 +39,28 @@
 
 
 
+typedef struct s_ray_tools
+{
+	float intercept_y;
+	float intercept_x;
+	float step_x;
+	float step_y;
+	float wall_y;
+	float next_vertical_x;
+	float next_vertical_y;
+	float wall_vertical_x;
+	float wall_horizontal_x;
+	float wall_horizontal_y;
+	float wall_vertical_y;
+	int found_vertical_wall;
+	float wall_x;
+	float next_horizontal_x;
+	float next_horizontal_y;
+	float	horizontal_wall_distance;
+	float	vertical_wall_distance;
+	int	found_horizontal_wall;
+
+} t_ray_tools;
 
 
 
@@ -133,9 +155,33 @@ typedef struct s_png
 
 
 
+typedef struct s_draws
+{
+	int dis;
+	int j;
+	int wall_heigth;
+	int top;
+	int bottom;
+	int i;
+	int r;
+	int g;
+	int b;
+	int a;
+
+} t_draws;
+
+
+
+
+
+
+
+
 typedef struct s_cube
 {
 	int index;
+	t_draws draws;
+	char	**final_map;
 	int		mini_heigth;
 	int		mini_width;
 	int 	player_x;
@@ -177,8 +223,31 @@ typedef struct s_cube
 	// double	rotation_angle;
 	t_counter cnt;
 	t_colors colors;
+	t_ray_tools r_tools;
 	t_text	texture_walls;
 }	t_cube;
+
+
+int ft_check_door(t_cube *game , int next_horizontal_x , int next_horizontal_y );
+void ft_put_player(t_cube *game);
+void ft_drawing_map(t_cube *game);
+void	get_x(t_cube *game, t_ray *ray);
+int 	ft_color(int  r, int  g, int  b, int  a);
+float	ft_max(float a, float b);
+float	ft_min(float a, float b);
+
+void ft_drawing_map_element(t_cube *game);
+void ft_draw_wall( t_cube *game, t_ray *ray);
+void ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
+
+void draw_line_DDA(t_cube *game);
+
+    void init_tools(t_ray_tools rays_tools);
+
+void       fifth_chapter(t_cube *game);
+void        sixth_extra_chapter(t_cube *game, t_ray *ray);
+
+void       sixth_chapter(t_cube *game, t_ray *ray);
 
 // ******** PARSING ********
 
@@ -212,6 +281,18 @@ int 	ft_check_walls(t_cube *game , int x , int y);
 // t_ray *lst_last(t_ray *head);
 
 
+// ********** RAY_CAST ********
+
+void ray_cast(int  colum , t_cube *game);
+float ft_normalize(float angel);
+void ft_test(t_cube *game);
+int ft_check_door(t_cube *game , int next_horizontal_x , int next_horizontal_y );
+void draw_line_DDA(t_cube *game);
+int ft_check_walls(t_cube *game , int x , int y);
+void ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
+void ft_draw_wall( t_cube *game , t_ray *ray);
+
+
 // ******** PARSING ********
 
 char	*get_next_line(int fd);
@@ -235,6 +316,7 @@ void	lstaddfront_garbage(t_delete **head, t_delete *node);
 
 // ********** UTILS ********
 
+int ft_calcule_distance(float x1, float y1, float x2 , float y2);
 void	ft_free(char **s);
 int		ft_strlen(char *s);
 char	*ft_strdup(char *s1);
