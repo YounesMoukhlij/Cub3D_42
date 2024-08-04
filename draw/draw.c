@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:46:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/04 09:27:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ void ft_draw_wall( t_cube *game, t_ray *ray)
 			game->draws.bottom = ft_min((1000 / 2) + (game->draws.wall_heigth / 2), 1000);
 		get_x(game, ray);
 	 	game->draws.i = game->draws.top;
+		
+		// while (game->draws.i < game->draws.bottom)
+		// {
+		// 	// if (game->map_2d[((int)ray->wall_y)/ BOX_SIZE][((int)ray->wall_x)/ BOX_SIZE] == 'D')
+		// 	// 		mlx_put_pixel(game->img,  ray->index, game->draws.i, ft_color(255, 0, 255, 255));
+		// 	if (game->hit_v)
+		// 		mlx_put_pixel(game->img,  ray->index, game->draws.i, ft_color(255, 0, 0, 255 * exp(-0.0001 * ray->distance)));
+		// 	else
+		// 		mlx_put_pixel(game->img,  ray->index, game->draws.i, ft_color(0, 0, 255, 255 * exp(-0.0001 * ray->distance)));
+		// }
 		while (game->draws.i < game->draws.bottom)
 		{
 			game->draws.dis = game->draws.i  - WINDOW_HEITH / 2 + game->draws.wall_heigth / 2;

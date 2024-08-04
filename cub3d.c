@@ -6,21 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:50:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/04 09:38:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-
-
-
-
-
-
-
-
-
 
 void  ft_check_move(void *tmp)
 {
@@ -74,7 +64,7 @@ void	init_image(t_cube *game)
 	game->player_turn = 0;
 	game->player_walk = 0;
 	game->map_widht = game->real_map_width * BOX_SIZE;
-	game->map_height = game->real_map_heigth * BOX_SIZE;
+	game->map_height = (game->real_map_heigth - 1) * BOX_SIZE;
 	game->fov_angle = 60 * (PI / 180);
 	game->num_ray = (1500);
 }
