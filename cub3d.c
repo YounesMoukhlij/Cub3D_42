@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/04 09:38:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/04 15:30:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void  ft_check_move(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) || mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
-		if (ft_check_walls(game,game->player_y + cos(game->rotation_angle)  * game->move,  game->player_x + sin(game->rotation_angle) * game->move)){
+		if (ft_check_walls(game,game->player_y + cos(game->rotation_angle)  * game->move,  game->player_x + sin(game->rotation_angle) * game->move))
+		{
 			game->player_y += cos(game->rotation_angle) * game->move;
 			game->player_x += sin(game->rotation_angle) * game->move;
 		}
@@ -49,15 +50,18 @@ void  ft_check_move(void *tmp)
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	ft_test(game);     //// removed before textures
-	// ft_drawing_map(game);
+	ft_test(game);
+	// game.img_wall =  mlx_texture_to_image(game.mlx, game.texture);
+
+    //// removed before textures
+	ft_drawing_map(game);
 	draw_line_DDA(game);
 }
 
 
 void	init_image(t_cube *game)
 {
-	game->img  = mlx_new_image(game->mlx, 1500,1000);
+	game->img  = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEITH);
 	game->img_mini_map  = mlx_new_image(game->mlx, 200,200);
 	game->mini_heigth = WINDOW_HEITH / 4;
 	game->mini_width = WINDOW_WIDTH / 4;
@@ -74,22 +78,18 @@ int main(int ac, char **av)
 {
 	t_cube	game;
 
-	parse(ac, av[0x1], &game);
 	game.mlx =  mlx_init(WINDOW_WIDTH,WINDOW_HEITH, "cub3D", 0);
-    ft_get_player_position(&game);
+	parse(ac, av[0x1], &game);
 	init_image(&game);
+    ft_get_player_position(&game);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
-	game.img_wall =  mlx_texture_to_image(game.mlx, game.texture);
-	if (!game.img_wall)
-	{
-		puts("eeee\n");
-		exit(1);
-	}
 	// ft_drawing_map(&game);
+	// game.texture  = game.png->ea;
+
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
-
+	// ft_malloc(0,0);
 	return (0x0);
 }
 
