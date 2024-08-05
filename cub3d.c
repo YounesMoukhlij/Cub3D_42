@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/04 15:30:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/05 11:16:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ int main(int ac, char **av)
 
 	game.mlx =  mlx_init(WINDOW_WIDTH,WINDOW_HEITH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
-	init_image(&game);
-    ft_get_player_position(&game);
-	mlx_image_to_window(game.mlx, game.img, 0, 0);
-	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
-	// ft_drawing_map(&game);
-	// game.texture  = game.png->ea;
+	// init_image(&game);
+    // ft_get_player_position(&game);
+	// mlx_image_to_window(game.mlx, game.img, 0, 0);
+	// mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
+	// // ft_drawing_map(&game);
+	// // game.texture  = game.png->ea;
 
-	mlx_loop_hook(game.mlx, ft_check_move , &game);
-	mlx_loop(game.mlx);
+	// mlx_loop_hook(game.mlx, ft_check_move , &game);
+	// mlx_loop(game.mlx);
 	// ft_malloc(0,0);
 	return (0x0);
 }
