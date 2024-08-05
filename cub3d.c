@@ -12,16 +12,6 @@
 
 #include "cub.h"
 
-
-
-
-
-
-
-
-
-
-
 void  ft_check_move(void *tmp)
 {
 	t_cube *game;
@@ -49,18 +39,28 @@ void  ft_check_move(void *tmp)
 			game->player_x += sin(game->rotation_angle) * game->move;
 		}
 	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		
+		if (ft_check_walls(game,game->player_y + cos(game->rotation_angle + rotation_speed), game->player_x + sin(game->rotation_angle + rotation_speed)))
+		{
+			game->player_y += cos(game->rotation_angle + rotation_speed);
+			game->player_x += sin(game->rotation_angle + rotation_speed);
+		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-
+		if (ft_check_walls(game ,game->player_y + cos(game->rotation_angle + ( -1 * rotation_speed)), game->player_x + sin(game->rotation_angle +( -1 * rotation_speed))))
+		{
+			game->player_y += cos(game->rotation_angle + (-1 *rotation_speed));
+			game->player_x += sin(game->rotation_angle + (-1 *rotation_speed));
+		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	ft_test(game);     //// removed before textures
-	// ft_drawing_map(game);
+	ft_drawing_map(game);
 	draw_line_DDA(game);
 }
 
@@ -74,7 +74,7 @@ void	init_image(t_cube *game)
 	game->player_turn = 0;
 	game->player_walk = 0;
 	game->map_widht = game->real_map_width * BOX_SIZE;
-	game->map_height = game->real_map_heigth * BOX_SIZE;
+	game->map_height = (game->real_map_heigth -1 ) * BOX_SIZE;
 	game->fov_angle = 60 * (PI / 180);
 	game->num_ray = (1500);
 }
@@ -91,17 +91,9 @@ int main(int ac, char **av)
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
 	game.img_wall =  mlx_texture_to_image(game.mlx, game.texture);
-	if (!game.img_wall)
-	{
-		puts("eeee\n");
-		exit(1);
-	}
-	// ft_drawing_map(&game);
+	ft_drawing_map(&game);
 	mlx_loop_hook(game.mlx, ft_check_move , &game);
 	mlx_loop(game.mlx);
 
 	return (0x0);
 }
-
-
-
