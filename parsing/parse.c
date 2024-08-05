@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/05 17:50:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:45:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,10 @@ mlx_image_t *open_image(char *path, t_cube *game)
 
 	texture = mlx_load_png(path);
 	if (!texture)
-	{
 		exit(1);
-	}
 	img = mlx_texture_to_image(game->mlx, texture);
-
 	if (!img)
-	{
-		exit (0);	
-	}
+		exit (0);
 	free(texture);
 	return (img);
 }
@@ -116,9 +111,9 @@ void	ft_load_textures(t_cube *game)
 	game->png._3 = open_image("./assets/3.png", game);
 	game->png._4 = open_image("./assets/4.png", game);
 	game->png._5 = open_image("./assets/5.png", game);
-	if (!(game->png.ea || game->png.no || game->png.so
-		|| game->png.we || game->png.arm || game->png._1
-		|| game->png._2 || game->png._3 || game->png._4 || game->png._5))
+	if (!game->png.ea || !game->png.no || !game->png.so
+		|| !game->png.we || !game->png.arm || !game->png._1
+		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5)
 		error_message(game, 0x6);
 }
 
@@ -169,11 +164,11 @@ void	parse(int ac, char *file, t_cube *game)
 	check_player(game, game->map);
 	
 
-	int i = 0;
-	puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	while (game->map[i])
-	{
-		printf("------------->   [%s]\n", game->map[i]);
-		i++;
-	}
+	// int i = 0;
+	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
+	// while (game->map[i])
+	// {
+	// 	printf("------------->   [%s]\n", game->map[i]);
+	// 	i++;
+	// }
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/05 09:27:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:44:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,16 @@ void	check_view(t_cube *game, t_ray *ray)
 	if (!game->hit_v)
 	{
 		if (game->ray_angle > 0 && game->ray_angle < PI)
-		{
-			// write(1, "4\n", 2);
 			game->img_wall = game->png.no;
-		}
 		else if (game->ray_angle > PI && game->ray_angle < (2 * PI))
-		{
-			// write(1, "3\n", 2);
 			game->img_wall = game->png.so;
-		}
 	}
 	else
 	{
 		if (game->ray_angle < ((1.5 * PI)) && game->ray_angle > 0)
-		{
 			game->img_wall = game->png.ea;
-		}
 		else if (game->ray_angle > 0 && game->ray_angle < (PI / 2))
-		{
 			game->img_wall = game->png.we;
-		}
 	}
 }
 
