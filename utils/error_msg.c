@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/21 11:22:25 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:48:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	error_message(t_cube *var, int mode)
 		write(STDERR_FILENO, "Map's Members are not Valid\n", 29);
 	else if (mode == 5)
 		write(STDERR_FILENO, "malloc feild\n", 12);
+	else if (mode == 6)
+		write(STDERR_FILENO, "Textures cant be Loaded\n", 12);
 	exit(0x1);
 }
 

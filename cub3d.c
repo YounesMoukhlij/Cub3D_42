@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/05 11:16:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:49:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,43 @@ void  ft_check_move(void *tmp)
 			game->player_x += sin(game->rotation_angle) * game->move;
 		}
 	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		
+		if (ft_check_walls(game,game->player_y +  player_speed * cos(game->rotation_angle + 90),  game->player_x + player_speed * sin(game->rotation_angle + 90)))
+		{
+			game->player_y += player_speed * cos(game->rotation_angle + 90);
+			game->player_x += player_speed * sin(game->rotation_angle + 90);
+		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-	{
-
+	{	
+		if (ft_check_walls(game,game->player_y +  player_speed * cos(game->rotation_angle - 90),  game->player_x + player_speed * sin(game->rotation_angle -90)))
+		{
+			game->player_y += player_speed * cos(game->rotation_angle - 90);
+			game->player_x += player_speed * sin(game->rotation_angle - 90);
+		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	ft_test(game);
-	// game.img_wall =  mlx_texture_to_image(game.mlx, game.texture);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_R))
+	{
+		mlx_image_to_window(game->mlx , game->png._1 , WINDOW_WIDTH -1200  , 500);
+		usleep(900);
+		mlx_image_to_window(game->mlx , game->png._2 , WINDOW_WIDTH -1200  , 500);
+		usleep(900);
+		mlx_image_to_window(game->mlx , game->png._1 , WINDOW_WIDTH -1200  , 500);
+		usleep(900);
+		mlx_image_to_window(game->mlx , game->png._4 , WINDOW_WIDTH -1200  , 500);
+		usleep(900);
+		mlx_image_to_window(game->mlx , game->png._1 , WINDOW_WIDTH -1200  , 500);
+		usleep(900);
 
-    //// removed before textures
+	}
+	ft_test(game);
 	ft_drawing_map(game);
+	mlx_image_to_window(game->mlx , game->png.arm , WINDOW_WIDTH -1200  , 500);
 	draw_line_DDA(game);
 }
 
@@ -80,18 +102,15 @@ int main(int ac, char **av)
 
 	game.mlx =  mlx_init(WINDOW_WIDTH,WINDOW_HEITH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
-	// init_image(&game);
-    // ft_get_player_position(&game);
-	// mlx_image_to_window(game.mlx, game.img, 0, 0);
-	// mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
-	// // ft_drawing_map(&game);
-	// // game.texture  = game.png->ea;
+	init_image(&game);
+    ft_get_player_position(&game);
+	mlx_image_to_window(game.mlx, game.img, 0, 0);
+	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
+	// ft_drawing_map(&game);
+	// game.texture  = game.png->ea;
 
-	// mlx_loop_hook(game.mlx, ft_check_move , &game);
-	// mlx_loop(game.mlx);
+	mlx_loop_hook(game.mlx, ft_check_move , &game);
+	mlx_loop(game.mlx);
 	// ft_malloc(0,0);
 	return (0x0);
 }
-
-
-

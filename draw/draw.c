@@ -33,12 +33,10 @@ void	check_view(t_cube *game, t_ray *ray)
 	{
 		if (game->ray_angle < ((1.5 * PI)) && game->ray_angle > 0)
 		{
-			// write(1, "2\n", 2);
 			game->img_wall = game->png.ea;
 		}
 		else if (game->ray_angle > 0 && game->ray_angle < (PI / 2))
 		{
-			// write(1, "1\n", 2);
 			game->img_wall = game->png.we;
 		}
 	}

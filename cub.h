@@ -75,6 +75,16 @@ typedef struct s_delete
 	struct s_delete		*next;
 }						t_delete;
 
+
+typedef struct s_pparse
+{
+	int n;
+	int e;
+	int s;
+	int w;
+} t_pparse;
+
+
 typedef struct s_colors
 {
 	int	r_c;
@@ -124,6 +134,13 @@ typedef struct s_png
 	mlx_image_t	*no;
 	mlx_image_t	*we;
 	mlx_image_t	*ea;
+	mlx_image_t	*arm;
+	mlx_image_t *_1;
+	mlx_image_t *_2;
+	mlx_image_t *_3;
+	mlx_image_t *_4;
+	mlx_image_t *_5;
+
 }	t_png;
 
 
@@ -167,6 +184,9 @@ typedef struct s_cube
 	int  	player_y_mini_map;
 	int  	player_x_mini_map;
 
+
+
+	t_pparse parse_p;
 	float	num_ray;
 	double	fov_angle;
 	int     was_vertical;
@@ -175,7 +195,7 @@ typedef struct s_cube
 	float 	is_facingDown;
 	float 	is_facingLeft;
 	int 	hit_v; // 1 si h == 0
-	t_png		png;
+	t_png	png;
 	float 	is_facingup;
 	float 	is_facingRight;
 	float  move;
@@ -233,7 +253,7 @@ void	parse_entry(t_cube *game, int i);
 
 int	check_one(t_cube *game, char *s);
 
-int	ultra_check(t_cube *game);
+int	ultra_check(t_cube *game, int mode);
 
 char	*fill_chars(t_cube *game, char *s);
 
@@ -364,8 +384,7 @@ void 	ft_put_player(t_cube *game);
 void 	ft_draw_floor(t_cube *game, int x , int y);
 void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
 int 	ft_check_walls(t_cube *game , int x , int y);
-void lst_add_back(t_ray **head);
-t_ray *lst_last(t_ray *head);
+mlx_image_t *open_image(char *path, t_cube *game);
 
 
 
