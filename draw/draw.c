@@ -6,23 +6,65 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:46:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:59:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
+void	check_view(t_cube *game, t_ray *ray)
+{
+	(void) ray;
+
+	if (!game->hit_v)
+	{
+		if (game->ray_angle > 0 && game->ray_angle < PI)
+		{
+			// write(1, "4\n", 2);
+			game->img_wall = game->png.no;
+		}
+		else if (game->ray_angle > PI && game->ray_angle < (2 * PI))
+		{
+			// write(1, "3\n", 2);
+			game->img_wall = game->png.so;
+		}
+	}
+	else
+	{
+		if (game->ray_angle < ((1.5 * PI)) && game->ray_angle > 0)
+		{
+			game->img_wall = game->png.ea;
+		}
+		else if (game->ray_angle > 0 && game->ray_angle < (PI / 2))
+		{
+			game->img_wall = game->png.we;
+		}
+	}
+}
+
 void ft_draw_wall( t_cube *game, t_ray *ray)
 {
-     game->draws.wall_heigth = (BOX_SIZE / (ray->distance * cos(game->rotation_angle \
+    	game->draws.wall_heigth = (BOX_SIZE / (ray->distance * cos(game->rotation_angle \
 		- game->ray_angle))) * ((WINDOW_WIDTH / 2) / tan(PI / 6));
 
          game->draws.top = ft_max((1000 / 2) - (game->draws.wall_heigth / 2), 0);
 			game->draws.bottom = ft_min((1000 / 2) + (game->draws.wall_heigth / 2), 1000);
 		get_x(game, ray);
 	 	game->draws.i = game->draws.top;
+		
+		 game->draws.butt = game->draws.bottom;
+		 game->draws.topp = game->draws.top;
+		 game->draws.incr = 0;
+		 
+		while (game->draws.incr++ < game->draws.topp)
+			mlx_put_pixel(game->img,  ray->index, game->draws.incr, ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c, 255));
+		game->draws.incr = WINDOW_HEITH;
+		while (game->draws.incr > game->draws.butt++)
+			mlx_put_pixel(game->img,  ray->index, game->draws.butt, ft_color(game->colors.r_f, game->colors.g_f, game->colors.b_f, 255));
+	 	game->draws.i = game->draws.top;
 		while (game->draws.i < game->draws.bottom)
 		{
+			check_view(game, ray);
 			game->draws.dis = game->draws.i  - WINDOW_HEITH / 2 + game->draws.wall_heigth / 2;
 			game->offset_y = game->draws.dis * ((float)BOX_SIZE / game->draws.wall_heigth); 
 			game->draws.j = ((game->offset_x + game->offset_y * BOX_SIZE) * 4);
@@ -76,7 +118,7 @@ void draw_line_DDA(t_cube *game)
 		ray_cast(colun , game);
 		if (i == game->num_ray / 2)
 			ft_draw_line(game ,103 , 103  , 100 + cos(game->ray_angle) * 20
-                ,  100 + sin(game->ray_angle) * 20);
+                ,100 + sin(game->ray_angle) * 20);
 		game->ray_angle += (game->fov_angle / game->num_ray);
 		i++;
 		colun++;

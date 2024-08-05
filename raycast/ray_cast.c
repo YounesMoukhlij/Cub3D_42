@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:33:23 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:26:40 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/04 13:05:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void    second_chapter(t_cube *game)
 	if (game->is_facingup)
 		game->r_tools.next_horizontal_y--;
 }
-
 
 void        third_chapter(t_cube *game)
 {
@@ -98,9 +97,6 @@ void    fourth_chapter(t_cube *game, t_ray *ray)
 	if (game->is_facingLeft)
 		game->r_tools.next_vertical_x--;
 }
-
-
-
 
 void ray_cast(int  colum , t_cube *game)
 {

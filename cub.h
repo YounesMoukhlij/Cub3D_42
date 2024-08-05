@@ -24,8 +24,8 @@
 # include <math.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 10
-# define BOX_SIZE 40
+# define player_speed 100
+# define BOX_SIZE 200
 # define BOX_SIZE_MINI_MAP 10
 # define player_size 3
 # define PI 3.14159265358979323846
@@ -61,6 +61,13 @@ typedef struct s_ray_tools
 } t_ray_tools;
 
 
+typedef struct s_tools
+{
+	int		i;
+	int		f;
+	int		j;
+	char	*tmp;
+} t_tools;
 
 typedef struct s_delete
 {
@@ -113,12 +120,17 @@ typedef struct s_ray_info
 
 typedef struct s_png
 {
-	mlx_texture_t	*so;
-	mlx_texture_t	*no;
-	mlx_texture_t	*we;
-	mlx_texture_t	*ea;
-	mlx_texture_t	*ciel;
-	mlx_texture_t	*floor;
+	mlx_image_t	*so;
+	mlx_image_t	*no;
+	mlx_image_t	*we;
+	mlx_image_t	*ea;
+	mlx_image_t	*arm;
+	mlx_image_t *_1;
+	mlx_image_t *_2;
+	mlx_image_t *_3;
+	mlx_image_t *_4;
+	mlx_image_t *_5;
+
 }	t_png;
 
 
@@ -127,6 +139,9 @@ typedef struct s_draws
 {
 	int dis;
 	int j;
+	int	butt;
+	int topp;
+	int incr;
 	int wall_heigth;
 	int top;
 	int bottom;
@@ -148,6 +163,7 @@ typedef struct s_draws
 typedef struct s_cube
 {
 	int index;
+	t_tools twilzat;
 	t_draws draws;
 	char	**final_map;
 	int		mini_heigth;
@@ -165,8 +181,8 @@ typedef struct s_cube
 	float 	player_new_x;
 	float 	is_facingDown;
 	float 	is_facingLeft;
-	int 	hit_v;
-	t_png		*png;
+	int 	hit_v; // 1 si h == 0
+	t_png	png;
 	float 	is_facingup;
 	float 	is_facingRight;
 	float  move;
@@ -175,10 +191,20 @@ typedef struct s_cube
 	int     map_widht;
 	int     map_height;
 	mlx_t 	*mlx;
+	
 	mlx_texture_t	*texture;
-	mlx_image_t *img;
+
+
+
+
+
 	mlx_image_t *img_wall;
+
+
+
+
 	mlx_image_t *img_mini_map;
+	mlx_image_t *img;
 	char	*map_1d;
 	char	**map_2d;
 	char	**map;
@@ -188,7 +214,6 @@ typedef struct s_cube
 		int		real_map_width;
 	int		real_map_heigth;
 	float ray_angle;
-	// double	rotation_angle;
 	t_counter cnt;
 	t_colors colors;
 	t_ray_tools r_tools;
@@ -196,6 +221,44 @@ typedef struct s_cube
 }	t_cube;
 
 
+
+void	get_path(t_cube *game, int i, char *str);
+
+void	fill_colors(t_cube *game, char *s, int mode);
+
+
+void	player_vision(char **s, t_cube *game);
+
+int	parse_numbers(char *s);
+
+
+void	check_valid_members(t_cube *game, int i, int j);
+
+int	check_walls(char *s, int i, int stat, t_cube *game);
+
+void	parse_entry(t_cube *game, int i);
+
+int	check_one(t_cube *game, char *s);
+
+int	ultra_check(t_cube *game);
+
+char	*fill_chars(t_cube *game, char *s);
+
+void	check_texture_intra(t_cube *game, int i);
+void	init_counter(t_cube *game);
+
+void	check_valid_members(t_cube *game, int i, int j);
+void	player_vision(char **s, t_cube *game);
+void	heigth_width(t_cube *game);
+int	ft_strlen_ii(char *s);
+
+int	parse_numbers(char *s);
+
+void	fill_colors(t_cube *game, char *s, int mode);
+
+void	get_path(t_cube *game, int i, char *str);
+
+int	check_extension(char *file);
 int ft_check_door(t_cube *game , int next_horizontal_x , int next_horizontal_y );
 void ft_put_player(t_cube *game);
 void ft_drawing_map(t_cube *game);
@@ -219,37 +282,42 @@ void       sixth_chapter(t_cube *game, t_ray *ray);
 
 // ******** PARSING ********
 
+int	get_length_heigth(char **str, int mode, int i);
 char	*get_next_line(int fd);
 void	error_reading_map(int mode);
 // char	**read_map_from_file(char *map_1d);
 void	error_message(t_cube *var, int mode);
 void	parse(int ac, char *file, t_cube *var);
 
-// ********** UTILS ********
+void	check_view(t_cube *game, t_ray *ray);
 
-void	ft_free(char **s);
-int		ft_strlen(char *s);
-char	*ft_strdup(char *s1);
-char	**ft_split(char *s, char c);
-int		ft_strcmp(char *s1, char *s2);
-void	*ft_calloc(int num, int size);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strtrim(char *s1, char *set);
-char	*ft_substr(char *s, int start, int len);
-void 	ft_get_player_position(t_cube *game);
-void 	ft_drawing_map_element(t_cube *game);
-void 	ft_draw_square(t_cube *game, int x , int y);
-void 	ft_drawing_map(t_cube *game);
-void 	set_values(t_cube *game);
-void 	ft_put_player(t_cube *game);
-void 	ft_draw_floor(t_cube *game, int x , int y);
-// void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
-int 	ft_check_walls(t_cube *game , int x , int y);
-// void lst_add_back(t_ray **head);
-// t_ray *lst_last(t_ray *head);
 
+// void	ft_free(char **s);
+// int		ft_strlen(char *s);
+// char	*ft_strdup(char *s1);
+// char	**ft_split(char *s, char c);
+// int		ft_strcmp(char *s1, char *s2);
+// void	*ft_calloc(int num, int size);
+// char	*ft_strjoin(char *s1, char *s2);
+// char	*ft_strtrim(char *s1, char *set);
+// char	*ft_substr(char *s, int start, int len);
+// void 	ft_get_player_position(t_cube *game);
+// void 	ft_drawing_map_element(t_cube *game);
+// void 	ft_draw_square(t_cube *game, int x , int y);
+// void 	ft_drawing_map(t_cube *game);
+// void 	set_values(t_cube *game);
+// void 	ft_put_player(t_cube *game);
+// void 	ft_draw_floor(t_cube *game, int x , int y);
+// // void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
+// int 	ft_check_walls(t_cube *game , int x , int y);
+// // void lst_add_back(t_ray **head);
+// // t_ray *lst_last(t_ray *head);
+
+char	*fix_the_map(char *s, int i, int flag, int j);
 
 // ********** RAY_CAST ********
+
+int	check_walls(char *s, int i, int stat, t_cube *game);
 
 void ray_cast(int  colum , t_cube *game);
 float ft_normalize(float angel);
@@ -261,18 +329,17 @@ void ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
 void ft_draw_wall( t_cube *game , t_ray *ray);
 
 
-// ******** PARSING ********
+
 
 char	*get_next_line(int fd);
 void	error_reading_map(int mode);
 char	**read_map_from_file(char *map_1d, int fd, int is_map);
-// char	**read_map_from_file(char *map_1d);
+
 
 
 void	error_message(t_cube *var, int mode);
 void	parse(int ac, char *file, t_cube *var);
 
-// ********** GARBAGE COLLECTOR ********
 
 t_delete	*last_cmd_garbage(t_delete *lst);
 void	add_back_garbage(t_delete **head, t_delete *node);
@@ -282,7 +349,6 @@ void	*ft_malloc(size_t size, int mode);
 void	lstaddfront_garbage(t_delete **head, t_delete *node);
 
 
-// ********** UTILS ********
 
 int ft_calcule_distance(float x1, float y1, float x2 , float y2);
 void	ft_free(char **s);
@@ -303,11 +369,9 @@ void 	ft_drawing_map(t_cube *game);
 void 	set_values(t_cube *game);
 void 	ft_put_player(t_cube *game);
 void 	ft_draw_floor(t_cube *game, int x , int y);
-// void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2 , int flag);
 void 	ft_draw_line( t_cube *game,int x1, int y1, int x2, int y2);
 int 	ft_check_walls(t_cube *game , int x , int y);
-void lst_add_back(t_ray **head);
-t_ray *lst_last(t_ray *head);
+mlx_image_t *open_image(char *path, t_cube *game);
 
 
 
