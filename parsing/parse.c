@@ -111,9 +111,10 @@ void	ft_load_textures(t_cube *game)
 	game->png._3 = open_image("./assets/3.png", game);
 	game->png._4 = open_image("./assets/4.png", game);
 	game->png._5 = open_image("./assets/5.png", game);
+	game->png.door = open_image("./assets/door.png", game);
 	if (!game->png.ea || !game->png.no || !game->png.so
 		|| !game->png.we || !game->png.arm || !game->png._1
-		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5)
+		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5 ||!game->png.door )
 		error_message(game, 0x6);
 }
 

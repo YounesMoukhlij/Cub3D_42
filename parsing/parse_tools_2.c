@@ -25,7 +25,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 			error_message(game, 0x4);
 		while (str[j])
 		{
-			if (!(str[j] == '0' || str[j] == '1'
+			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D' 
 				|| str[j] == 'N' || str[j] == 'S'
 				|| str[j] == 'W' || str[j] == 'E'))
 				error_message(game, 0x4);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:44:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/10 09:41:55 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 void	check_view(t_cube *game, t_ray *ray)
 {
 	(void) ray;
-
-	if (!game->hit_v)
-	{
-		if (game->ray_angle > 0 && game->ray_angle < PI)
-			game->img_wall = game->png.no;
-		else if (game->ray_angle > PI && game->ray_angle < (2 * PI))
+	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int )(ray->wall_x / BOX_SIZE)] == 'D')
+		game->img_wall = game->png.door;
+	else{
+	if (!game->hit_v){
+		if (game->is_facingup)
 			game->img_wall = game->png.so;
+		else if (game->is_facingDown)
+			game->img_wall = game->png.no;
 	}
-	else
-	{
-		if (game->ray_angle < ((1.5 * PI)) && game->ray_angle > 0)
+	else{
+		if (game->is_facingLeft)
 			game->img_wall = game->png.ea;
-		else if (game->ray_angle > 0 && game->ray_angle < (PI / 2))
+		if (game->is_facingRight)
 			game->img_wall = game->png.we;
+	}
 	}
 }
 

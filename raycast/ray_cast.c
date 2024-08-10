@@ -110,9 +110,8 @@ void ray_cast(int  colum , t_cube *game)
     sixth_chapter(game, ray);
 
 
-		ray->index = colum;
-
-		game->was_vertical = 0;
-		game->was_vertical = (game->r_tools.vertical_wall_distance < game->r_tools.horizontal_wall_distance); 
-		ft_draw_wall( game , ray);
+	ray->index = colum;
+	game->was_vertical = 0;
+	game->was_vertical = (game->r_tools.vertical_wall_distance < game->r_tools.horizontal_wall_distance);
+	ft_draw_wall( game , ray);
 }

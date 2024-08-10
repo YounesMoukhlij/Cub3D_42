@@ -24,12 +24,12 @@
 # include <math.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 100
+# define player_speed 130
 # define BOX_SIZE 200
 # define BOX_SIZE_MINI_MAP 10
 # define player_size 3
 # define PI 3.14159265358979323846
-# define rotation_speed 3 * (PI / 180)
+# define rotation_speed 5 * (PI / 180)
 # define wall_with 1
 # define WINDOW_WIDTH 1500
 # define WINDOW_HEITH 1000
@@ -140,6 +140,7 @@ typedef struct s_png
 	mlx_image_t *_3;
 	mlx_image_t *_4;
 	mlx_image_t *_5;
+	mlx_image_t *door;
 
 }	t_png;
 
