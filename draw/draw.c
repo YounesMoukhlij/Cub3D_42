@@ -50,8 +50,9 @@ void ft_draw_wall( t_cube *game, t_ray *ray)
 		while (game->draws.incr++ < game->draws.topp)
 			mlx_put_pixel(game->img,  ray->index, game->draws.incr, ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c, 255));
 		game->draws.incr = WINDOW_HEITH;
-		while (game->draws.incr > game->draws.butt++)
+		while (game->draws.incr > game->draws.butt++){
 			mlx_put_pixel(game->img,  ray->index, game->draws.butt, ft_color(game->colors.r_f, game->colors.g_f, game->colors.b_f, 255));
+		}
 	 	game->draws.i = game->draws.top;
 		while (game->draws.i < game->draws.bottom)
 		{
