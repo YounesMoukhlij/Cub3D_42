@@ -14,6 +14,8 @@
 
 void  ft_check_move(void *tmp)
 {
+	double x;
+	double y;
 	t_cube *game;
 	game = (t_cube *)tmp;
 
@@ -22,9 +24,11 @@ void  ft_check_move(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	{
 		game->move = 1 * player_speed;
-		if (ft_check_walls( game,game->player_y + cos(game->rotation_angle)  * game->move,  game->player_x + sin(game->rotation_angle) * game->move)){
-			game->player_y += cos(game->rotation_angle) * game->move;
-			game->player_x += sin(game->rotation_angle) * game->move;
+		x = sin(game->rotation_angle) * game->move;
+		y = cos(game->rotation_angle) * game->move;
+		if (ft_check_walls( game,	y + game->player_y ,game->player_x +  x)){
+			game->player_y += y;
+			game->player_x += x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
@@ -34,47 +38,39 @@ void  ft_check_move(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) || mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
 		game->move = -1 * player_speed;
-		if (ft_check_walls(game,game->player_y + cos(game->rotation_angle)  * game->move,  game->player_x + sin(game->rotation_angle) * game->move))
+		x = sin(game->rotation_angle) * game->move;
+		y = cos(game->rotation_angle) * game->move;
+		if (ft_check_walls(game,game->player_y + y,  game->player_x + x))
 		{
-			game->player_y += cos(game->rotation_angle) * game->move;
-			game->player_x += sin(game->rotation_angle) * game->move;
+			game->player_y += y;
+			game->player_x += x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		if (ft_check_walls(game,game->player_y +  player_speed * cos(game->rotation_angle + 90),  game->player_x + player_speed * sin(game->rotation_angle + 90)))
+		x = player_speed * sin(game->rotation_angle + (90 * (PI / 180)));
+		y = player_speed * cos(game->rotation_angle + (90 * (PI / 180)));
+		if (ft_check_walls(game,game->player_y +  y,  game->player_x + x))
 		{
-			game->player_y += player_speed * cos(game->rotation_angle + 90);
-			game->player_x += player_speed * sin(game->rotation_angle + 90);
+			game->player_y += y;
+			game->player_x += x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{	
-		if (ft_check_walls(game,game->player_y +  player_speed * cos(game->rotation_angle - 90),  game->player_x + player_speed * sin(game->rotation_angle -90)))
+		x = player_speed * sin(game->rotation_angle - (90 * (PI / 180)));
+		y = player_speed * cos(game->rotation_angle - (90 * (PI / 180)));
+		if (ft_check_walls(game,game->player_y + y,  game->player_x + x))
 		{
-			game->player_y += player_speed * cos(game->rotation_angle - 90);
-			game->player_x += player_speed * sin(game->rotation_angle - 90);
+			game->player_y += y;
+			game->player_x += x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_R))
-	{
-		mlx_image_to_window(game->mlx , game->png._1 , WINDOW_WIDTH -1200  , 500);
-		usleep(900);
-		mlx_image_to_window(game->mlx , game->png._2 , WINDOW_WIDTH -1200  , 500);
-		usleep(900);
-		mlx_image_to_window(game->mlx , game->png._1 , WINDOW_WIDTH -1200  , 500);
-		usleep(900);
-		mlx_image_to_window(game->mlx , game->png._4 , WINDOW_WIDTH -1200  , 500);
-		usleep(900);
-		mlx_image_to_window(game->mlx , game->png._1 , WINDOW_WIDTH -1200  , 500);
-		usleep(900);
-
-	}
-	ft_test(game);
+	// ft_test(game);
 	ft_drawing_map(game);
 	mlx_image_to_window(game->mlx , game->png.arm , WINDOW_WIDTH -1200  , 500);
 	draw_line_DDA(game);
