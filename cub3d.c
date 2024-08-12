@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/01 08:27:12 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/12 09:41:38 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,10 +186,10 @@ void draw_line_DDA(t_cube *game) {
 	game->ray_angle = (game->roation_angle - (game->fov_angle / 2));
    	int i = 0;
 	int colun = 0;
-   while(i < game->num_ray)
+   while(i <= game->num_ray)
    {
 		ray_cast(colun , game);
-		if (i == game->num_ray / 2)
+		if (i == 0 || i == game->num_ray)
 			ft_draw_line(game ,103 , 103  , 100 + cos(game->ray_angle) * 20 ,  100 + sin(game->ray_angle) * 20);
 		game->ray_angle += (game->fov_angle / game->num_ray);
 		i++;
