@@ -185,7 +185,7 @@ typedef struct s_cube
 	int  	player_y_mini_map;
 	int  	player_x_mini_map;
 
-
+	int  raduis;
 
 	t_pparse parse_p;
 	float	num_ray;
@@ -267,7 +267,7 @@ void	heigth_width(t_cube *game);
 int	ft_strlen_ii(char *s);
 
 int	parse_numbers(char *s);
-
+int check_colesion(t_cube *game , int x , int y);
 void	fill_colors(t_cube *game, char *s, int mode);
 
 void	get_path(t_cube *game, int i, char *str);

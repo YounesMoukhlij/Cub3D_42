@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/10 09:41:55 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:14:32 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void ft_drawing_map_element(t_cube *game)
 		{
 			if (start_x / BOX_SIZE_MINI_MAP >= 0 && start_x / BOX_SIZE_MINI_MAP <= game->map_widht / BOX_SIZE  && start_y / BOX_SIZE_MINI_MAP >= 0 && start_y / BOX_SIZE_MINI_MAP <= game->map_height / BOX_SIZE)
 			{
+				if (!game->map[start_y / BOX_SIZE_MINI_MAP][start_x / BOX_SIZE_MINI_MAP])
+					break;
 				if (game->map[start_y / BOX_SIZE_MINI_MAP][start_x / BOX_SIZE_MINI_MAP] == '1')
 					mlx_put_pixel(game->img_mini_map , j  , i, 0xFF0000FF);
 				else

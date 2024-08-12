@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:27:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/29 10:14:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:23:00 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	*ft_malloc(size_t size, int mode)
 			return (NULL);
 		else
 			add_back_garbage(&collecte, lstnew_garbage(str));
+		 bzero(str , size); /////////////// remove bzero 
 	}
 	else
 		free_list(&collecte);

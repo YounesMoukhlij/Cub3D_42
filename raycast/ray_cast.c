@@ -58,22 +58,19 @@ void        third_chapter(t_cube *game)
         && game->r_tools.next_horizontal_y >= 0
         && game->r_tools.next_horizontal_y <= game->map_height)
         {
-		    if (!ft_check_walls(game, game->r_tools.next_horizontal_x,
-                game->r_tools.next_horizontal_y)
-                || ft_check_door(game , game->r_tools.next_horizontal_x
-                , game->r_tools.next_horizontal_y))
+		    if (!ft_check_walls(game, game->r_tools.next_horizontal_x, game->r_tools.next_horizontal_y) || ft_check_door(game , game->r_tools.next_horizontal_x , game->r_tools.next_horizontal_y))
 		    {
 			    game->r_tools.found_horizontal_wall = 1;
-			game->r_tools.wall_horizontal_x = game->r_tools.next_horizontal_x;
-			game->r_tools.wall_horizontal_y = game->r_tools.next_horizontal_y;
-			break;
-		}
+				game->r_tools.wall_horizontal_x = game->r_tools.next_horizontal_x;
+				game->r_tools.wall_horizontal_y = game->r_tools.next_horizontal_y;
+				break;
+			}
 		else{
 			game->r_tools.next_horizontal_x += game->r_tools.step_x;
 			game->r_tools.next_horizontal_y += game->r_tools.step_y;
 		}
 	}
-    
+
 }
 
 void    fourth_chapter(t_cube *game, t_ray *ray)
