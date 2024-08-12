@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:49:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:50:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:49:18 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int ft_check_door(t_cube *game , int next_horizontal_x , int next_horizontal_y )
 	y = abs(y);
 	if (next_horizontal_y / BOX_SIZE > game->map_widht || next_horizontal_x / BOX_SIZE > game->map_height)
 		return 0;
-	if (game->map[(next_horizontal_y / BOX_SIZE)][(next_horizontal_x / BOX_SIZE)] == 'D' && (x > BOX_SIZE / 2 && y > BOX_SIZE / 2))
+	if (game->map[(next_horizontal_y / BOX_SIZE)][(next_horizontal_x / BOX_SIZE)] == 'D' && (x >  BOX_SIZE / 2 || y > BOX_SIZE / 2))
 		return 1;
 	return 0;
 }
