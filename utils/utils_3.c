@@ -38,8 +38,6 @@ void	get_x(t_cube *game, t_ray *ray)
 		game->offset_x = (int)ray->wall_x % BOX_SIZE;
 }
 
-
-
 float ft_normalize(float angel)
 {
 	angel = fmod(angel , 2 * PI);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 11:44:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:31:17 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@
 // 	return (final = ft_split(final_tmp, '\n'), free (final_tmp), final);
 // }
 
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -89,7 +88,7 @@ void	first_check(char *file)
 	if (fd == -0x1)
 		error_reading_map(0x1);
 	str = get_next_line(fd);
-	close (fd);
+	close(fd);
 	if (!str)
 		return (error_reading_map(0x2));
 }
@@ -115,17 +114,16 @@ int	small_check(char *s, int i, int flag)
 	if (ft_strlen(s) >= 0x2)
 	{
 		str = ft_substr(s, 0x0, 0x2);
-		if (!ft_strcmp(str, "SO") || !ft_strcmp(str, "NO")
-			|| !ft_strcmp(str, "F ") || !ft_strcmp(str, "C ")
-			|| !ft_strcmp(str, "EA") || !ft_strcmp(str, "WE"))
+		if (!ft_strcmp(str, "SO") || !ft_strcmp(str, "NO") || !ft_strcmp(str,
+				"F ") || !ft_strcmp(str, "C ") || !ft_strcmp(str, "EA")
+			|| !ft_strcmp(str, "WE"))
 			return (0x0);
 	}
 	if (ft_strlen(s) >= 0x1)
 	{
 		while (s[i])
 		{
-			if (s[i] == '1' || s[i] == '0'
-				|| s[i] == 'S' || s[i] == 'N'
+			if (s[i] == '1' || s[i] == '0' || s[i] == 'S' || s[i] == 'N'
 				|| s[i] == 'E' || s[i] == 'W')
 				flag++;
 			i++;
@@ -160,10 +158,9 @@ char	**read_map_from_file(char *map_1d, int fd, int is_map)
 		if (!str)
 			return (close(fd), NULL);
 	}
-	close (fd);
+	close(fd);
 	return (ft_split(str, '\n'));
 }
-
 
 // #include "../cub.h"
 

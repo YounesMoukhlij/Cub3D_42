@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/05 19:45:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:41:40 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-
 
 char	*fix_the_map(char *s, int i, int flag, int j)
 {
@@ -58,7 +56,6 @@ int	get_length_heigth(char **str, int mode, int i)
 	return (i);
 }
 
-
 char	**final_map(t_cube *game, char **str)
 {
 	int		i;
@@ -84,17 +81,17 @@ char	**final_map(t_cube *game, char **str)
 	return (s);
 }
 
-mlx_image_t *open_image(char *path, t_cube *game)
+mlx_image_t	*open_image(char *path, t_cube *game)
 {
-	mlx_image_t *img;
-	mlx_texture_t *texture;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
 
 	texture = mlx_load_png(path);
 	if (!texture)
 		exit(1);
 	img = mlx_texture_to_image(game->mlx, texture);
 	if (!img)
-		exit (0);
+		exit(0);
 	free(texture);
 	return (img);
 }
@@ -112,18 +109,19 @@ void	ft_load_textures(t_cube *game)
 	game->png._4 = open_image("./assets/4.png", game);
 	game->png._5 = open_image("./assets/5.png", game);
 	game->png.door = open_image("./assets/door.png", game);
-	if (!game->png.ea || !game->png.no || !game->png.so
-		|| !game->png.we || !game->png.arm || !game->png._1
-		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5 ||!game->png.door )
+	if (!game->png.ea || !game->png.no || !game->png.so || !game->png.we
+		|| !game->png.arm || !game->png._1 || !game->png._2 || !game->png._3
+		|| !game->png._4 || !game->png._5 || !game->png.door)
 		error_message(game, 0x6);
 }
 
-
 void	check_player(t_cube *game, char **s)
 {
-	 int i = 0;;
-	int j = 0;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
 	while (s[i])
 	{
 		j = 0;
@@ -163,13 +161,4 @@ void	parse(int ac, char *file, t_cube *game)
 	ft_load_textures(game);
 	game->map = final_map(game, game->map_2d);
 	check_player(game, game->map);
-	
-
-	// int i = 0;
-	// puts("\n\n\n\033[32m --->< THE MAP ><---\033[0m\n\n");
-	// while (game->map[i])
-	// {
-	// 	printf("------------->   [%s]\n", game->map[i]);
-	// 	i++;
-	// }
 }

@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:27:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/12 13:23:00 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:37:06 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	*ft_malloc(size_t size, int mode)
 			return (NULL);
 		else
 			add_back_garbage(&collecte, lstnew_garbage(str));
-		 bzero(str , size); /////////////// remove bzero 
 	}
 	else
 		free_list(&collecte);

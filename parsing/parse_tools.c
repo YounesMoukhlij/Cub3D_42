@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:06:27 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/12 13:02:36 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:42:02 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_texture_intra(t_cube *game, int i)
 
 	while (game->map_2d[i] && i < 0x6)
 	{
-		str = ft_substr(game->map_2d[i], 0x0,  2);
+		str = ft_substr(game->map_2d[i], 0x0, 2);
 		if (!ft_strcmp(str, "NO"))
 			game->cnt.a1++;
 		else if (!ft_strcmp(str, "SO"))

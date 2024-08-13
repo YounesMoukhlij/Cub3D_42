@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 16:36:11 by abechcha          #+#    #+#             */
+/*   Updated: 2024/08/13 16:36:21 by abechcha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../cub.h"
 
-int	ft_strlcpy(char	*dst, char *src, int dstsize)
+int	ft_strlcpy(char *dst, char *src, int dstsize)
 {
 	int	i;
 	int	src_len;
@@ -82,9 +93,9 @@ void	*ft_calloc(int num, int size)
 
 int	ft_atoi(char *str)
 {
-	int		i;
-	int		sign;
-	int		r;
+	int	i;
+	int	sign;
+	int	r;
 
 	i = 0;
 	sign = 1;
