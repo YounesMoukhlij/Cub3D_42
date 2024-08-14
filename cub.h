@@ -118,9 +118,6 @@ typedef struct s_ray_info
 	float				distance;
 	int					coloum;
 	int					index;
-	int 				is_sprite;
-	float 				spirite_backgroud_y;
-	float 				spirite_backgroud_x;
 	struct s_ray_info	*next;
 }						t_ray;
 
@@ -214,7 +211,7 @@ typedef struct s_cube
 	t_ray_tools			r_tools;
 	t_text				texture_walls;
 }						t_cube;
-
+int	ft_check_sprit(t_cube *game, int next_horizontal_x, int next_horizontal_y);
 void					get_path(t_cube *game, int i, char *str);
 
 void					fill_colors(t_cube *game, char *s, int mode);
@@ -268,7 +265,7 @@ void					draw_line_DDA(t_cube *game);
 
 void					init_tools(t_ray_tools rays_tools);
 
-void					fifth_chapter(t_cube *game);
+void					fifth_chapter(t_cube *game , t_ray *ray);
 void					sixth_extra_chapter(t_cube *game, t_ray *ray);
 
 void					sixth_chapter(t_cube *game, t_ray *ray);

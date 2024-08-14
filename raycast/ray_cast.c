@@ -54,7 +54,7 @@ void	second_chapter(t_cube *game)
 		game->r_tools.next_horizontal_y--;
 }
 
-void	third_chapter(t_cube *game)
+void	third_chapter(t_cube *game )
 {
 	while (game->r_tools.next_horizontal_x >= 0
 		&& game->r_tools.next_horizontal_x <= game->map_widht
@@ -111,7 +111,7 @@ void	ray_cast(int colum, t_cube *game)
 	second_chapter(game);
 	third_chapter(game);
 	fourth_chapter(game, ray);
-	fifth_chapter(game);
+	fifth_chapter(game , ray);
 	sixth_chapter(game, ray);
 	ray->index = colum;
 	game->was_vertical = 0;

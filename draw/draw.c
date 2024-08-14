@@ -17,10 +17,6 @@ void	check_view(t_cube *game, t_ray *ray)
 	(void)ray;
 	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x / BOX_SIZE)] == 'D')
 		game->img_wall = game->png.door;
-	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x / BOX_SIZE)] == 'C')
-	{
-		game->img_wall = game->png.e;
-	}
 	else
 	{
 		if (!game->hit_v)
@@ -77,12 +73,9 @@ void	ft_draw_wall(t_cube *game, t_ray *ray)
 		game->draws.g = game->img_wall->pixels[game->draws.j + 1];
 		game->draws.b = game->img_wall->pixels[game->draws.j + 2];
 		game->draws.a = game->img_wall->pixels[game->draws.j + 3];
-		if (!(game->draws.r == 0 && game->draws.g == 0&& game->draws.b == 0 && game->draws.a == 0))
-		{
 			mlx_put_pixel(game->img, ray->index, game->draws.i,
 				ft_color(game->draws.r, game->draws.g, game->draws.b,
 					game->draws.a));
-		}
 		game->draws.i++;
 	}
 }

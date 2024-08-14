@@ -12,8 +12,9 @@
 
 #include "../cub.h"
 
-void	fifth_chapter(t_cube *game)
+void	fifth_chapter(t_cube *game , t_ray *ray)
 {
+	(void)ray;
 	while (game->r_tools.next_vertical_x >= 0
 		&& game->r_tools.next_vertical_x <= game->map_widht
 		&& game->r_tools.next_vertical_y >= 0
