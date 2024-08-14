@@ -12,6 +12,21 @@
 
 #include "cub.h"
 
+void ft_test(t_cube *game)
+{
+	int i = 0;
+	while(i < 1000)
+	{
+		int j = 0;
+		while(j < 1500)
+		{
+			mlx_put_pixel(game->img, j  , i, ft_color(0, 0, 0, 255));
+			j++; 
+		}
+		i++;
+	}
+}
+
 void	ft_check_move(void *tmp)
 {
 	double	x;
@@ -73,6 +88,7 @@ void	ft_check_move(void *tmp)
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
+	// ft_test(game);
 	ft_drawing_map(game);
 	draw_line_DDA(game);
 }

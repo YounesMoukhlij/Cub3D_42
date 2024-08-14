@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:07:38 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:39:12 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:19:24 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 			error_message(game, 0x4);
 		while (str[j])
 		{
-			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
+			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D' || str[j] == 'C'
 					|| str[j] == 'N' || str[j] == 'S'
 					|| str[j] == 'W' || str[j] == 'E'))
 				error_message(game, 0x4);

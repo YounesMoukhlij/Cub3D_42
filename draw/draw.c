@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:29:24 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:27:08 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void	check_view(t_cube *game, t_ray *ray)
 {
 	(void)ray;
-	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x
-			/ BOX_SIZE)] == 'D')
+	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x / BOX_SIZE)] == 'D')
 		game->img_wall = game->png.door;
+	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x / BOX_SIZE)] == 'C')
+	{
+		game->img_wall = game->png.e;
+	}
 	else
 	{
 		if (!game->hit_v)
@@ -74,9 +77,12 @@ void	ft_draw_wall(t_cube *game, t_ray *ray)
 		game->draws.g = game->img_wall->pixels[game->draws.j + 1];
 		game->draws.b = game->img_wall->pixels[game->draws.j + 2];
 		game->draws.a = game->img_wall->pixels[game->draws.j + 3];
-		mlx_put_pixel(game->img, ray->index, game->draws.i,
+		if (!(game->draws.r == 0 && game->draws.g == 0&& game->draws.b == 0 && game->draws.a == 0))
+		{
+			mlx_put_pixel(game->img, ray->index, game->draws.i,
 				ft_color(game->draws.r, game->draws.g, game->draws.b,
 					game->draws.a));
+		}
 		game->draws.i++;
 	}
 }

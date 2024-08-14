@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:41:40 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:25:26 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	ft_load_textures(t_cube *game)
 	game->png._4 = open_image("./assets/4.png", game);
 	game->png._5 = open_image("./assets/5.png", game);
 	game->png.door = open_image("./assets/door.png", game);
+	game->png.e = open_image("./assets/e.png", game);
 	if (!game->png.ea || !game->png.no || !game->png.so || !game->png.we
 		|| !game->png.arm || !game->png._1 || !game->png._2 || !game->png._3
 		|| !game->png._4 || !game->png._5 || !game->png.door)

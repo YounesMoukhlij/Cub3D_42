@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:43:41 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:09:01 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ typedef struct s_ray_info
 	float				distance;
 	int					coloum;
 	int					index;
+	int 				is_sprite;
+	float 				spirite_backgroud_y;
+	float 				spirite_backgroud_x;
 	struct s_ray_info	*next;
 }						t_ray;
 
@@ -133,6 +136,7 @@ typedef struct s_png
 	mlx_image_t			*_3;
 	mlx_image_t			*_4;
 	mlx_image_t			*_5;
+	mlx_image_t			*e;
 	mlx_image_t			*door;
 
 }						t_png;

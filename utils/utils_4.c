@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:48:17 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:31:41 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:27:39 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,38 +79,3 @@ int	ft_check_walls(t_cube *game, int x, int y)
 	return (0);
 }
 
-void	ft_test(t_cube *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 1000)
-	{
-		j = 0;
-		while (j < 1500)
-		{
-			mlx_put_pixel(game->img, j, i, ft_color(0, 0, 0, 255));
-			j++;
-		}
-		i++;
-	}
-}
-
-void	ft_test_1(t_cube *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 200)
-	{
-		j = 0;
-		while (j < 200)
-		{
-			mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 0, 0, 255));
-			j++;
-		}
-		i++;
-	}
-}
