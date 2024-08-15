@@ -12,22 +12,15 @@
 
 #include "../cub.h"
 
-int	check_extension(char *file, int mode)
+int	check_extension(char *file)
 {
 	int	i;
 
 	i = 0x0;
-	while (file[i] && !mode)
+	while (file[i])
 	{
 		if (file[i] == '.' && file[i + 0x1] == 'c' && file[i + 0x2] == 'u'
 			&& file[i + 0x3] == 'b' && file[i + 0x4] == '\0')
-			return (0x1);
-		i++;
-	}
-	while (file[i] && mode)
-	{
-		if (file[i] == '.' && file[i + 0x1] == 'p' && file[i + 0x2] == 'n'
-			&& file[i + 0x3] == 'g' && file[i + 0x4] == '\0')
 			return (0x1);
 		i++;
 	}

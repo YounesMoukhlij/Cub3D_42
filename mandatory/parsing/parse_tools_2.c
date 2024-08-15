@@ -25,7 +25,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 			error_message(game, 0x4);
 		while (str[j])
 		{
-			if (!(str[j] == '0' || str[j] == '1'
+			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
 					|| str[j] == 'N' || str[j] == 'S'
 					|| str[j] == 'W' || str[j] == 'E'))
 				error_message(game, 0x4);
@@ -84,13 +84,50 @@ int	parse_numbers(char *s)
 	return (0);
 }
 
+int	check_color(t_cube *game, char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_strlen(str[i]) >= 2 && ft_atoi(str[i]) == 0)
+			error_message(game, 0x7);
+		if (ft_strlen(str[i]) > 3)
+			error_message(game, 0x7);
+		i++;
+	}
+	return (0x0);
+}
+
+
+void	parse_s(t_cube *game, char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == ',' && s[i + 1] == ',' && s[i + 1])
+			error_message(game, 0x7);
+		if (s[ft_strlen(s) - 1] == ',')
+			error_message(game, 0x7);
+
+		i++;
+	}
+}
+
 void	fill_colors(t_cube *game, char *s, int mode)
 {
 	char	**str;
 	int		i;
 
 	i = 0;
+	parse_s(game, s);
 	str = ft_split(ft_strtrim(s, " "), ',');
+	if (!str)
+		return ;
+	check_color(game, str);
 	while (str[i])
 	{
 		if (!mode && !i)
@@ -117,11 +154,11 @@ void	get_path(t_cube *game, int i, char *str)
 	if (!s)
 		return ;
 	if (!ft_strcmp(str, "NO"))
-		game->texture_walls.no = ft_strdup(s);
+		game->texture_walls.no = ft_strtrim(ft_strdup(s), " ");
 	else if (!ft_strcmp(str, "SO"))
-		game->texture_walls.so = ft_strdup(s);
+		game->texture_walls.so = ft_strtrim(ft_strdup(s), " ");
 	else if (!ft_strcmp(str, "EA"))
-		game->texture_walls.ea = ft_strdup(s);
+		game->texture_walls.ea = ft_strtrim(ft_strdup(s), " ");
 	else if (!ft_strcmp(str, "WE"))
-		game->texture_walls.we = ft_strdup(s);
+		game->texture_walls.we = ft_strtrim(ft_strdup(s), " ");
 }

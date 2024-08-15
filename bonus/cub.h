@@ -248,7 +248,7 @@ void					fill_colors(t_cube *game, char *s, int mode);
 
 void					get_path(t_cube *game, int i, char *str);
 
-int						check_extension(char *file);
+int						check_extension(char *file, int mode);
 int						ft_check_door(t_cube *game, int next_horizontal_x,
 							int next_horizontal_y);
 void					ft_put_player(t_cube *game);
