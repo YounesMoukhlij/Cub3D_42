@@ -28,6 +28,8 @@ void	error_message(t_cube *var, int mode)
 		write(STDERR_FILENO, "malloc feild\n", 12);
 	else if (mode == 6)
 		write(STDERR_FILENO, "Textures cant be Loaded\n", 12);
+	else if (mode == 200)
+		write(STDERR_FILENO, "Walls are not closed\n", 22);
 	exit(0x1);
 }
 

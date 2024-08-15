@@ -182,6 +182,36 @@ void	check_textures(t_cube *game)
 		error_message(game, 0x2);
 }
 
+void	check_position(t_cube *game, char **s, int i, int j)
+{
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] == '0' || s[i][j] == 'W'
+				|| s[i][j] == 'E' || s[i][j] == 'N'
+				|| s[i][j] == 'S')
+			{
+				if (s[i - 1][j] != '1' && s[i - 1][j] != '0' && s[i - 1][j] != 'N'
+					&&  s[i - 1][j] != 'W' && s[i - 1][j] != 'E' && s[i - 1][j] != 'S')
+					error_message(game, 300);
+				if (s[i + 1][j] != '1' && s[i + 1][j] != '0' && s[i + 1][j] != 'N'
+					&&  s[i + 1][j] != 'W' && s[i + 1][j] != 'E' && s[i + 1][j] != 'S')
+					error_message(game, 300);
+				if (s[i][j + 1] != '1' && s[i][j + 1] != '0' && s[i][j + 1] != 'N'
+					&&  s[i][j + 1] != 'W' && s[i][j + 1] != 'E' && s[i][j + 1] != 'S')
+					error_message(game, 300);
+				if (s[i][j - 1] != '1' && s[i][j - 1] != '0' && s[i][j - 1] != 'N'
+					&&  s[i][j - 1] != 'W' && s[i][j - 1] != 'E' && s[i][j - 1] != 'S')
+					error_message(game, 300);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	parse(int ac, char *file, t_cube *game)
 {
 	if (ac <= 1 || ac >= 3)
@@ -197,14 +227,15 @@ void	parse(int ac, char *file, t_cube *game)
 	check_valid_members(game, 0x0, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
-	// ft_load_textures(game);
+	ft_load_textures(game);
 	game->map = final_map(game, game->map_2d);
 	check_player(game, game->map);
 	check_door(game->map, game, 0x0, 0x0);
 	check_textures(game);
+	check_position(game, game->map, 0, 0);
 	// printf("heigth == [%d]\n", game->real_map_heigth);
 	// printf("width == [%d]\n", game->real_map_width);
-	// printf("length of big line == [%d]\n", ft_strlen("           11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"));
+
 	// printf("%s\n", game->texture_walls.ea);
 	// printf("%s\n", game->texture_walls.so);
 	// printf("%s\n", game->texture_walls.we);

@@ -22,7 +22,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
 		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
-			error_message(game, 0x4);
+			error_message(game, 200);
 		while (str[j])
 		{
 			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'

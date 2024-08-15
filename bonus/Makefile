@@ -20,18 +20,18 @@ SRC = cub3d.c \
 	  utils/utils_1.c \
 	  utils/utils_2.c \
 	  utils/utils_3.c \
-	  utils/utils_4.c \
-	  utils/utils_5.c \
 	  utils/ft_split.c \
-	  utils/error_msg.c \
-	  utils/movment.c \
+	  utils/garbage_collector.c \
+	  utils/garbage_collector_utils.c \
 	  utils/tools.c \
+	  utils/error_msg.c \
+	#   utils/movment.c \
+	  utils/utils_4.c \
 	  draw/draw.c \
 	  raycast/ray_cast.c \
 	  raycast/ray_cast_utils.c \
-	  utils/garbage_collector.c \
-	  utils/garbage_collector_utils.c \
- 
+	  utils/utils_5.c \
+
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = Cub3D_bonus
