@@ -82,39 +82,39 @@ char	**final_map(t_cube *game, char **str)
 	return (s);
 }
 
-// mlx_image_t *open_image(char *path, t_cube *game)
-// {
-// 	mlx_image_t *img;
-// 	mlx_texture_t *texture;
+mlx_image_t *open_image(char *path, t_cube *game)
+{
+	mlx_image_t *img;
+	mlx_texture_t *texture;
 
-// 	texture = mlx_load_png(path);
-// 	if (!texture)
-// 		exit(1);
-// 	img = mlx_texture_to_image(game->mlx, texture);
-// 	if (!img)
-// 		exit (0);
-// 	free(texture);
-// 	return (img);
-// }
+	texture = mlx_load_png(path);
+	if (!texture)
+		exit(1);
+	img = mlx_texture_to_image(game->mlx, texture);
+	if (!img)
+		exit (0);
+	free(texture);
+	return (img);
+}
 
-// void	ft_load_textures(t_cube *game)
-// {
-// 	game->png.ea = open_image(game->texture_walls.ea, game);
-// 	game->png.so = open_image(game->texture_walls.so, game);
-// 	game->png.no = open_image(game->texture_walls.no, game);
-// 	game->png.we = open_image(game->texture_walls.we, game);
-// 	game->png.arm = open_image("./assets/arm.png", game);
-// 	game->png._1 = open_image("./assets/1.png", game);
-// 	game->png._2 = open_image("./assets/2.png", game);
-// 	game->png._3 = open_image("./assets/3.png", game);
-// 	game->png._4 = open_image("./assets/4.png", game);
-// 	game->png._5 = open_image("./assets/5.png", game);
-// 	game->png.door = open_image("./assets/door.png", game);
-// 	if (!game->png.ea || !game->png.no || !game->png.so
-// 		|| !game->png.we || !game->png.arm || !game->png._1
-// 		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5 ||!game->png.door )
-// 		error_message(game, 0x6);
-// }
+void	ft_load_textures(t_cube *game)
+{
+	game->png.ea = open_image(game->texture_walls.ea, game);
+	game->png.so = open_image(game->texture_walls.so, game);
+	game->png.no = open_image(game->texture_walls.no, game);
+	game->png.we = open_image(game->texture_walls.we, game);
+	game->png.arm = open_image("./assets/arm.png", game);
+	game->png._1 = open_image("./assets/1.png", game);
+	game->png._2 = open_image("./assets/2.png", game);
+	game->png._3 = open_image("./assets/3.png", game);
+	game->png._4 = open_image("./assets/4.png", game);
+	game->png._5 = open_image("./assets/5.png", game);
+	game->png.door = open_image("./assets/door.png", game);
+	if (!game->png.ea || !game->png.no || !game->png.so
+		|| !game->png.we || !game->png.arm || !game->png._1
+		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5 ||!game->png.door )
+		error_message(game, 0x6);
+}
 
 
 void	check_player(t_cube *game, char **s)

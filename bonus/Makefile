@@ -25,7 +25,7 @@ SRC = cub3d.c \
 	  utils/garbage_collector_utils.c \
 	  utils/tools.c \
 	  utils/error_msg.c \
-	#   utils/movment.c \
+	  utils/movment.c \
 	  utils/utils_4.c \
 	  draw/draw.c \
 	  raycast/ray_cast.c \
