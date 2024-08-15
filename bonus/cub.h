@@ -294,7 +294,7 @@ float					ft_normalize(float angel);
 void					ft_test(t_cube *game);
 int						ft_check_door(t_cube *game, int next_horizontal_x,
 							int next_horizontal_y);
-void					draw_line_DDA(t_cube *game);
+void					draw_line_dda(t_cube *game);
 int						ft_check_walls(t_cube *game, int x, int y);
 void					ft_draw_line(t_cube *game, int x1, int y1, int x2,
 							int y2);

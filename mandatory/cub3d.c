@@ -77,7 +77,10 @@ void	ft_check_move(void *tmp)
 			game->player_speed -= 2;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_EQUAL))
-		game->player_speed += 2;
+	{
+		if (game->player_speed <  100)
+			game->player_speed += 2;
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	draw_line_DDA(game);
