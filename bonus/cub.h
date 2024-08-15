@@ -24,7 +24,6 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 60
 # define mouse_speed 0.1 * (PI / 180)
 # define BOX_SIZE 200
 # define BOX_SIZE_MINI_MAP 10
@@ -160,6 +159,8 @@ typedef struct s_draws
 typedef struct s_cube
 {
 	int					index;
+	int 				player_speed;
+	int 				mouse_stat;
 	t_tools				twilzat;
 	t_draws				draws;
 	char				**final_map;
@@ -175,7 +176,7 @@ typedef struct s_cube
 
 	t_pparse			parse_p;
 	float				num_ray;
-	double				fov_angle;
+	double				field_of_view_angle;
 	int					was_vertical;
 	float				player_new_y;
 	float				player_new_x;

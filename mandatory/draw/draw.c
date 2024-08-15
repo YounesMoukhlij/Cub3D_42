@@ -120,11 +120,11 @@ void	draw_line_DDA(t_cube *game)
 
 	colun = 0;
 	i = 0;
-	game->ray_angle = (game->rotation_angle - (game->fov_angle / 2));
+	game->ray_angle = (game->rotation_angle - (game->field_of_view_angle / 2));
 	while (i < game->num_ray)
 	{
 		ray_cast(colun, game);
-		game->ray_angle += (game->fov_angle / game->num_ray);
+		game->ray_angle += (game->field_of_view_angle / game->num_ray);
 		i++;
 		colun++;
 	}

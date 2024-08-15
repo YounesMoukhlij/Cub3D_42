@@ -24,7 +24,7 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 1
-# define player_speed 60
+// # define player_speed 60
 # define BOX_SIZE 200
 # define BOX_SIZE_MINI_MAP 10
 # define player_size 3
@@ -158,6 +158,7 @@ typedef struct s_draws
 
 typedef struct s_cube
 {
+	int 				player_speed;
 	int					index;
 	t_tools				twilzat;
 	t_draws				draws;
@@ -174,7 +175,7 @@ typedef struct s_cube
 
 	t_pparse			parse_p;
 	float				num_ray;
-	double				fov_angle;
+	double				field_of_view_angle;
 	int					was_vertical;
 	float				player_new_y;
 	float				player_new_x;

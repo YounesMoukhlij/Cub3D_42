@@ -1,0 +1,16 @@
+
+SO ./assets/png_3.png
+
+EA ./assets/png_2.png
+F 0,0,0
+
+NO ./assets/png_1.png
+C 0,25,139
+
+WE ./assets/png_4.png
+
+101111
+10000N1
+1000001
+1000001
+1111111

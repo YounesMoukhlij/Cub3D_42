@@ -22,15 +22,15 @@ void	clear_player(t_cube *game)
 	int	pixel;
 	int	pixel1;
 
-	pixel	= 0;
-	pixel1	= 0;
+	pixel = 0;
+	pixel1 = 0;
 	while (pixel < player_size)
 	{
 		pixel1 = 0;
 		while (pixel1 < player_size)
 		{
 			mlx_put_pixel(game->img, game->player_y + pixel1, game->player_x
-					+ pixel, 0xFFFFFF);
+				+ pixel, 0xFFFFFF);
 			pixel1++;
 		}
 		pixel++;
@@ -78,4 +78,3 @@ int	ft_check_walls(t_cube *game, int x, int y)
 	}
 	return (0);
 }
-

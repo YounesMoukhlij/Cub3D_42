@@ -6,22 +6,25 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:43:59 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:57:43 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void ft_test(t_cube *game)
+void	ft_test(t_cube *game)
 {
-	int i = 0;
-	while(i < 1000)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 1000)
 	{
-		int j = 0;
-		while(j < 1500)
+		j = 0;
+		while (j < 1500)
 		{
-			mlx_put_pixel(game->img, j  , i, ft_color(0, 0, 0, 255));
-			j++; 
+			mlx_put_pixel(game->img, j, i, ft_color(0, 0, 0, 255));
+			j++;
 		}
 		i++;
 	}
@@ -39,7 +42,7 @@ void	ft_check_move(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx,
 			MLX_KEY_UP))
 	{
-		game->move = 1 * player_speed;
+		game->move = 1 * game->player_speed;
 		x = sin(game->rotation_angle) * game->move;
 		y = cos(game->rotation_angle) * game->move;
 		if (check_colesion(game, y + game->player_y, game->player_x + x))
@@ -55,7 +58,7 @@ void	ft_check_move(void *tmp)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) || mlx_is_key_down(game->mlx,
 			MLX_KEY_DOWN))
 	{
-		game->move = -1 * player_speed;
+		game->move = -1 * game->player_speed;
 		x = sin(game->rotation_angle) * game->move;
 		y = cos(game->rotation_angle) * game->move;
 		if (check_colesion(game, game->player_y + y, game->player_x + x))
@@ -68,8 +71,8 @@ void	ft_check_move(void *tmp)
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		x = player_speed * sin(game->rotation_angle + (90 * (PI / 180)));
-		y = player_speed * cos(game->rotation_angle + (90 * (PI / 180)));
+		x = game->player_speed * sin(game->rotation_angle + (90 * (PI / 180)));
+		y = game->player_speed * cos(game->rotation_angle + (90 * (PI / 180)));
 		if (check_colesion(game, game->player_y + y, game->player_x + x))
 		{
 			game->player_y += y;
@@ -78,8 +81,8 @@ void	ft_check_move(void *tmp)
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-		x = player_speed * sin(game->rotation_angle - (90 * (PI / 180)));
-		y = player_speed * cos(game->rotation_angle - (90 * (PI / 180)));
+		x = game->player_speed * sin(game->rotation_angle - (90 * (PI / 180)));
+		y = game->player_speed * cos(game->rotation_angle - (90 * (PI / 180)));
 		if (check_colesion(game, game->player_y + y, game->player_x + x))
 		{
 			game->player_y += y;
@@ -88,7 +91,20 @@ void	ft_check_move(void *tmp)
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	// ft_test(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_MINUS))
+	{
+		if (game->player_speed > 0)
+			game->player_speed -= 2;
+	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_EQUAL))
+		game->player_speed += 2;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_M))
+	{
+		if (game->mouse_stat == 1)
+			game->mouse_stat = 0;
+		else if (game->mouse_stat == 0)
+			game->mouse_stat = 1;
+	}
 	ft_drawing_map(game);
 	draw_line_DDA(game);
 }
@@ -103,23 +119,27 @@ void	init_image(t_cube *game)
 	game->player_walk = 0;
 	game->map_widht = game->real_map_width * BOX_SIZE;
 	game->map_height = (game->real_map_heigth - 1) * BOX_SIZE;
-	game->fov_angle = 60 * (PI / 180);
+	game->field_of_view_angle = 60 * (PI / 180);
 	game->num_ray = (WINDOW_WIDTH);
-}
-void ft_handle_mouse(enum mouse_key key, enum action action, enum modifier_key mod, void *param)
-{
-    (void)key;     // Suppress unused parameter warnings
-    (void)action;
-    (void)mod;
-    (void)param;
-	t_cube *game = (void *)param;
-	int x;
-	int y;
-	mlx_get_mouse_pos(game->mlx , &x , &y);
-	game->rotation_angle += mouse_speed * ( x - (WINDOW_WIDTH / 2));
-	mlx_set_mouse_pos(game->mlx , WINDOW_WIDTH /2 ,WINDOW_HEITH / 2 );
+	game->mouse_stat = 0;
+	game->player_speed = 60;
 }
 
+void	ft_handle_mouse(void *param)
+{
+	t_cube	*game;
+	int		x;
+	int		y;
+
+	game = (void *)param;
+	if (game->mouse_stat == 1)
+	{
+		mlx_get_mouse_pos(game->mlx, &x, &y);
+		game->rotation_angle += mouse_speed * (x - (WINDOW_WIDTH / 2));
+		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
+		mlx_set_mouse_pos(game->mlx, WINDOW_WIDTH / 2, WINDOW_HEITH / 2);
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -132,7 +152,7 @@ int	main(int ac, char **av)
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
 	mlx_loop_hook(game.mlx, ft_check_move, &game);
-	mlx_mouse_hook(game.mlx , ft_handle_mouse , &game);
+	mlx_loop_hook(game.mlx, ft_handle_mouse, &game);
 	mlx_loop(game.mlx);
 	return (0x0);
 }
