@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:43:59 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:24:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_check_move(void *tmp)
 
 	game = (t_cube *)tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		game->rotation_angle += 1 * rotation_speed;
+		game->rotation_angle += 1 * ROTATION_SPEED;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx,
 			MLX_KEY_UP))
 	{
@@ -35,7 +35,7 @@ void	ft_check_move(void *tmp)
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
-		game->rotation_angle += -1 * rotation_speed;
+		game->rotation_angle += -1 * ROTATION_SPEED;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) || mlx_is_key_down(game->mlx,
 			MLX_KEY_DOWN))
@@ -80,7 +80,7 @@ void	ft_check_move(void *tmp)
 		game->player_speed += 2;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	draw_line_DDA(game);
+	draw_line_dda(game);
 }
 
 void	init_image(t_cube *game)

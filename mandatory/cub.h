@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:09:01 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:24:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@
 # define BUFFER_SIZE 1
 // # define player_speed 60
 # define BOX_SIZE 200
-# define BOX_SIZE_MINI_MAP 10
-# define player_size 3
+# define BOX_MINI 10
+# define PLAYER_SIZE 3
 # define PI 3.14159265358979323846
-# define rotation_speed 5 * (PI / 180)
-# define wall_with 1
+# define ROTATION_SPEED 5 * (PI / 180)
+# define WALL_WIDTH 1
 # define WINDOW_WIDTH 1500
 # define WINDOW_HEITH 1000
-# define player_size_mini_map 6
-# define BOX_SIZE_MINI_MAP 10
+# define PLAYER_SIZE_MINI_MAP 6
+# define BOX_MINI 10
 
 typedef struct s_ray_tools
 {
@@ -179,8 +179,8 @@ typedef struct s_cube
 	int					was_vertical;
 	float				player_new_y;
 	float				player_new_x;
-	float				is_facingDown;
-	float				is_facingLeft;
+	float				is_facingdown;
+	float				is_facingleft;
 	int hit_v; // 1 si h == 0
 	t_png				png;
 	float				is_facingup;
@@ -262,7 +262,7 @@ void					ft_draw_wall(t_cube *game, t_ray *ray);
 void					ft_draw_line(t_cube *game, int x1, int y1, int x2,
 							int y2);
 
-void					draw_line_DDA(t_cube *game);
+void					draw_line_dda(t_cube *game);
 
 void					init_tools(t_ray_tools rays_tools);
 
@@ -293,7 +293,7 @@ float					ft_normalize(float angel);
 void					ft_test(t_cube *game);
 int						ft_check_door(t_cube *game, int next_horizontal_x,
 							int next_horizontal_y);
-void					draw_line_DDA(t_cube *game);
+void					draw_line_dda(t_cube *game);
 int						ft_check_walls(t_cube *game, int x, int y);
 void					ft_draw_line(t_cube *game, int x1, int y1, int x2,
 							int y2);

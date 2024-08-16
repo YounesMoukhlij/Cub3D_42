@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:06:27 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:42:02 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:32:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_strlen_ii(char *s)
 	len = 0;
 	while (s[i])
 	{
-		if (s[i] != 32 && s[i] != 9)
+		if (s[i] != 9)
 			len++;
 		i++;
 	}
@@ -84,6 +84,22 @@ void	heigth_width(t_cube *game)
 	game->real_map_heigth = get_length_heigth(game->map_2d, 0, 6);
 }
 
+int	player_num(t_cube *game)
+{
+	if ((game->parse_p.n + game->parse_p.s
+		+ game->parse_p.w + game->parse_p.e) == 0x0)
+				return (0x1);
+	if ((game->parse_p.n + game->parse_p.e
+		+ game->parse_p.w + game->parse_p.s) > 0x1)
+			return (0x1);
+	if (game->parse_p.n > 0x1
+		|| game->parse_p.e > 0x1
+		|| game->parse_p.w > 0x1
+		|| game->parse_p.s > 0x1)
+			return (0x1);
+	return (0x0);
+}
+
 int	ultra_check(t_cube *game, int mode)
 {
 	if (!mode)
@@ -98,13 +114,7 @@ int	ultra_check(t_cube *game, int mode)
 	}
 	else
 	{
-		if ((game->parse_p.n + game->parse_p.e +
-			game->parse_p.w + game->parse_p.s) > 0x1)
-			return (0x1);
-		if (game->parse_p.n > 0x1
-			|| game->parse_p.e > 0x1
-			|| game->parse_p.w > 0x1
-			|| game->parse_p.s > 0x1)
+		if (player_num(game))
 			return (0x1);
 	}
 	return (0);

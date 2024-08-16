@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:27:08 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:24:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	check_view(t_cube *game, t_ray *ray)
 		{
 			if (game->is_facingup)
 				game->img_wall = game->png.so;
-			else if (game->is_facingDown)
+			else if (game->is_facingdown)
 				game->img_wall = game->png.no;
 		}
 		else
 		{
-			if (game->is_facingLeft)
+			if (game->is_facingleft)
 				game->img_wall = game->png.ea;
 			if (game->is_facingRight)
 				game->img_wall = game->png.we;
@@ -113,7 +113,7 @@ void	ft_draw_line(t_cube *game, int x1, int y1, int x2, int y2)
 	}
 }
 
-void	draw_line_DDA(t_cube *game)
+void	draw_line_dda(t_cube *game)
 {
 	int	i;
 	int	colun;
@@ -138,8 +138,8 @@ void	ft_drawing_map_element(t_cube *game)
 	int	start_x;
 
 	i = 0;
-	game->player_y_mini_map = (game->player_x / BOX_SIZE) * BOX_SIZE_MINI_MAP;
-	game->player_x_mini_map = (game->player_y / BOX_SIZE) * BOX_SIZE_MINI_MAP;
+	game->player_y_mini_map = (game->player_x / BOX_SIZE) * BOX_MINI;
+	game->player_x_mini_map = (game->player_y / BOX_SIZE) * BOX_MINI;
 	start_y = game->player_y_mini_map - 100;
 	while (start_y < game->player_y_mini_map + 100)
 	{
@@ -147,19 +147,19 @@ void	ft_drawing_map_element(t_cube *game)
 		start_x = game->player_x_mini_map - 100;
 		while (start_x < game->player_x_mini_map + 100)
 		{
-			if (start_x / BOX_SIZE_MINI_MAP >= 0 && start_x
-				/ BOX_SIZE_MINI_MAP <= game->map_widht / BOX_SIZE && start_y
-				/ BOX_SIZE_MINI_MAP >= 0 && start_y
-				/ BOX_SIZE_MINI_MAP <= game->map_height / BOX_SIZE)
+			if (start_x / BOX_MINI >= 0 && start_x
+				/ BOX_MINI <= game->map_widht / BOX_SIZE && start_y
+				/ BOX_MINI >= 0 && start_y
+				/ BOX_MINI <= game->map_height / BOX_SIZE)
 			{
-				if (!game->map[start_y / BOX_SIZE_MINI_MAP][start_x
-					/ BOX_SIZE_MINI_MAP])
+				if (!game->map[start_y / BOX_MINI][start_x
+					/ BOX_MINI])
 					break ;
-				else if (game->map[start_y / BOX_SIZE_MINI_MAP][start_x
-						/ BOX_SIZE_MINI_MAP] == '1')
+				else if (game->map[start_y / BOX_MINI][start_x
+						/ BOX_MINI] == '1')
 					mlx_put_pixel(game->img_mini_map, j, i, 0xFF0000FF);
-				else if (game->map[start_y / BOX_SIZE_MINI_MAP][start_x
-						/ BOX_SIZE_MINI_MAP] == 'D')
+				else if (game->map[start_y / BOX_MINI][start_x
+						/ BOX_MINI] == 'D')
 					mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 255, 0,
 								255));
 				else

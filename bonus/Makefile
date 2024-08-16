@@ -6,15 +6,17 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/05 11:35:03 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/16 16:31:03 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = cub3d.c \
 	  parsing/get_line.c \
 	  parsing/parse.c \
-	  parsing/parse_tools_2.c \
 	  parsing/parse_tools.c \
+	  parsing/parse_tools_2.c \
+	  parsing/parse_tools_3.c \
+	  parsing/parse_tools_4.c \
 	  parsing/load_map.c \
 	  parsing/check_extension.c \
 	  utils/utils_1.c \
@@ -27,6 +29,7 @@ SRC = cub3d.c \
 	  utils/movment.c \
 	  utils/tools.c \
 	  draw/draw.c \
+	  draw/draw_utils.c \
 	  raycast/ray_cast.c \
 	  raycast/ray_cast_utils.c \
 	  utils/garbage_collector.c \
@@ -35,7 +38,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = Cub3D_bonus
-CFLAGS =  -Ofast -g  -Wall -Wextra -Werror -fsanitize=address
+CFLAGS =  -Ofast -g  -Wall -Wextra -Werror #-fsanitize=address
 
 all : $(NAME)
 

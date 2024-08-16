@@ -56,6 +56,7 @@ int	get_length_heigth(char **str, int mode, int i)
 	return (i);
 }
 
+
 char	**final_map(t_cube *game, char **str)
 {
 	int		i;
@@ -81,17 +82,17 @@ char	**final_map(t_cube *game, char **str)
 	return (s);
 }
 
-mlx_image_t	*open_image(char *path, t_cube *game)
+mlx_image_t *open_image(char *path, t_cube *game)
 {
-	mlx_image_t		*img;
-	mlx_texture_t	*texture;
+	mlx_image_t *img;
+	mlx_texture_t *texture;
 
 	texture = mlx_load_png(path);
 	if (!texture)
 		exit(1);
 	img = mlx_texture_to_image(game->mlx, texture);
 	if (!img)
-		exit(0);
+		exit (0);
 	free(texture);
 	return (img);
 }
@@ -109,20 +110,18 @@ void	ft_load_textures(t_cube *game)
 	game->png._4 = open_image("./assets/4.png", game);
 	game->png._5 = open_image("./assets/5.png", game);
 	game->png.door = open_image("./assets/door.png", game);
-	game->png.e = open_image("./assets/e.png", game);
-	if (!game->png.ea || !game->png.no || !game->png.so || !game->png.we
-		|| !game->png.arm || !game->png._1 || !game->png._2 || !game->png._3
-		|| !game->png._4 || !game->png._5 || !game->png.door)
+	if (!game->png.ea || !game->png.no || !game->png.so
+		|| !game->png.we || !game->png.arm || !game->png._1
+		|| !game->png._2 || !game->png._3 || !game->png._4 || !game->png._5 ||!game->png.door )
 		error_message(game, 0x6);
 }
 
+
 void	check_player(t_cube *game, char **s)
 {
-	int	i;
-	int	j;
+	 int i = 0;;
+	int j = 0;
 
-	i = 0;
-	j = 0;
 	while (s[i])
 	{
 		j = 0;
@@ -141,14 +140,83 @@ void	check_player(t_cube *game, char **s)
 		i++;
 	}
 	if (ultra_check(game, 1))
-		error_message(game, 0x4);
+		error_message(game, 100);
+}
+
+void	check_door(char **s, t_cube *game, int i, int j)
+{
+	int flag;
+
+	flag = 0x0;
+	while (s[i])
+	{
+		j = 0x0;
+		while (s[i][j])
+		{
+			if (s[i][j] == 'D')
+			{
+				if ((s[i][j + 0x1] == 'D' || s[i][j - 0x1] == 'D') && s[i][j + 0x1] && s[i][j - 1])
+					error_message(game, 0x3);
+				if (s[i][j - 1] == '1' && s[i][j + 1] == '1')
+					flag = 0x1;
+				else
+					error_message(game, 0x3);
+				if (i != 0 && !flag)
+				{
+					if (s[i - 1][j] != '1' || s[i + 1][j] != '1')
+						error_message(game, 0x3);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	check_textures(t_cube *game)
+{
+	if (!check_extension(game->texture_walls.ea, 0x1)
+		|| !check_extension(game->texture_walls.we, 0x1)
+		|| !check_extension(game->texture_walls.no, 0x1)
+		|| !check_extension(game->texture_walls.so, 0x1))
+		error_message(game, 0x2);
+}
+
+void	check_position(t_cube *game, char **s, int i, int j)
+{
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] == '0' || s[i][j] == 'W'
+				|| s[i][j] == 'E' || s[i][j] == 'N'
+				|| s[i][j] == 'S' || s[i][j] == 'D')
+			{
+				if (s[i - 1][j] != '1' && s[i - 1][j] != '0' && s[i - 1][j] != 'N'
+					&&  s[i - 1][j] != 'W' && s[i - 1][j] != 'E' && s[i - 1][j] != 'S' && s[i - 1][j] != 'D')
+					error_message(game, 300);
+				if (s[i + 1][j] != '1' && s[i + 1][j] != '0' && s[i + 1][j] != 'N'
+					&&  s[i + 1][j] != 'W' && s[i + 1][j] != 'E' && s[i + 1][j] != 'S' && s[i + 1][j] != 'D')
+					error_message(game, 300);
+				if (s[i][j + 1] != '1' && s[i][j + 1] != '0' && s[i][j + 1] != 'N'
+					&&  s[i][j + 1] != 'W' && s[i][j + 1] != 'E' && s[i][j + 1] != 'S' && s[i][j + 1] != 'D')
+					error_message(game, 300);
+				if (s[i][j - 1] != '1' && s[i][j - 1] != '0' && s[i][j - 1] != 'N'
+					&&  s[i][j - 1] != 'W' && s[i][j - 1] != 'E' && s[i][j - 1] != 'S' && s[i][j - 1] != 'D')
+					error_message(game, 300);
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void	parse(int ac, char *file, t_cube *game)
 {
 	if (ac <= 1 || ac >= 3)
 		error_message(game, 0x1);
-	if (check_extension(file) == 0)
+	if (check_extension(file, 0x0) == 0)
 		error_message(game, 0x2);
 	game->map_2d = read_map_from_file(file, 0x0, 0x0);
 	if (!game->map_2d)
@@ -162,4 +230,21 @@ void	parse(int ac, char *file, t_cube *game)
 	ft_load_textures(game);
 	game->map = final_map(game, game->map_2d);
 	check_player(game, game->map);
+	check_door(game->map, game, 0x0, 0x0);
+	check_textures(game);
+	check_position(game, game->map, 0, 0);
+	// printf("heigth == [%d]\n", game->real_map_heigth);
+	// printf("width == [%d]\n", game->real_map_width);
+
+	// printf("%s\n", game->texture_walls.ea);
+	// printf("%s\n", game->texture_walls.so);
+	// printf("%s\n", game->texture_walls.we);
+	// printf("%s\n", game->texture_walls.no);
+	// printf("%d\n", game->colors.r_c);
+	// printf("%d\n", game->colors.g_c);
+	// printf("%d\n", game->colors.b_c);
+	// printf("%d\n", game->colors.r_f);
+	// printf("%d\n", game->colors.g_f);
+	// printf("%d\n", game->colors.b_f);
 }
+

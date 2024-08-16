@@ -3,72 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/15 12:57:43 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:24:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void ft_check_move(void *tmp)
+void	extra_one(t_cube *game, double *x, double *y)
 {
-	double x;
-	double y;
-	t_cube *game;
-
-	game = (t_cube *)tmp;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		game->rotation_angle += 1 * rotation_speed;
+		game->rotation_angle += 1 * ROTATION_SPEED;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx,
 																 MLX_KEY_UP))
 	{
 		game->move = 1 * game->player_speed;
-		x = sin(game->rotation_angle) * game->move;
-		y = cos(game->rotation_angle) * game->move;
-		if (check_colesion(game, y + game->player_y, game->player_x + x))
+		*x = sin(game->rotation_angle) * game->move;
+		*y = cos(game->rotation_angle) * game->move;
+		if (check_colesion(game, *y + game->player_y, game->player_x + *x))
 		{
-			game->player_y += y;
-			game->player_x += x;
+			game->player_y += *y;
+			game->player_x += *x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-	{
-		game->rotation_angle += -1 * rotation_speed;
-	}
+		game->rotation_angle += -1 * ROTATION_SPEED;
+}
+
+void	extra_two(t_cube *game, double *x, double *y)
+{
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) || mlx_is_key_down(game->mlx,
 																 MLX_KEY_DOWN))
 	{
 		game->move = -1 * game->player_speed;
-		x = sin(game->rotation_angle) * game->move;
-		y = cos(game->rotation_angle) * game->move;
-		if (check_colesion(game, game->player_y + y, game->player_x + x))
+		*x = sin(game->rotation_angle) * game->move;
+		*y = cos(game->rotation_angle) * game->move;
+		if (check_colesion(game, game->player_y + *y, game->player_x + *x))
 		{
-			game->player_y += y;
-			game->player_x += x;
+			game->player_y += *y;
+			game->player_x += *x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		x = game->player_speed * sin(game->rotation_angle + (90 * (PI / 180)));
-		y = game->player_speed * cos(game->rotation_angle + (90 * (PI / 180)));
-		if (check_colesion(game, game->player_y + y, game->player_x + x))
+		*x = game->player_speed * sin(game->rotation_angle + (90 * (PI / 180)));
+		*y = game->player_speed * cos(game->rotation_angle + (90 * (PI / 180)));
+		if (check_colesion(game, game->player_y + *y, game->player_x + *x))
 		{
-			game->player_y += y;
-			game->player_x += x;
+			game->player_y += *y;
+			game->player_x += *x;
 		}
 	}
+}
+
+void	extra_tree(t_cube *game, double *x, double *y)
+{
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-		x = game->player_speed * sin(game->rotation_angle - (90 * (PI / 180)));
-		y = game->player_speed * cos(game->rotation_angle - (90 * (PI / 180)));
-		if (check_colesion(game, game->player_y + y, game->player_x + x))
+		*x = game->player_speed * sin(game->rotation_angle - (90 * (PI / 180)));
+		*y = game->player_speed * cos(game->rotation_angle - (90 * (PI / 180)));
+		if (check_colesion(game, game->player_y + *y, game->player_x + *x))
 		{
-			game->player_y += y;
-			game->player_x += x;
+			game->player_y += *y;
+			game->player_x += *x;
 		}
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -78,6 +79,18 @@ void ft_check_move(void *tmp)
 		if (game->player_speed > 0)
 			game->player_speed -= 2;
 	}
+}
+
+void ft_check_move(void *tmp)
+{
+	double	x;
+	double	y;
+	t_cube	*game;
+
+	game = (t_cube *)tmp;
+	extra_one(game, &x, &y);
+	extra_two(game, &x, &y);
+	extra_tree(game, &x, &y);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_EQUAL))
 		game->player_speed += 2;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_M))
@@ -88,7 +101,7 @@ void ft_check_move(void *tmp)
 			game->mouse_stat = 1;
 	}
 	ft_drawing_map(game);
-	draw_line_DDA(game);
+	draw_line_dda(game);
 }
 
 void init_image(t_cube *game)
@@ -101,10 +114,17 @@ void init_image(t_cube *game)
 	game->player_walk = 0;
 	game->map_widht = game->real_map_width * BOX_SIZE;
 	game->map_height = (game->real_map_heigth - 1) * BOX_SIZE;
-	game->field_of_view_angle = 120 * (PI / 180);
+	game->field_of_view_angle = 60 * (PI / 180);
 	game->num_ray = (WINDOW_WIDTH);
 	game->mouse_stat = 0;
 	game->player_speed = 60;
+	game->extra.dx = 0;
+	game->extra.dy = 0;
+	game->extra.sx = 0;
+	game->extra.sy = 0;
+	game->extra.err = 0;
+	game->extra.e2 = 0;
+	
 }
 
 void ft_handle_mouse(void *param)
@@ -117,16 +137,22 @@ void ft_handle_mouse(void *param)
 	if (game->mouse_stat == 1)
 	{
 		mlx_get_mouse_pos(game->mlx, &x, &y);
-		game->rotation_angle += mouse_speed * (x - (WINDOW_WIDTH / 2));
+		game->rotation_angle += MOUSE_SPEED * (x - (WINDOW_WIDTH / 2));
 		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 		mlx_set_mouse_pos(game->mlx, WINDOW_WIDTH / 2, WINDOW_HEITH / 2);
 	}
+}
+
+void	show()
+{
+	system("leaks Cub3D_bonus");
 }
 
 int main(int ac, char **av)
 {
 	t_cube game;
 
+	atexit(show);
 	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEITH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
 	init_image(&game);
@@ -136,5 +162,6 @@ int main(int ac, char **av)
 	mlx_loop_hook(game.mlx, ft_check_move, &game);
 	mlx_loop_hook(game.mlx, ft_handle_mouse, &game);
 	mlx_loop(game.mlx);
+	ft_malloc(0x0, 0x0);
 	return (0x0);
 }

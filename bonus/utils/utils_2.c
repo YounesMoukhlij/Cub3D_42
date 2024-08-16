@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:36:11 by abechcha          #+#    #+#             */
-/*   Updated: 2024/08/13 16:36:21 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:10:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	*ft_calloc(int num, int size)
 	int		i;
 
 	i = 0;
-	res = malloc(num * size);
+	res = ft_malloc(num * size, 1);
 	if (!res)
 		return (NULL);
 	while (i < (num * size))

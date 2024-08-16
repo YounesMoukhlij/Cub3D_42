@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:09:01 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:27:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 1
-# define mouse_speed 0.04 * (PI / 180)
+# define MOUSE_SPEED 0.04 * (PI / 180)
 # define BOX_SIZE 200
-# define BOX_SIZE_MINI_MAP 10
-# define player_size 3
+# define BOX_MINI 10
+# define PLAYER_SIZE 3
 # define PI 3.14159265358979323846
-# define rotation_speed 3 * (PI / 180)
-# define wall_with 1
+# define ROTATION_SPEED 3 * (PI / 180)
+# define WALL_WIDTH 1
 # define WINDOW_WIDTH 1500
 # define WINDOW_HEITH 1000
-# define player_size_mini_map 6
-# define BOX_SIZE_MINI_MAP 10
+# define PLAYER_SIZE_MINI_MAP 6
+# define BOX_MINI 10
 
 typedef struct s_ray_tools
 {
@@ -81,6 +81,16 @@ typedef struct s_pparse
 	int					w;
 }						t_pparse;
 
+typedef struct s_extra
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}	t_extra;
+
 typedef struct s_colors
 {
 	int					r_c;
@@ -111,14 +121,13 @@ typedef struct s_text
 	char				*f;
 }						t_text;
 
-typedef struct s_ray_info
+typedef struct s_ray
 {
 	float				wall_x;
 	float				wall_y;
 	float				distance;
 	int					coloum;
 	int					index;
-	struct s_ray_info	*next;
 }						t_ray;
 
 typedef struct s_png
@@ -133,7 +142,6 @@ typedef struct s_png
 	mlx_image_t			*_3;
 	mlx_image_t			*_4;
 	mlx_image_t			*_5;
-	mlx_image_t			*e;
 	mlx_image_t			*door;
 
 }						t_png;
@@ -156,8 +164,11 @@ typedef struct s_draws
 
 }						t_draws;
 
+
 typedef struct s_cube
 {
+	int					start_x;
+	int					start_y;
 	int					index;
 	int 				player_speed;
 	int 				mouse_stat;
@@ -173,16 +184,16 @@ typedef struct s_cube
 	int					player_x_mini_map;
 
 	int					raduis;
-
+	t_extra				extra;
 	t_pparse			parse_p;
 	float				num_ray;
 	double				field_of_view_angle;
 	int					was_vertical;
 	float				player_new_y;
 	float				player_new_x;
-	float				is_facingDown;
-	float				is_facingLeft;
-	int hit_v; // 1 si h == 0
+	float				is_facingdown;
+	float				is_facingleft;
+	int hit_v;
 	t_png				png;
 	float				is_facingup;
 	float				is_facingRight;
@@ -213,6 +224,14 @@ typedef struct s_cube
 	t_ray_tools			r_tools;
 	t_text				texture_walls;
 }						t_cube;
+
+void	draw_wall_one(t_cube *game, t_ray *ray);
+void	check_view(t_cube *game, t_ray *ray);
+
+void	ft_draw_wall(t_cube *game, t_ray *ray);
+void	draw_line_dda(t_cube *game);
+int	check_me(int x, int y, int width, int heigth);
+
 int						ft_check_sprit(t_cube *game, int next_horizontal_x, int next_horizontal_y);
 void					get_path(t_cube *game, int i, char *str);
 
@@ -248,7 +267,7 @@ void					fill_colors(t_cube *game, char *s, int mode);
 
 void					get_path(t_cube *game, int i, char *str);
 
-int						check_extension(char *file);
+int						check_extension(char *file, int mode);
 int						ft_check_door(t_cube *game, int next_horizontal_x,
 							int next_horizontal_y);
 void					ft_put_player(t_cube *game);
@@ -257,27 +276,23 @@ void					get_x(t_cube *game, t_ray *ray);
 int						ft_color(int r, int g, int b, int a);
 float					ft_max(float a, float b);
 float					ft_min(float a, float b);
-
-void					ft_drawing_map_element(t_cube *game);
 void					ft_draw_wall(t_cube *game, t_ray *ray);
 void					ft_draw_line(t_cube *game, int x1, int y1, int x2,
 							int y2);
 
-void					draw_line_DDA(t_cube *game);
+void					draw_line_dda(t_cube *game);
 
 void					init_tools(t_ray_tools rays_tools);
 
 void					fifth_chapter(t_cube *game , t_ray *ray);
 void					sixth_extra_chapter(t_cube *game, t_ray *ray);
+int	check_color(t_cube *game, char **str);
 
 void					sixth_chapter(t_cube *game, t_ray *ray);
-
-// ******** PARSING ********
-
+void	parse_s(t_cube *game, char *s, int i);
 int						get_length_heigth(char **str, int mode, int i);
 char					*get_next_line(int fd);
 void					error_reading_map(int mode);
-// char	**read_map_from_file(char *map_1d);
 void					error_message(t_cube *var, int mode);
 void					parse(int ac, char *file, t_cube *var);
 
@@ -294,7 +309,7 @@ float					ft_normalize(float angel);
 void					ft_test(t_cube *game);
 int						ft_check_door(t_cube *game, int next_horizontal_x,
 							int next_horizontal_y);
-void					draw_line_DDA(t_cube *game);
+void					draw_line_dda(t_cube *game);
 int						ft_check_walls(t_cube *game, int x, int y);
 void					ft_draw_line(t_cube *game, int x1, int y1, int x2,
 							int y2);
@@ -328,7 +343,7 @@ char					*ft_strtrim(char *s1, char *set);
 
 char					*ft_substr(char *s, int start, int len);
 void					ft_get_player_position(t_cube *game);
-void					ft_drawing_map_element(t_cube *game);
+void					ft_drawing_map_element(t_cube *game, int i, int j);
 void					ft_draw_square(t_cube *game, int x, int y);
 void					ft_drawing_map(t_cube *game);
 void					set_values(t_cube *game);
@@ -338,5 +353,18 @@ void					ft_draw_line(t_cube *game, int x1, int y1, int x2,
 							int y2);
 int						ft_check_walls(t_cube *game, int x, int y);
 mlx_image_t				*open_image(char *path, t_cube *game);
+
+int	parse_numbers(char *s);
+
+
+void	ft_load_textures(t_cube *game);
+mlx_image_t *open_image(char *path, t_cube *game);
+char	**final_map(t_cube *game, char **str);
+
+int	get_length_heigth(char **str, int mode, int i);
+char	*fix_the_map(char *s, int i, int flag, int j);
+
+void	check_valid_members(t_cube *game, int i, int j);
+void	player_vision(char **s, t_cube *game);
 
 #endif

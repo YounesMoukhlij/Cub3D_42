@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:49:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:28:38 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:43:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	ft_put_player(t_cube *game)
 	int	pixel1;
 
 	pixel = 0;
-	while (pixel <= player_size_mini_map)
+	while (pixel <= PLAYER_SIZE_MINI_MAP)
 	{
 		pixel1 = 0;
-		while (pixel1 <= player_size_mini_map)
+		while (pixel1 <= PLAYER_SIZE_MINI_MAP)
 		{
 			mlx_put_pixel(game->img_mini_map, 100 + pixel1, 100 + pixel,
 				0xFF0000FF);
@@ -63,6 +63,6 @@ void	ft_put_player(t_cube *game)
 
 void	ft_drawing_map(t_cube *game)
 {
-	ft_drawing_map_element(game);
+	ft_drawing_map_element(game, 0, 0);
 	ft_put_player(game);
 }

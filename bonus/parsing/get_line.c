@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/07/01 14:57:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:07:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,14 @@ static char	*ft_get_the_rest(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i])
-	{
-		free (str);
 		return (NULL);
-	}
-	rest_of = malloc(ft_strlen(str) - (i - 1));
+	rest_of = ft_malloc(ft_strlen(str) - (i - 1), 1);
 	if (!rest_of)
-		return (free(str), str = NULL, NULL);
+		return (str = NULL, NULL);
 	i++;
 	while (str[i])
 		rest_of[j++] = str[i++];
-	return (rest_of[j] = '\0', free(str), rest_of);
+	return (rest_of[j] = '\0', rest_of);
 }
 
 static char	*ft_get_the_line(char *s)
@@ -63,7 +60,7 @@ static char	*ft_get_the_line(char *s)
 		i++;
 	if (s[i] == '\n')
 		i++;
-	new_str = malloc(i + 1);
+	new_str = ft_malloc(i + 1, 1);
 	if (!new_str)
 		return (NULL);
 	j = 0;
@@ -82,25 +79,21 @@ static char	*ft_read_from_fd(char *str, int fd, int indice)
 
 	while (ft_lookfor_newline(str) && indice > 0)
 	{
-		my_buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		my_buffer = ft_malloc(sizeof(char) * (BUFFER_SIZE + 1), 1);
 		if (!my_buffer)
-			return (free(str), str = NULL, NULL);
+			return (str = NULL, NULL);
 		indice = read(fd, my_buffer, BUFFER_SIZE);
 		if (indice < 0)
-			return (free(str), free(my_buffer), NULL);
+			return (NULL);
 		if (indice == 0)
-		{
-			free(my_buffer);
 			break ;
-		}
 		my_buffer[indice] = '\0';
 		str = ft_strjoin(str, my_buffer);
 		if (!str)
-			return (free(my_buffer), NULL);
-		free(my_buffer);
+			return (NULL);
 	}
 	if (!ft_strlen(str))
-		return (free(str), NULL);
+		return (NULL);
 	return (str);
 }
 
@@ -115,17 +108,17 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!str)
 	{
-		str = malloc(1);
+		str = ft_malloc(1, 1);
 		if (!str)
-			return (free(str), NULL);
+			return (NULL);
 		str[0] = '\0';
 	}
 	str = ft_read_from_fd(str, fd, indice);
 	if (!str)
-		return (free(str), str = NULL, NULL);
+		return (str = NULL, NULL);
 	get_line = ft_get_the_line(str);
 	if (!get_line)
-		return (free(str), str = NULL, NULL);
+		return (str = NULL, NULL);
 	str = ft_get_the_rest(str);
 	return (get_line);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/05 17:48:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:37:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	error_message(t_cube *var, int mode)
 		write(STDERR_FILENO, "malloc feild\n", 12);
 	else if (mode == 6)
 		write(STDERR_FILENO, "Textures cant be Loaded\n", 12);
+	else if (mode == 7)
+		write(STDERR_FILENO, "Problem Concerning Doors\n", 26);
+	else if (mode == 8)
+		write(STDERR_FILENO, "Walls Aren't Correctly build.\n", 31);
+	else if (mode == 9)
+		write(STDERR_FILENO, "Player's Problem.\n", 35);
+	else if (mode == 10)
+		write(STDERR_FILENO, "Color's Problem.\n", 17);
 	exit(0x1);
 }
 

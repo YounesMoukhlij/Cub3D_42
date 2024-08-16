@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:48:17 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:27:39 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:43:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	clear_player(t_cube *game)
 
 	pixel	= 0;
 	pixel1	= 0;
-	while (pixel < player_size)
+	while (pixel < PLAYER_SIZE)
 	{
 		pixel1 = 0;
-		while (pixel1 < player_size)
+		while (pixel1 < PLAYER_SIZE)
 		{
 			mlx_put_pixel(game->img, game->player_y + pixel1, game->player_x
 					+ pixel, 0xFFFFFF);
