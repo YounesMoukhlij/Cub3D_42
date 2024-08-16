@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:27:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 13:06:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:47:57 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ char	**read_map_from_file(char *map_1d, int fd, int is_map)
 	char	*str;
 
 	first_check(map_1d);
-	str = ft_malloc(1,1);
-	printf("%p\n", &str);
+	str = ft_malloc(1, 1);
 	fd = open(map_1d, O_RDONLY);
 	while (0x1)
 	{

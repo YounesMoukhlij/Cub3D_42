@@ -6,20 +6,18 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 14:35:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/16 17:41:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-
-
-
 void	check_player(t_cube *game, char **s)
 {
-	 int i = 0;;
-	int j = 0;
+	int	i;
+	int	j;
 
+	i = 0;
 	while (s[i])
 	{
 		j = 0;
@@ -43,7 +41,7 @@ void	check_player(t_cube *game, char **s)
 
 void	check_door(char **s, t_cube *game, int i, int j)
 {
-	int flag;
+	int	flag;
 
 	flag = 0x0;
 	while (s[i])
@@ -53,7 +51,8 @@ void	check_door(char **s, t_cube *game, int i, int j)
 		{
 			if (s[i][j] == 'D')
 			{
-				if ((s[i][j + 0x1] == 'D' || s[i][j - 0x1] == 'D') && s[i][j + 0x1] && s[i][j - 1])
+				if ((s[i][j + 0x1] == 'D' || s[i][j - 0x1] == 'D')
+					&& s[i][j + 0x1] && s[i][j - 1])
 					error_message(game, 0x7);
 				if (s[i][j - 1] == '1' && s[i][j + 1] == '1')
 					flag = 0x1;
@@ -78,6 +77,21 @@ void	check_textures(t_cube *game)
 		error_message(game, 0x2);
 }
 
+// int	case_1(char **s, int i, int j)
+// {
+// 	if (s[i - 1][j] != '1' && s[i - 1][j] != '0'
+// 		&& s[i - 1][j] != 'N' &&  s[i - 1][j] != 'W'
+// 		&& s[i - 1][j] != 'E' && s[i - 1][j] != 'S'
+// 		&& s[i - 1][j] != 'D')
+// 		return (0x1);
+// 	return (0x0);
+// }
+
+// int	case_2(char **s, int i, int j)
+// {
+	
+// }
+
 void	check_position(t_cube *game, char **s, int i, int j)
 {
 	while (s[i])
@@ -89,18 +103,30 @@ void	check_position(t_cube *game, char **s, int i, int j)
 				|| s[i][j] == 'E' || s[i][j] == 'N'
 				|| s[i][j] == 'S' || s[i][j] == 'D')
 			{
-				if (s[i - 1][j] != '1' && s[i - 1][j] != '0' && s[i - 1][j] != 'N'
-					&&  s[i - 1][j] != 'W' && s[i - 1][j] != 'E' && s[i - 1][j] != 'S' && s[i - 1][j] != 'D')
-					error_message(game, 300);
-				if (s[i + 1][j] != '1' && s[i + 1][j] != '0' && s[i + 1][j] != 'N'
-					&&  s[i + 1][j] != 'W' && s[i + 1][j] != 'E' && s[i + 1][j] != 'S' && s[i + 1][j] != 'D')
-					error_message(game, 300);
-				if (s[i][j + 1] != '1' && s[i][j + 1] != '0' && s[i][j + 1] != 'N'
-					&&  s[i][j + 1] != 'W' && s[i][j + 1] != 'E' && s[i][j + 1] != 'S' && s[i][j + 1] != 'D')
-					error_message(game, 300);
-				if (s[i][j - 1] != '1' && s[i][j - 1] != '0' && s[i][j - 1] != 'N'
-					&&  s[i][j - 1] != 'W' && s[i][j - 1] != 'E' && s[i][j - 1] != 'S' && s[i][j - 1] != 'D')
-					error_message(game, 300);
+				printf("~~~[%c] i == [%d] && j == [%d]\n", s[i][j], i, j);
+				if (s[i - 1][j] != '1' && s[i - 1][j] != '0' && (s[i - 1][j] != 'N' ||  s[i - 1][j] != 'W' || s[i - 1][j] != 'E' || s[i - 1][j] != 'S') && s[i - 1][j] != 'D')
+					{
+						// printf("1 [%c]\n", s[i - 1][j]);
+						error_message(game, 300);
+					}
+				if (s[i + 1][j] != '1' && s[i + 1][j] != '0' && (s[i + 1][j] != 'N'
+					||  s[i + 1][j] != 'W' || s[i + 1][j] != 'E' || s[i + 1][j] != 'S') && s[i + 1][j] != 'D')
+					{
+						// printf("2 [%c]\n", s[i + 1][j]);
+						error_message(game, 300);
+					}
+				if (s[i][j + 1] != '1' && s[i][j + 1] != '0' && (s[i][j + 1] != 'N'
+					||  s[i][j + 1] != 'W' || s[i][j + 1] != 'E' || s[i][j + 1] != 'S') && s[i][j + 1] != 'D')
+					{
+						// printf("3 [%c]\n", s[i][j + 1]);
+						error_message(game, 300);
+					}
+				if (s[i][j - 1] != '1' && s[i][j - 1] != '0' && (s[i][j - 1] != 'N'
+					||  s[i][j - 1] != 'W' || s[i][j - 1] != 'E' || s[i][j - 1] != 'S') && s[i][j - 1] != 'D')
+					{
+						// printf("4 [%c]\n", s[i][j - 1]);
+						error_message(game, 300);
+					}
 			}
 			j++;
 		}
@@ -130,4 +156,3 @@ void	parse(int ac, char *file, t_cube *game)
 	check_textures(game);
 	check_position(game, game->map, 0, 0);
 }
-
