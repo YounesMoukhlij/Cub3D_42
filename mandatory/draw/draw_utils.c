@@ -6,13 +6,13 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:22:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 19:23:26 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:40:30 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub_bonus.h"
+#include "../cub.h"
 
-int	check_view(t_cube *game, t_ray *ray)
+int 	check_view(t_cube *game, t_ray *ray)
 {
 	(void)ray;
 	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x
@@ -35,7 +35,7 @@ int	check_view(t_cube *game, t_ray *ray)
 				game->img_wall = game->png.we;
 		}
 	}
-	return (game->img_wall->width / BOX_SIZE);
+	return game->img_wall->width / BOX_SIZE;
 }
 
 void	draw_wall_one(t_cube *game, t_ray *ray)
@@ -45,7 +45,7 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 				/ 2) / tan(PI / 6));
 	game->draws.top = ft_max((1000 / 2) - (game->draws.wall_heigth / 2), 0);
 	game->draws.bottom = ft_min((1000 / 2) + (game->draws.wall_heigth / 2),
-								1000);
+			1000);
 	get_x(game, ray);
 	game->draws.i = game->draws.top;
 	game->draws.butt = game->draws.bottom;
@@ -53,23 +53,22 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	game->draws.incr = 0;
 	while (game->draws.incr++ < game->draws.topp)
 		mlx_put_pixel(game->img, ray->index, game->draws.incr,
-				ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c,
-					255));
+			ft_color(game->colors.r_c, game->colors.g_c,
+				game->colors.b_c, 255));
 	game->draws.incr = WINDOW_HEITH;
 	while (game->draws.incr > game->draws.butt)
 	{
 		if (game->draws.butt < 0)
 			game->draws.butt = 0;
 		mlx_put_pixel(game->img, ray->index, game->draws.butt,
-				ft_color(game->colors.r_f, game->colors.g_f, game->colors.b_f,
-					255));
+			ft_color(game->colors.r_f, game->colors.g_f, game->colors.b_f,
+				255));
 		game->draws.butt++;
 	}
 }
-void	ft_ok(t_cube *game, t_ray *ray, int x)
+void ft_ok(t_cube *game , t_ray *ray , int x)
 {
-	while (x > 0)
-	{
+	while(x > 0){
 		game->draws.dis = game->draws.i - WINDOW_HEITH / 2
 			+ game->draws.wall_heigth / 2;
 		game->offset_y = game->draws.dis * ((float)BOX_SIZE
@@ -80,26 +79,23 @@ void	ft_ok(t_cube *game, t_ray *ray, int x)
 		game->draws.b = game->img_wall->pixels[game->draws.j + 2];
 		game->draws.a = game->img_wall->pixels[game->draws.j + 3];
 		mlx_put_pixel(game->img, ray->index, game->draws.i,
-				ft_color(game->draws.r, game->draws.g, game->draws.b,
-					game->draws.a));
+			ft_color(game->draws.r, game->draws.g, game->draws.b,
+			game->draws.a));
 		x--;
 	}
 }
 void	ft_draw_wall(t_cube *game, t_ray *ray)
 {
-	int	z;
-	int	x;
-
 	draw_wall_one(game, ray);
 	game->draws.i = game->draws.top;
-	x = 0;
+	int z;
+	int x = 0;
 	while (game->draws.i < game->draws.bottom)
 	{
 		z = check_view(game, ray);
 		if (z == 0)
-			x = BOX_SIZE / game->img_wall->width;
-		if (!x)
-		{
+			x = BOX_SIZE / game->img_wall->width ;
+		if (!x){
 			game->draws.dis = game->draws.i - WINDOW_HEITH / 2
 				+ game->draws.wall_heigth / 2;
 			game->offset_y = game->draws.dis * ((float)BOX_SIZE
@@ -110,13 +106,13 @@ void	ft_draw_wall(t_cube *game, t_ray *ray)
 			game->draws.b = game->img_wall->pixels[game->draws.j + 2];
 			game->draws.a = game->img_wall->pixels[game->draws.j + 3];
 			mlx_put_pixel(game->img, ray->index, game->draws.i,
-					ft_color(game->draws.r, game->draws.g, game->draws.b,
-						game->draws.a));
-			game->draws.i += z;
+				ft_color(game->draws.r, game->draws.g, game->draws.b,
+					game->draws.a));
+			game->draws.i+=z;
 		}
 		else
 		{
-			ft_ok(game, ray, x);
+			ft_ok(game , ray , x);
 			game->draws.i++;
 		}
 	}
@@ -141,8 +137,10 @@ void	draw_line_dda(t_cube *game)
 
 int	check_me(int x, int y, int width, int heigth)
 {
-	if (x / BOX_MINI >= 0 && x / BOX_MINI <= width / BOX_SIZE && y
-		/ BOX_MINI >= 0 && y / BOX_MINI <= heigth / BOX_SIZE)
+	if (x / BOX_MINI >= 0 && x
+		/ BOX_MINI <= width / BOX_SIZE && y
+		/ BOX_MINI >= 0 && y
+		/ BOX_MINI <= heigth / BOX_SIZE)
 		return (0x1);
 	return (0x0);
 }

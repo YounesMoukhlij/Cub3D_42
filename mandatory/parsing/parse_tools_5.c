@@ -80,7 +80,7 @@ int	case_4(char **s, int i, int j)
 	return (0);
 }
 
-int peter_csezsh(char **s, int i, int j)
+int	peter_csezsh(char **s, int i, int j)
 {
 	if (s[i][j] == '0' || s[i][j] == 'W'
 		|| s[i][j] == 'E' || s[i][j] == 'N'

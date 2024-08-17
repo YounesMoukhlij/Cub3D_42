@@ -241,8 +241,6 @@ void	ft_check_move(void *tmp);
 void	init_image(t_cube *game);
 
 void				draw_wall_one(t_cube *game, t_ray *ray);
-void				check_view(t_cube *game, t_ray *ray);
-
 void				ft_draw_wall(t_cube *game, t_ray *ray);
 void				draw_line_dda(t_cube *game);
 int					check_me(int x, int y, int width, int heigth);
@@ -310,7 +308,7 @@ void				error_reading_map(int mode);
 void				error_message(t_cube *var, int mode);
 void				parse(int ac, char *file, t_cube *var);
 
-void				check_view(t_cube *game, t_ray *ray);
+int					check_view(t_cube *game, t_ray *ray);
 
 char				*fix_the_map(char *s, int i, int flag, int j);
 
@@ -341,6 +339,7 @@ void				free_list(t_delete **head);
 t_delete			*lstnew_garbage(void *str);
 void				*ft_malloc(size_t size, int mode);
 void				lstaddfront_garbage(t_delete **head, t_delete *node);
+int					check_me(int x, int y, int width, int heigth);
 
 int					ft_calcule_distance(float x1, float y1, float x2, float y2);
 void				ft_free(char **s);
@@ -355,7 +354,7 @@ char				*ft_strtrim(char *s1, char *set);
 
 char				*ft_substr(char *s, int start, int len);
 void				ft_get_player_position(t_cube *game);
-void				ft_drawing_map_element(t_cube *game);
+void  				ft_drawing_map_element(t_cube *game, int i, int j);
 void				ft_draw_square(t_cube *game, int x, int y);
 void				ft_drawing_map(t_cube *game);
 void				set_values(t_cube *game);

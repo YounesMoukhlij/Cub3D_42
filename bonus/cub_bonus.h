@@ -245,7 +245,6 @@ void	init_image(t_cube *game);
 
 
 void				draw_wall_one(t_cube *game, t_ray *ray);
-void				check_view(t_cube *game, t_ray *ray);
 
 void				ft_draw_wall(t_cube *game, t_ray *ray);
 void				draw_line_dda(t_cube *game);
@@ -275,7 +274,7 @@ char				*fill_chars(t_cube *game, char *s);
 
 void				check_texture_intra(t_cube *game, int i);
 void				init_counter(t_cube *game);
-int	player_num(t_cube *game);
+int					player_num(t_cube *game);
 
 void				check_valid_members(t_cube *game, int i, int j);
 void				player_vision(char **s, t_cube *game);
@@ -315,7 +314,7 @@ void				error_reading_map(int mode);
 void				error_message(t_cube *var, int mode);
 void				parse(int ac, char *file, t_cube *var);
 
-void				check_view(t_cube *game, t_ray *ray);
+int 				check_view(t_cube *game, t_ray *ray);
 
 char				*fix_the_map(char *s, int i, int flag, int j);
 

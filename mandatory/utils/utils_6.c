@@ -92,7 +92,10 @@ void	ft_check_move(void *tmp)
 	extra_two(game, &x, &y);
 	extra_tree(game, &x, &y);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_EQUAL))
-		game->player_speed += 2;
+	{
+		if (game->player_speed < 100)
+			game->player_speed += 2;
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_M))
 	{
 		if (game->mouse_stat == 1)

@@ -62,6 +62,6 @@ void	ft_put_player(t_cube *game)
 
 void	ft_drawing_map(t_cube *game)
 {
-	ft_drawing_map_element(game);
+	ft_drawing_map_element(game, 0, 0);
 	ft_put_player(game);
 }

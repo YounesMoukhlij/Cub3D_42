@@ -31,6 +31,7 @@ SRC = cub3d.c \
 	  utils/movment.c \
 	  utils/tools.c \
 	  draw/draw.c \
+	  draw/draw_utils.c \
 	  raycast/ray_cast.c \
 	  raycast/ray_cast_utils.c \
 	  utils/garbage_collector.c \

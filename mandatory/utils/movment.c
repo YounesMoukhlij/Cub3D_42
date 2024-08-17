@@ -64,8 +64,8 @@ void	ft_get_player_position(t_cube *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'W' || game->map[i][j] == 'E')
 			{
-				game->player_x = i * BOX_SIZE;
-				game->player_y = j * BOX_SIZE;
+				game->player_x = (i * BOX_SIZE) + BOX_SIZE / 2;
+				game->player_y = (j * BOX_SIZE) + BOX_SIZE / 2;
 				return ;
 			}
 			j++;
