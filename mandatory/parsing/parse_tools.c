@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:06:27 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:42:02 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 10:09:58 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,6 @@ void	check_texture_intra(t_cube *game, int i)
 	}
 	if (ultra_check(game, 0))
 		error_message(game, 0x4);
-}
-
-void	init_counter(t_cube *game)
-{
-	game->cnt.a1 = 0;
-	game->cnt.a2 = 0;
-	game->cnt.a3 = 0;
-	game->cnt.a4 = 0;
-	game->cnt.a5 = 0;
-	game->cnt.a6 = 0;
-	game->parse_p.n = 0;
-	game->parse_p.s = 0;
-	game->parse_p.w = 0;
-	game->parse_p.e = 0;
 }
 
 int	ft_strlen_ii(char *s)
@@ -86,17 +72,15 @@ void	heigth_width(t_cube *game)
 
 int	player_num(t_cube *game)
 {
-	if ((game->parse_p.n + game->parse_p.s
-		+ game->parse_p.w + game->parse_p.e) == 0x0)
-			return (0x1);
-	if ((game->parse_p.n + game->parse_p.e +
-		game->parse_p.w + game->parse_p.s) > 0x1)
-			return (0x1);
-	if (game->parse_p.n > 0x1
-		|| game->parse_p.e > 0x1
-		|| game->parse_p.w > 0x1
+	if ((game->parse_p.n + game->parse_p.s + game->parse_p.w
+			+ game->parse_p.e) == 0x0)
+		return (0x1);
+	if ((game->parse_p.n + game->parse_p.e
+			+ game->parse_p.w + game->parse_p.s) > 0x1)
+		return (0x1);
+	if (game->parse_p.n > 0x1 || game->parse_p.e > 0x1 || game->parse_p.w > 0x1
 		|| game->parse_p.s > 0x1)
-			return (0x1);
+		return (0x1);
 	return (0x0);
 }
 
@@ -104,13 +88,9 @@ int	ultra_check(t_cube *game, int mode)
 {
 	if (!mode)
 	{
-		if (game->cnt.a1 > 0x1
-			|| game->cnt.a2 > 0x1
-			|| game->cnt.a3 > 0x1
-			|| game->cnt.a4 > 0x1
-			|| game->cnt.a5 > 0x1
-			|| game->cnt.a6 > 0x1)
-				return (0x1);
+		if (game->cnt.a1 > 0x1 || game->cnt.a2 > 0x1 || game->cnt.a3 > 0x1
+			|| game->cnt.a4 > 0x1 || game->cnt.a5 > 0x1 || game->cnt.a6 > 0x1)
+			return (0x1);
 	}
 	else
 	{

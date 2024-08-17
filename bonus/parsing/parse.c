@@ -103,7 +103,7 @@ void	check_position(t_cube *game, char **s, int i, int j)
 				|| s[i][j] == 'E' || s[i][j] == 'N'
 				|| s[i][j] == 'S' || s[i][j] == 'D')
 			{
-				printf("~~~[%c] i == [%d] && j == [%d]\n", s[i][j], i, j);
+
 				if (s[i - 1][j] != '1' && s[i - 1][j] != '0' && (s[i - 1][j] != 'N' ||  s[i - 1][j] != 'W' || s[i - 1][j] != 'E' || s[i - 1][j] != 'S') && s[i - 1][j] != 'D')
 					{
 						// printf("1 [%c]\n", s[i - 1][j]);
@@ -154,5 +154,5 @@ void	parse(int ac, char *file, t_cube *game)
 	check_player(game, game->map);
 	check_door(game->map, game, 0x0, 0x0);
 	check_textures(game);
-	check_position(game, game->map, 0, 0);
+	// check_position(game, game->map, 0, 0);
 }

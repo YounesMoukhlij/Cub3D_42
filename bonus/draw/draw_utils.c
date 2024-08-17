@@ -31,7 +31,7 @@ void	check_view(t_cube *game, t_ray *ray)
 		{
 			if (game->is_facingleft)
 				game->img_wall = game->png.ea;
-			if (game->is_facingRight)
+			if (game->is_facingright)
 				game->img_wall = game->png.we;
 		}
 	}

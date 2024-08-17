@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
+#    By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/05 11:35:03 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/17 10:12:57 by abechcha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ SRC = cub3d.c \
 	  parsing/get_line.c \
 	  parsing/parse.c \
 	  parsing/parse_tools_2.c \
+	  parsing/parse_tools_3.c \
 	  parsing/parse_tools.c \
 	  parsing/load_map.c \
+	  parsing/parse_tools_1.c \
 	  parsing/check_extension.c \
 	  utils/utils_1.c \
 	  utils/utils_2.c \

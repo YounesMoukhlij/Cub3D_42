@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:48:17 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 14:43:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 09:44:57 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	clear_player(t_cube *game)
 	int	pixel;
 	int	pixel1;
 
-	pixel	= 0;
-	pixel1	= 0;
+	pixel = 0;
+	pixel1 = 0;
 	while (pixel < PLAYER_SIZE)
 	{
 		pixel1 = 0;
 		while (pixel1 < PLAYER_SIZE)
 		{
 			mlx_put_pixel(game->img, game->player_y + pixel1, game->player_x
-					+ pixel, 0xFFFFFF);
+				+ pixel, 0xFFFFFF);
 			pixel1++;
 		}
 		pixel++;
@@ -78,4 +78,3 @@ int	ft_check_walls(t_cube *game, int x, int y)
 	}
 	return (0);
 }
-

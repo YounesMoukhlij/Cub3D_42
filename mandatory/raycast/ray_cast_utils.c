@@ -12,7 +12,7 @@
 
 #include "../cub.h"
 
-void	fifth_chapter(t_cube *game , t_ray *ray)
+void	fifth_chapter(t_cube *game, t_ray *ray)
 {
 	(void)ray;
 	while (game->r_tools.next_vertical_x >= 0
@@ -39,7 +39,8 @@ void	fifth_chapter(t_cube *game , t_ray *ray)
 
 void	sixth_extra_chapter(t_cube *game, t_ray *ray)
 {
-	if (game->r_tools.horizontal_wall_distance < game->r_tools.vertical_wall_distance)
+	if (game->r_tools.horizontal_wall_distance
+		< game->r_tools.vertical_wall_distance)
 	{
 		ray->wall_x = game->r_tools.wall_horizontal_x;
 		ray->wall_y = game->r_tools.wall_horizontal_y;
@@ -58,17 +59,15 @@ void	sixth_extra_chapter(t_cube *game, t_ray *ray)
 void	sixth_chapter(t_cube *game, t_ray *ray)
 {
 	if (game->r_tools.found_horizontal_wall)
-		game->r_tools.horizontal_wall_distance = ft_calcule_distance(game->player_y,
-																		game->player_x,
-																		game->r_tools.wall_horizontal_x,
-																		game->r_tools.wall_horizontal_y);
+		game->r_tools.horizontal_wall_distance = ft_calcule_distance(
+				game->player_y, game->player_x, game->r_tools.wall_horizontal_x,
+				game->r_tools.wall_horizontal_y);
 	else
 		game->r_tools.horizontal_wall_distance = 10000000000;
 	if (game->r_tools.found_vertical_wall)
-		game->r_tools.vertical_wall_distance = ft_calcule_distance(game->player_y,
-																	game->player_x,
-																	game->r_tools.wall_vertical_x,
-																	game->r_tools.wall_vertical_y);
+		game->r_tools.vertical_wall_distance = ft_calcule_distance(
+				game->player_y, game->player_x, game->r_tools.wall_vertical_x,
+				game->r_tools.wall_vertical_y);
 	else
 		game->r_tools.vertical_wall_distance = 10000000000;
 	sixth_extra_chapter(game, ray);
