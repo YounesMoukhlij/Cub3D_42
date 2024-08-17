@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:33:23 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:42:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,5 @@ void	ray_cast(int colum, t_cube *game)
 	game->was_vertical = 0;
 	game->was_vertical = (game->r_tools.vertical_wall_distance
 			< game->r_tools.horizontal_wall_distance);
-	ft_draw_wall(game, &ray);
+	ft_draw_wall(game, &ray, 0, 0);
 }

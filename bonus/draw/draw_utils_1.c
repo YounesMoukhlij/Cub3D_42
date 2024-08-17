@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*   draw_utils_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:22:02 by youmoukh          #+#    #+#             */
+/*   Created: 2024/08/17 19:46:20 by youmoukh          #+#    #+#             */
 /*   Updated: 2024/08/17 19:49:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
-int 	check_view(t_cube *game, t_ray *ray)
+int	check_view(t_cube *game, t_ray *ray)
 {
 	(void)ray;
 	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x
@@ -35,7 +35,7 @@ int 	check_view(t_cube *game, t_ray *ray)
 				game->img_wall = game->png.we;
 		}
 	}
-	return game->img_wall->width / BOX_SIZE;
+	return (game->img_wall->width / BOX_SIZE);
 }
 
 void	draw_wall_one(t_cube *game, t_ray *ray)
@@ -53,8 +53,8 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	game->draws.incr = 0;
 	while (game->draws.incr++ < game->draws.topp)
 		mlx_put_pixel(game->img, ray->index, game->draws.incr,
-			ft_color(game->colors.r_c, game->colors.g_c,
-				game->colors.b_c, 255));
+			ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c,
+				255));
 	game->draws.incr = WINDOW_HEITH;
 	while (game->draws.incr > game->draws.butt)
 	{
@@ -66,9 +66,11 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 		game->draws.butt++;
 	}
 }
-void ft_handle_image(t_cube *game , t_ray *ray , int x)
+
+void	ft_handle_image(t_cube *game, t_ray *ray, int x)
 {
-	while(x > 0){
+	while (x > 0)
+	{
 		game->draws.dis = game->draws.i - WINDOW_HEITH / 2
 			+ game->draws.wall_heigth / 2;
 		game->offset_y = game->draws.dis * ((float)BOX_SIZE
@@ -80,67 +82,7 @@ void ft_handle_image(t_cube *game , t_ray *ray , int x)
 		game->draws.a = game->img_wall->pixels[game->draws.j + 3];
 		mlx_put_pixel(game->img, ray->index, game->draws.i,
 			ft_color(game->draws.r, game->draws.g, game->draws.b,
-			game->draws.a));
+				game->draws.a));
 		x--;
 	}
-}
-void	ft_draw_wall(t_cube *game, t_ray *ray)
-{
-	draw_wall_one(game, ray);
-	game->draws.i = game->draws.top;
-	int z;
-	int x = 0;
-	while (game->draws.i < game->draws.bottom)
-	{
-		z = check_view(game, ray);
-		if (z == 0)
-			x = BOX_SIZE / game->img_wall->width ;
-		if (!x){
-			game->draws.dis = game->draws.i - WINDOW_HEITH / 2
-				+ game->draws.wall_heigth / 2;
-			game->offset_y = game->draws.dis * ((float)BOX_SIZE
-					/ game->draws.wall_heigth);
-			game->draws.j = ((game->offset_x + game->offset_y * BOX_SIZE) * 4);
-			game->draws.r = game->img_wall->pixels[game->draws.j];
-			game->draws.g = game->img_wall->pixels[game->draws.j + 1];
-			game->draws.b = game->img_wall->pixels[game->draws.j + 2];
-			game->draws.a = game->img_wall->pixels[game->draws.j + 3];
-			mlx_put_pixel(game->img, ray->index, game->draws.i,
-				ft_color(game->draws.r, game->draws.g, game->draws.b,
-					game->draws.a));
-			game->draws.i+=z;
-		}
-		else
-		{
-			ft_handle_image(game , ray , x);
-			game->draws.i++;
-		}
-	}
-}
-
-void	draw_line_dda(t_cube *game)
-{
-	int	i;
-	int	colun;
-
-	colun = 0;
-	i = 0;
-	game->ray_angle = (game->rotation_angle - (game->field_of_view_angle / 2));
-	while (i < game->num_ray)
-	{
-		ray_cast(colun, game);
-		game->ray_angle += (game->field_of_view_angle / game->num_ray);
-		i++;
-		colun++;
-	}
-}
-
-int	check_me(int x, int y, int width, int heigth)
-{
-	if (x / BOX_MINI >= 0 && x
-		/ BOX_MINI <= width / BOX_SIZE && y
-		/ BOX_MINI >= 0 && y
-		/ BOX_MINI <= heigth / BOX_SIZE)
-		return (0x1);
-	return (0x0);
 }

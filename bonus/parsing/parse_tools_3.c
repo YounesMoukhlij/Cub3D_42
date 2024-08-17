@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:32:33 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:03:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	parse_numbers(char *s)
 
 	i = 0;
 	str = ft_split(ft_strtrim(s, " "), ',');
+	if (!str)
+		return (1);
 	while (str[i])
 	{
 		j = 0;
@@ -90,13 +92,7 @@ int	check_color(t_cube *game, char **str)
 
 	i = 0;
 	while (str[i])
-	{
-		if (ft_strlen(str[i]) >= 2 && ft_atoi(str[i]) == 0)
-			error_message(game, 10);
-		if (ft_strlen(str[i]) > 3)
-			error_message(game, 10);
 		i++;
-	}
 	if (i > 3)
 		error_message(game, 10);
 	return (0x0);

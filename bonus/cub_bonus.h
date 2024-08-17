@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 19:26:20 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:52:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ typedef struct s_cube
 	t_text			texture_walls;
 }					t_cube;
 
+void				ft_handle_image(t_cube *game, t_ray *ray, int x);
 void				ft_handle_mouse(void *param);
 int					case_1(char **s, int i, int j);
 int					case_2(char **s, int i, int j);
@@ -238,8 +239,6 @@ void				extra_four(t_cube *game, double *x, double *y);
 void				ft_check_move(void *tmp);
 void				init_image(t_cube *game);
 void				draw_wall_one(t_cube *game, t_ray *ray);
-
-void				ft_draw_wall(t_cube *game, t_ray *ray);
 void				draw_line_dda(t_cube *game);
 int					check_me(int x, int y, int width, int heigth);
 
@@ -289,8 +288,6 @@ void				get_x(t_cube *game, t_ray *ray);
 int					ft_color(int r, int g, int b, int a);
 float				ft_max(float a, float b);
 float				ft_min(float a, float b);
-void				ft_draw_wall(t_cube *game, t_ray *ray);
-
 void				draw_line_dda(t_cube *game);
 
 void				init_tools(t_ray_tools rays_tools);
@@ -322,7 +319,7 @@ int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				draw_line_dda(t_cube *game);
 int					ft_check_walls(t_cube *game, int x, int y);
-void				ft_draw_wall(t_cube *game, t_ray *ray);
+void				ft_draw_wall(t_cube *game, t_ray *ray, int z, int x);
 
 char				*get_next_line(int fd);
 void				error_reading_map(int mode);

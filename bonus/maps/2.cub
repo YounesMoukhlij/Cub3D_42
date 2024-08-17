@@ -1,5 +1,9 @@
+
 C 104,17,17
-F 84,84,84
+
+F 84,84,000000000000200
+
+
 NO ./assets/png_1.png
 SO ./assets/png_2.png
 EA ./assets/png_3.png

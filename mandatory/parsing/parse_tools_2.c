@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tools_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:07:38 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 10:12:31 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:06:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,9 @@ int	check_color(t_cube *game, char **str)
 
 	i = 0;
 	while (str[i])
-	{
-		if (ft_strlen(str[i]) >= 2 && ft_atoi(str[i]) == 0)
-			error_message(game, 0x7);
-		if (ft_strlen(str[i]) > 3)
-			error_message(game, 0x7);
 		i++;
-	}
+	if (i > 3)
+		error_message(game, 10);
 	return (0x0);
 }
 

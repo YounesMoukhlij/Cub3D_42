@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/17 14:38:00 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/17 19:47:14 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = cub3d.c \
 	  utils/tools.c \
 	  draw/draw.c \
 	  draw/draw_utils.c \
+	  draw/draw_utils_1.c \
 	  raycast/ray_cast.c \
 	  raycast/ray_cast_utils.c \
 	  utils/garbage_collector.c \

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:26:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:07:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	error_message(t_cube *var, int mode)
 	else if (mode == 0x4)
 		write(STDERR_FILENO, "Map's Members are not Valid\n", 29);
 	else if (mode == 5)
-		write(STDERR_FILENO, "malloc feild\n", 12);
+		write(STDERR_FILENO, "malloc failed\n", 12);
 	else if (mode == 6)
 		write(STDERR_FILENO, "Textures cant be Loaded\n", 12);
 	else if (mode == 7)
