@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 10:10:12 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 17:32:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ typedef struct s_cube
 	int				map_widht;
 	int				map_height;
 	mlx_t			*mlx;
-
+	int				player_vision;
 	mlx_texture_t	*texture;
 
 	mlx_image_t		*img_wall;
@@ -223,6 +223,22 @@ typedef struct s_cube
 	t_ray_tools		r_tools;
 	t_text			texture_walls;
 }					t_cube;
+
+int	case_1(char **s, int i, int j);
+int	case_2(char **s, int i, int j);
+int	case_3(char **s, int i, int j);
+int	case_4(char **s, int i, int j);
+int	peter_csezsh(char **s, int i, int j);
+int	ultra_check(t_cube *game, int mode);
+
+
+void	extra_one(t_cube *game, double *x, double *y);
+void	extra_two(t_cube *game, double *x, double *y);
+void	extra_tree(t_cube *game, double *x, double *y);
+void	extra_four(t_cube *game, double *x, double *y);
+
+void	ft_check_move(void *tmp);
+void	init_image(t_cube *game);
 
 void				draw_wall_one(t_cube *game, t_ray *ray);
 void				check_view(t_cube *game, t_ray *ray);

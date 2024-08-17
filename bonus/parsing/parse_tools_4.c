@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:34:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 14:35:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:23:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 char	*fix_the_map(char *s, int i, int flag, int j)
 {
@@ -56,7 +56,6 @@ int	get_length_heigth(char **str, int mode, int i)
 	return (i);
 }
 
-
 char	**final_map(t_cube *game, char **str)
 {
 	int		i;
@@ -82,7 +81,7 @@ char	**final_map(t_cube *game, char **str)
 	return (s);
 }
 
-mlx_image_t *open_image(char *path, t_cube *game)
+mlx_image_t	*open_image(char *path, t_cube *game)
 {
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
@@ -109,6 +108,6 @@ void	ft_load_textures(t_cube *game)
 	game->png.arm = open_image("./assets/arm.png", game);
 	game->png.door = open_image("./assets/door.png", game);
 	if (!game->png.ea || !game->png.no || !game->png.so
-		|| !game->png.we || !game->png.arm ||!game->png.door )
+		|| !game->png.we || !game->png.arm ||!game->png.door)
 		error_message(game, 0x6);
 }

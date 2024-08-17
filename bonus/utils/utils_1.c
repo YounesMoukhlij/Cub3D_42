@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:22:42 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 13:03:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 int	ft_strlen(char *s)
 {

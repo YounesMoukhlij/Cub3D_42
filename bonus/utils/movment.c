@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:31:04 by abechcha          #+#    #+#             */
-/*   Updated: 2024/08/13 16:30:03 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 void	ft_draw_square(t_cube *game, int x, int y)
 {

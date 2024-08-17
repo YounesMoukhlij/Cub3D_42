@@ -6,11 +6,21 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 17:12:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 17:26:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
+
+void	error_msg(int mode)
+{
+	if (mode == 11)
+		write(STDERR_FILENO, "Map's is Missed\n", 17);
+	else if (mode == 10)
+		write(STDERR_FILENO, "Color's Problem.\n", 17);
+	else if (mode == 300)
+		write(STDERR_FILENO, "Door's Problem.\n", 17);
+}
 
 void	error_message(t_cube *var, int mode)
 {
@@ -34,10 +44,8 @@ void	error_message(t_cube *var, int mode)
 		write(STDERR_FILENO, "Walls Aren't Correctly build.\n", 31);
 	else if (mode == 9)
 		write(STDERR_FILENO, "Player's Problem.\n", 35);
-	else if (mode == 10)
-		write(STDERR_FILENO, "Color's Problem.\n", 17);
-	else if (mode == 300)
-		write(STDERR_FILENO, "Door's Problem.\n", 17);
+	else
+		error_msg(mode);
 	exit(0x1);
 }
 

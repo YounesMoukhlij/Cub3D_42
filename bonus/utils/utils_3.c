@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:47:31 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:48:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 int	ft_color(int r, int g, int b, int a)
 {

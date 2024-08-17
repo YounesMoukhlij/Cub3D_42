@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:48:17 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 14:43:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 int	ft_calcule_distance(float x1, float y1, float x2, float y2)
 {

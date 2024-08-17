@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/16 16:31:03 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/17 14:38:00 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC = cub3d.c \
 	  parsing/parse_tools_2.c \
 	  parsing/parse_tools_3.c \
 	  parsing/parse_tools_4.c \
+	  parsing/parse_tools_5.c \
 	  parsing/load_map.c \
 	  parsing/check_extension.c \
 	  utils/utils_1.c \
@@ -24,6 +25,8 @@ SRC = cub3d.c \
 	  utils/utils_3.c \
 	  utils/utils_4.c \
 	  utils/utils_5.c \
+	  utils/utils_6.c \
+	  utils/handle_mouse.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
@@ -36,7 +39,7 @@ SRC = cub3d.c \
 	  utils/garbage_collector_utils.c \
  
 OBJ = $(SRC:.c=.o)
-HEADER = cub.h
+HEADER = cub_bonus.h
 NAME = Cub3D_bonus
 CFLAGS =  -Ofast -g  -Wall -Wextra -Werror #-fsanitize=address
 

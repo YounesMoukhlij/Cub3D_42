@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:05:06 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:34:40 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 17:06:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 int	check_extension(char *file, int mode)
 {
@@ -87,7 +87,8 @@ int	check_one(t_cube *game, char *s)
 {
 	if (!(s[game->twilzat.i] == '1' || s[game->twilzat.i] == '0'
 			|| s[game->twilzat.i] == 'N' || s[game->twilzat.i] == 'S'
-			|| s[game->twilzat.i] == 'E' || s[game->twilzat.i] == 'W'))
+			|| s[game->twilzat.i] == 'E' || s[game->twilzat.i] == 'W'
+			|| s[game->twilzat.i] == 'D'))
 		return (0x1);
 	return (0x0);
 }

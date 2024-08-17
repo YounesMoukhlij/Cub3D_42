@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   cub_bonus.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 18:05:00 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 13:23:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#ifndef CUB_BONUS_H
+# define CUB_BONUS_H
 
 # include "MLX42/MLX42.h"
 # include <errno.h>
@@ -181,7 +181,7 @@ typedef struct s_cube
 	int				player_y;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
-
+	int			player_vision;
 	int				raduis;
 	t_extra			extra;
 	t_pparse		parse_p;
@@ -224,6 +224,26 @@ typedef struct s_cube
 	t_text			texture_walls;
 }					t_cube;
 
+
+void	ft_handle_mouse(void *param);
+int	case_1(char **s, int i, int j);
+int	case_2(char **s, int i, int j);
+int	case_3(char **s, int i, int j);
+int	case_4(char **s, int i, int j);
+int	peter_csezsh(char **s, int i, int j);
+int	ultra_check(t_cube *game, int mode);
+
+
+void	extra_one(t_cube *game, double *x, double *y);
+void	extra_two(t_cube *game, double *x, double *y);
+void	extra_tree(t_cube *game, double *x, double *y);
+void	extra_four(t_cube *game, double *x, double *y);
+
+void	ft_check_move(void *tmp);
+void	init_image(t_cube *game);
+
+
+
 void				draw_wall_one(t_cube *game, t_ray *ray);
 void				check_view(t_cube *game, t_ray *ray);
 
@@ -255,6 +275,7 @@ char				*fill_chars(t_cube *game, char *s);
 
 void				check_texture_intra(t_cube *game, int i);
 void				init_counter(t_cube *game);
+int	player_num(t_cube *game);
 
 void				check_valid_members(t_cube *game, int i, int j);
 void				player_vision(char **s, t_cube *game);

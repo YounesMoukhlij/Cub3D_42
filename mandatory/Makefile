@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+         #
+#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/17 10:12:57 by abechcha         ###   ########.fr        #
+#    Updated: 2024/08/17 17:34:39 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC = cub3d.c \
 	  parsing/parse.c \
 	  parsing/parse_tools_2.c \
 	  parsing/parse_tools_3.c \
+	  parsing/parse_tools_5.c \
 	  parsing/parse_tools.c \
 	  parsing/load_map.c \
 	  parsing/parse_tools_1.c \
@@ -24,6 +25,7 @@ SRC = cub3d.c \
 	  utils/utils_3.c \
 	  utils/utils_4.c \
 	  utils/utils_5.c \
+	  utils/utils_6.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \

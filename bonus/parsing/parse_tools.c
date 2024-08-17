@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:06:27 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 16:32:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:22:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 void	check_texture_intra(t_cube *game, int i)
 {
@@ -87,35 +87,23 @@ void	heigth_width(t_cube *game)
 int	player_num(t_cube *game)
 {
 	if ((game->parse_p.n + game->parse_p.s
-		+ game->parse_p.w + game->parse_p.e) == 0x0)
-				return (0x1);
+			+ game->parse_p.w + game->parse_p.e) == 0x0)
+		return (0x1);
 	if ((game->parse_p.n + game->parse_p.e
-		+ game->parse_p.w + game->parse_p.s) > 0x1)
-			return (0x1);
+			+ game->parse_p.w + game->parse_p.s) > 0x1)
+		return (0x1);
 	if (game->parse_p.n > 0x1
 		|| game->parse_p.e > 0x1
 		|| game->parse_p.w > 0x1
 		|| game->parse_p.s > 0x1)
-			return (0x1);
+		return (0x1);
+	if (game->parse_p.n != 0)
+		game->player_vision = 1;
+	else if (game->parse_p.s != 0)
+		game->player_vision = 2;
+	else if (game->parse_p.w != 0)
+		game->player_vision = 3;
+	else if (game->parse_p.e != 0)
+		game->player_vision = 4;
 	return (0x0);
-}
-
-int	ultra_check(t_cube *game, int mode)
-{
-	if (!mode)
-	{
-		if (game->cnt.a1 > 0x1
-			|| game->cnt.a2 > 0x1
-			|| game->cnt.a3 > 0x1
-			|| game->cnt.a4 > 0x1
-			|| game->cnt.a5 > 0x1
-			|| game->cnt.a6 > 0x1)
-			return (0x1);
-	}
-	else
-	{
-		if (player_num(game))
-			return (0x1);
-	}
-	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 10:16:17 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/17 17:31:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,20 @@ void	check_position(t_cube *game, char **s, int i, int j)
 		j = 0;
 		while (s[i][j])
 		{
-			if (s[i][j] == '0' || s[i][j] == 'W' || s[i][j] == 'E'
-				|| s[i][j] == 'N' || s[i][j] == 'S')
+			if (peter_csezsh(s, i, j))
 			{
-				if (s[i - 1][j] != '1' && s[i - 1][j] != '0' && s[i
-					- 1][j] != 'N' && s[i - 1][j] != 'W' && s[i - 1][j] != 'E'
-					&& s[i - 1][j] != 'S' && s[i - 1][j] != 'D')
-					error_message(game, 300);
-				if (s[i + 1][j] != '1' && s[i + 1][j] != '0' && s[i
-					+ 1][j] != 'N' && s[i + 1][j] != 'W' && s[i + 1][j] != 'E'
-					&& s[i + 1][j] != 'S' && s[i + 1][j] != 'D')
-					error_message(game, 300);
-				if (s[i][j + 1] != '1' && s[i][j + 1] != '0' && s[i][j
-					+ 1] != 'N' && s[i][j + 1] != 'W' && s[i][j + 1] != 'E'
-					&& s[i][j + 1] != 'S' && s[i][j + 1] != 'D')
-					error_message(game, 300);
-				if (s[i][j - 1] != '1' && s[i][j - 1] != '0' && s[i][j
-					- 1] != 'N' && s[i][j - 1] != 'W' && s[i][j - 1] != 'E'
-					&& s[i][j - 1] != 'S' && s[i][j - 1] != 'D')
-					error_message(game, 300);
+				if (game->player_vision == 1)
+					if (case_1(s, i, j))
+						error_message(game, 11);
+				if (game->player_vision == 2)
+					if (case_2(s, i, j))
+						error_message(game, 11);
+				if (game->player_vision == 3)
+					if (case_3(s, i, j))
+						error_message(game, 11);
+				if (game->player_vision == 4)
+					if (case_4(s, i, j))
+						error_message(game, 11);
 			}
 			j++;
 		}
@@ -134,6 +129,4 @@ void	parse(int ac, char *file, t_cube *game)
 	check_player(game, game->map);
 	check_textures(game);
 	check_position(game, game->map, 0, 0);
-//remove any condition that rolation of D 
-//eleemnt on mandatory parsing and be man 
 }

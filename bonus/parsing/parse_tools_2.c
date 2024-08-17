@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:07:38 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/16 14:33:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:18:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub_bonus.h"
 
 void	fill_colors(t_cube *game, char *s, int mode)
 {
@@ -56,4 +56,24 @@ void	get_path(t_cube *game, int i, char *str)
 		game->texture_walls.ea = ft_strtrim(ft_strdup(s), " ");
 	else if (!ft_strcmp(str, "WE"))
 		game->texture_walls.we = ft_strtrim(ft_strdup(s), " ");
+}
+
+int	ultra_check(t_cube *game, int mode)
+{
+	if (!mode)
+	{
+		if (game->cnt.a1 > 0x1
+			|| game->cnt.a2 > 0x1
+			|| game->cnt.a3 > 0x1
+			|| game->cnt.a4 > 0x1
+			|| game->cnt.a5 > 0x1
+			|| game->cnt.a6 > 0x1)
+			return (0x1);
+	}
+	else
+	{
+		if (player_num(game))
+			return (0x1);
+	}
+	return (0);
 }
