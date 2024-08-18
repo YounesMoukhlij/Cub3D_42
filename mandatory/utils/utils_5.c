@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:49:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 09:45:03 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:45:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,4 @@ int	ft_check_door(t_cube *game, int next_horizontal_x, int next_horizontal_y)
 				/ BOX_SIZE)] == 'D' && (x > BOX_SIZE / 2 || y > BOX_SIZE / 2)))
 		return (1);
 	return (0);
-}
-
-void	ft_put_player(t_cube *game)
-{
-	int	pixel;
-	int	pixel1;
-
-	pixel = 0;
-	while (pixel <= PLAYER_SIZE_MINI_MAP)
-	{
-		pixel1 = 0;
-		while (pixel1 <= PLAYER_SIZE_MINI_MAP)
-		{
-			mlx_put_pixel(game->img_mini_map, 100 + pixel1, 100 + pixel,
-				0xFF0000FF);
-			pixel1++;
-		}
-		pixel++;
-	}
-}
-
-void	ft_drawing_map(t_cube *game)
-{
-	ft_drawing_map_element(game, 0, 0);
-	ft_put_player(game);
 }

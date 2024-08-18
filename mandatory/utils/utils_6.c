@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:33:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:35:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:45:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	ft_check_move(void *tmp)
 		else if (game->mouse_stat == 0)
 			game->mouse_stat = 1;
 	}
-	ft_drawing_map(game);
 	draw_line_dda(game);
 }
 
