@@ -5,9 +5,9 @@ EA ./assets/png_2.png
 F 0,0,0
 
 NO ./assets/png_1.png
-C 0,25,139
+C 1000,25,139
 
-WE         ./assets/png_4.png
+WE      ./assets/png_4.png
 
 1
     111111

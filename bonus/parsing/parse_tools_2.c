@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:07:38 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 11:25:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:15:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,23 @@ void	fill_colors(t_cube *game, char *s, int mode)
 
 char	*check_bef(char *s)
 {
+	int	i;
+
+	i = 0;
 	if (ft_strlen(s) < 3)
+	{
 		return (NULL);
+	}
 	if (s[0] != '.' && s[1] != '/')
 		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == '.' && s[i + 1] == '/')
+			break ;
+		if (s[i] != ' ' && s[i] != '.')
+			return (NULL);
+		i++;
+	}
 	return (s);
 }
 
@@ -54,7 +67,8 @@ void	get_path(t_cube *game, int i, char *str)
 {
 	char	*s;
 
-	s = check_bef(ft_substr(game->map_2d[i], 3, ft_strlen(game->map_2d[i]) - 1));
+	s = check_bef(ft_strtrim(ft_substr(game->map_2d[i],
+				3, ft_strlen(game->map_2d[i]) - 1), " "));
 	if (!s)
 		error_message(game, 6);
 	if (!ft_strcmp(str, "NO"))

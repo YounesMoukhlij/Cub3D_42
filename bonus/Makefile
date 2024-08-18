@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/18 11:07:34 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/18 12:16:48 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub_bonus.h
 NAME = Cub3D_bonus
-CFLAGS =  -Ofast -g  -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS =  -Ofast -g  -Wall -Wextra -Werror -fsanitize=address
 
 all : $(NAME)
 

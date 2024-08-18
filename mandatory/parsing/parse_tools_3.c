@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tools_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 10:11:09 by abechcha          #+#    #+#             */
-/*   Updated: 2024/08/17 10:13:31 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:03:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 			error_message(game, 200);
 		while (str[j])
 		{
-			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
+			if (!(str[j] == '0' || str[j] == '1'
 					|| str[j] == 'N' || str[j] == 'S' || str[j] == 'W'
 					|| str[j] == 'E'))
 				error_message(game, 0x4);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:32:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:00:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,24 +224,22 @@ typedef struct s_cube
 	t_text			texture_walls;
 }					t_cube;
 
-int	case_1(char **s, int i, int j);
-int	case_2(char **s, int i, int j);
-int	case_3(char **s, int i, int j);
-int	case_4(char **s, int i, int j);
-int	peter_csezsh(char **s, int i, int j);
-int	ultra_check(t_cube *game, int mode);
+int					case_1(char **s, int i, int j);
+int					case_2(char **s, int i, int j);
+int					case_3(char **s, int i, int j);
+int					case_4(char **s, int i, int j);
+int					peter_csezsh(char **s, int i, int j);
+int					ultra_check(t_cube *game, int mode);
 
 
-void	extra_one(t_cube *game, double *x, double *y);
-void	extra_two(t_cube *game, double *x, double *y);
-void	extra_tree(t_cube *game, double *x, double *y);
-void	extra_four(t_cube *game, double *x, double *y);
-
-void	ft_check_move(void *tmp);
-void	init_image(t_cube *game);
-
+void				extra_one(t_cube *game, double *x, double *y);
+void				extra_two(t_cube *game, double *x, double *y);
+void				extra_tree(t_cube *game, double *x, double *y);
+void				extra_four(t_cube *game, double *x, double *y);
+void				ft_check_move(void *tmp);
+void				init_image(t_cube *game);
+char				*check_chars(char *s);
 void				draw_wall_one(t_cube *game, t_ray *ray);
-void				ft_draw_wall(t_cube *game, t_ray *ray);
 void				draw_line_dda(t_cube *game);
 int					check_me(int x, int y, int width, int heigth);
 
@@ -250,9 +248,9 @@ int					ft_check_sprit(t_cube *game, int next_horizontal_x,
 void				get_path(t_cube *game, int i, char *str);
 
 void				fill_colors(t_cube *game, char *s, int mode);
-
+void				ft_draw_wall(t_cube *game, t_ray *ray, int x, int z);
 void				player_vision(char **s, t_cube *game);
-
+void				draw_wall_one(t_cube *game, t_ray *ray);
 int					parse_numbers(char *s);
 
 void				check_valid_members(t_cube *game, int i, int j);
@@ -290,7 +288,6 @@ void				get_x(t_cube *game, t_ray *ray);
 int					ft_color(int r, int g, int b, int a);
 float				ft_max(float a, float b);
 float				ft_min(float a, float b);
-void				ft_draw_wall(t_cube *game, t_ray *ray);
 
 void				draw_line_dda(t_cube *game);
 
@@ -311,9 +308,6 @@ void				parse(int ac, char *file, t_cube *var);
 int					check_view(t_cube *game, t_ray *ray);
 
 char				*fix_the_map(char *s, int i, int flag, int j);
-
-// ********** RAY_CAST ********
-
 int					check_walls(char *s, int i, int stat, t_cube *game);
 
 void				ray_cast(int colum, t_cube *game);
@@ -323,8 +317,6 @@ int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				draw_line_dda(t_cube *game);
 int					ft_check_walls(t_cube *game, int x, int y);
-void				ft_draw_wall(t_cube *game, t_ray *ray);
-
 char				*get_next_line(int fd);
 void				error_reading_map(int mode);
 char				**read_map_from_file(char *map_1d, int fd, int is_map);

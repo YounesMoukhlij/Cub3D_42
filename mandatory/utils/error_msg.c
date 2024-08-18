@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 20:08:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:52:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	error_msg(int mode)
 {
 	if (mode == 11)
 		write(STDERR_FILENO, "Map's is Missed\n", 17);
-	else if (mode == 10)
-		write(STDERR_FILENO, "Color's Problem.\n", 17);
+	if (mode == 10)
+		write(STDERR_FILENO, "Color's Problem.\n", 18);
 }
 
 void	error_message(t_cube *var, int mode)
@@ -41,9 +41,10 @@ void	error_message(t_cube *var, int mode)
 	else if (mode == 8)
 		write(STDERR_FILENO, "Walls Aren't Correctly build.\n", 31);
 	else if (mode == 9)
-		write(STDERR_FILENO, "Player's Problem.\n", 35);
+		write(STDERR_FILENO, "Player's Problem.\n", 19);
 	else
 		error_msg(mode);
+	ft_malloc(0, 0);
 	exit(0x1);
 }
 
@@ -56,5 +57,6 @@ void	error_reading_map(int mode)
 		write(STDERR_FILENO, "Map Not Valid\n", 15);
 	else if (mode == 0x3)
 		write(STDERR_FILENO, "Map Not Loaded\n", 16);
+	ft_malloc(0, 0);
 	exit(0x1);
 }

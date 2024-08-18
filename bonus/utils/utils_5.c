@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:49:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 14:16:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:22:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_put_player(t_cube *game)
 		while (pixel1 <= PLAYER_SIZE_MINI_MAP)
 		{
 			mlx_put_pixel(game->img_mini_map, 101 + pixel1, 100 + pixel,
-				0xFF0000FF);
+				ft_color(50, 50, 0, 255));
 			pixel1++;
 		}
 		pixel++;

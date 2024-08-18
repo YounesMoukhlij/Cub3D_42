@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:05:06 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 11:55:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:40:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	parse_entry(t_cube *game, int i)
 			s2 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x2,
 					ft_strlen(game->map_2d[i]) - 1);
 			if (parse_numbers(s2))
-				error_message(game, 0);
+				error_message(game, 10);
 			if (!ft_strcmp(s1, "C "))
 				fill_colors(game, s2, 0);
 			else if (!ft_strcmp(s1, "F "))

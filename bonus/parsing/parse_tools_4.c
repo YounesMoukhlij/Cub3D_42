@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:34:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:14:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:15:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ char	**ft_maping(t_cube *game, char **s, int i)
 	return (s);
 }
 
-
-
 char	**final_map(t_cube *game, char **str)
 {
 	int		i;
@@ -134,12 +132,17 @@ mlx_image_t	*open_image(char *path, t_cube *game)
 
 	texture = mlx_load_png(path);
 	if (!texture)
+	{
+		mlx_delete_texture(texture);
+		ft_malloc(0, 0);
 		exit(1);
+	}
 	img = mlx_texture_to_image(game->mlx, texture);
 	if (!img)
 	{
 		mlx_delete_texture(texture);
-		exit (0);
+		ft_malloc(0, 0);
+		exit(1);
 	}
 	mlx_delete_texture(texture);
 	return (img);

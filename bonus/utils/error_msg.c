@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 11:25:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:52:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	error_msg(int mode)
 	if (mode == 11)
 		write(STDERR_FILENO, "Map's is Missed\n", 17);
 	else if (mode == 10)
-		write(STDERR_FILENO, "Color's Problem.\n", 17);
+		write(STDERR_FILENO, "Color's Problem.\n", 18);
 	else if (mode == 300)
 		write(STDERR_FILENO, "Door's Problem.\n", 17);
 }

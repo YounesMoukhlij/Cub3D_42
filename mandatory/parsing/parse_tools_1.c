@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tools_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 10:03:53 by abechcha          #+#    #+#             */
-/*   Updated: 2024/08/17 10:10:29 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:13:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,19 @@ mlx_image_t	*open_image(char *path, t_cube *game)
 
 	texture = mlx_load_png(path);
 	if (!texture)
+	{
+		mlx_delete_texture(texture);
+		ft_malloc(0, 0);
 		exit(1);
+	}
 	img = mlx_texture_to_image(game->mlx, texture);
 	if (!img)
-		exit(0);
-	free(texture);
+	{
+		mlx_delete_texture(texture);
+		ft_malloc(0, 0);
+		exit(1);
+	}
+	mlx_delete_texture(texture);
 	return (img);
 }
 
@@ -33,16 +41,14 @@ void	ft_load_textures(t_cube *game)
 	game->png.so = open_image(game->texture_walls.so, game);
 	game->png.no = open_image(game->texture_walls.no, game);
 	game->png.we = open_image(game->texture_walls.we, game);
-	game->png.arm = open_image("./assets/arm.png", game);
 	game->png._1 = open_image("./assets/1.png", game);
 	game->png._2 = open_image("./assets/2.png", game);
 	game->png._3 = open_image("./assets/3.png", game);
 	game->png._4 = open_image("./assets/4.png", game);
 	game->png._5 = open_image("./assets/5.png", game);
-	game->png.door = open_image("./assets/door.png", game);
 	if (!game->png.ea || !game->png.no || !game->png.so || !game->png.we
-		|| !game->png.arm || !game->png._1 || !game->png._2 || !game->png._3
-		|| !game->png._4 || !game->png._5 || !game->png.door)
+		|| !game->png._1 || !game->png._2 || !game->png._3
+		|| !game->png._4 || !game->png._5)
 		error_message(game, 0x6);
 }
 
@@ -80,7 +86,7 @@ void	check_player(t_cube *game, char **s)
 		i++;
 	}
 	if (ultra_check(game, 1))
-		error_message(game, 100);
+		error_message(game, 9);
 }
 
 void	init_counter(t_cube *game)

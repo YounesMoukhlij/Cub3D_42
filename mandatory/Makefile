@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/17 17:34:39 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/18 13:05:17 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = cub3d.c \
 	  utils/utils_4.c \
 	  utils/utils_5.c \
 	  utils/utils_6.c \
+	  utils/utils_20.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
@@ -40,7 +41,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = Cub3D
-CFLAGS =  -Ofast -g  -Wall -Wextra -Werror -fsanitize=address
+CFLAGS =  -Ofast -Wall -Wextra -Werror # -fsanitize=address -g
 
 all : $(NAME)
 
