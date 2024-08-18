@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:34:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 13:15:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:33:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,13 +133,14 @@ mlx_image_t	*open_image(char *path, t_cube *game)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		mlx_delete_texture(texture);
+		write(2, "Error\nInvalid Path.\n", 21);
 		ft_malloc(0, 0);
 		exit(1);
 	}
 	img = mlx_texture_to_image(game->mlx, texture);
 	if (!img)
 	{
+		write(2, "Error\nInvalid Path.\n", 21);
 		mlx_delete_texture(texture);
 		ft_malloc(0, 0);
 		exit(1);
@@ -154,9 +155,13 @@ void	ft_load_textures(t_cube *game)
 	game->png.so = open_image(game->texture_walls.so, game);
 	game->png.no = open_image(game->texture_walls.no, game);
 	game->png.we = open_image(game->texture_walls.we, game);
-	game->png.arm = open_image("./assets/arm.png", game);
-	game->png.door = open_image("./assets/door.png", game);
+	if (game->found_door)
+	{
+		game->png.door = open_image("./assets/door.png", game);
+	}
+	if (!game->png.door && game->found_door)
+		error_message(game, 0x6);
 	if (!game->png.ea || !game->png.no || !game->png.so
-		|| !game->png.we || !game->png.arm ||!game->png.door)
+		|| !game->png.we)
 		error_message(game, 0x6);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:32:33 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:40:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:27:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	check_valid_members(t_cube *game, int i, int j)
 			error_message(game, 8);
 		while (str[j])
 		{
+			if (str[j] == 'D')
+				game->found_door = 1;
 			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
 					|| str[j] == 'N' || str[j] == 'S'
 					|| str[j] == 'W' || str[j] == 'E'))

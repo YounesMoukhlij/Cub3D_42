@@ -1,13 +1,13 @@
 
+NO ./assets/png_1.png
 SO ./assets/png_3.png       
-
+WE      ./assets/png_4.png
 EA ./assets/png_2.png   
+
 F 0,0,0
 
-NO ./assets/png_1.png
-C 1000,25,139
+C 10,25,139
 
-WE      ./assets/png_4.png
 
 1
     111111

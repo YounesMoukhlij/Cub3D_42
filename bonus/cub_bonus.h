@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:16:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:20:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct s_draws
 
 typedef struct s_cube
 {
+	int 			found_door;
 	float			mouse_speed;
 	float			rotation_speed;
 	int				start_x;
@@ -235,7 +236,6 @@ int					ultra_check(t_cube *game, int mode);
 void				extra_one(t_cube *game, double *x, double *y);
 void				extra_two(t_cube *game, double *x, double *y);
 void				extra_tree(t_cube *game, double *x, double *y);
-void				extra_four(t_cube *game, double *x, double *y);
 void				ft_check_move(void *tmp);
 void				init_image(t_cube *game);
 void				draw_wall_one(t_cube *game, t_ray *ray);
@@ -289,9 +289,6 @@ int					ft_color(int r, int g, int b, int a);
 float				ft_max(float a, float b);
 float				ft_min(float a, float b);
 void				draw_line_dda(t_cube *game);
-
-void				init_tools(t_ray_tools rays_tools);
-
 void				fifth_chapter(t_cube *game, t_ray *ray);
 void				sixth_extra_chapter(t_cube *game, t_ray *ray);
 int					check_color(t_cube *game, char **str);
@@ -314,7 +311,6 @@ int					check_walls(char *s, int i, int stat, t_cube *game);
 
 void				ray_cast(int colum, t_cube *game);
 float				ft_normalize(float angel);
-void				ft_test(t_cube *game);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				draw_line_dda(t_cube *game);
@@ -351,7 +347,6 @@ void				ft_get_player_position(t_cube *game);
 void				ft_drawing_map_element(t_cube *game, int i, int j);
 void				ft_draw_square(t_cube *game, int x, int y);
 void				ft_drawing_map(t_cube *game);
-void				set_values(t_cube *game);
 void				ft_put_player(t_cube *game);
 void				ft_draw_floor(t_cube *game, int x, int y);
 int					ft_check_walls(t_cube *game, int x, int y);

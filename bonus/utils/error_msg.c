@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:52:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:33:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	error_message(t_cube *var, int mode)
 		write(STDERR_FILENO, "Player's Problem.\n", 35);
 	else
 		error_msg(mode);
+	ft_malloc(0, 0);
 	exit(0x1);
 }
 
@@ -58,5 +59,6 @@ void	error_reading_map(int mode)
 		write(STDERR_FILENO, "Map Not Valid\n", 15);
 	else if (mode == 0x3)
 		write(STDERR_FILENO, "Map Not Loaded\n", 16);
+	ft_malloc(0, 0);
 	exit(0x1);
 }

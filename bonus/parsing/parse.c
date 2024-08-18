@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:38:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:27:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ void	parse(int ac, char *file, t_cube *game)
 	game->map_2d = read_map_from_file(file, 0x0, 0x0);
 	if (!game->map_2d)
 		error_message(game, 0x3);
+	game->found_door = 0;
+	check_order(game->map_2d, 0x0);
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
