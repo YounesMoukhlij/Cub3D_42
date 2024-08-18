@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:27:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:37:06 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:52:14 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	*ft_malloc(size_t size, int mode)
 	{
 		str = malloc(size);
 		if (str == NULL)
-			return (NULL);
+		{
+			ft_malloc(0, 0);
+			exit (1);
+		}
 		else
 			add_back_garbage(&collecte, lstnew_garbage(str));
 	}

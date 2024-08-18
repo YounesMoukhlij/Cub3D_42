@@ -3,26 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 13:05:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:53:02 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	show(void)
-{
-	system("leaks Cub3D");
-}
-
 int	main(int ac, char **av)
 {
 	t_cube	game;
 
-	atexit(show);
-	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEITH, "cub3D", 0);
+	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGTH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
 	init_image(&game);
 	ft_get_player_position(&game);

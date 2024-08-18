@@ -1,12 +1,23 @@
 
 
-C 0,0,139
-F 84,84,84
 
 NO ./assets/png_1.png
-EA ./assets/png_2.png
+
+
+
+
+
 SO ./assets/png_3.png
+
+
+
+
+
 WE ./assets/png_4.png
+
+EA ./assets/png_2.png
+F 84,84,84
+C 0,0,139
 
 1111111111111111111111111111111111111
 1000000000110011110000000111111111111 111

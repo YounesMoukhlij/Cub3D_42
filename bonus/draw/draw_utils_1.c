@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:46:20 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 19:49:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:55:24 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	game->draws.wall_heigth = (BOX_SIZE / (ray->distance
 				* cos(game->rotation_angle - game->ray_angle))) * ((WINDOW_WIDTH
 				/ 2) / tan(PI / 6));
-	game->draws.top = ft_max((1000 / 2) - (game->draws.wall_heigth / 2), 0);
-	game->draws.bottom = ft_min((1000 / 2) + (game->draws.wall_heigth / 2),
-			1000);
+	game->draws.top = ft_max((WINDOW_HEIGTH / 2) - (game->draws.wall_heigth / 2), 0);
+	game->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (game->draws.wall_heigth / 2),
+			WINDOW_HEIGTH);
 	get_x(game, ray);
 	game->draws.i = game->draws.top;
 	game->draws.butt = game->draws.bottom;
@@ -55,7 +55,7 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 		mlx_put_pixel(game->img, ray->index, game->draws.incr,
 			ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c,
 				255));
-	game->draws.incr = WINDOW_HEITH;
+	game->draws.incr = WINDOW_HEIGTH;
 	while (game->draws.incr > game->draws.butt)
 	{
 		if (game->draws.butt < 0)
@@ -71,7 +71,7 @@ void	ft_handle_image(t_cube *game, t_ray *ray, int x)
 {
 	while (x > 0)
 	{
-		game->draws.dis = game->draws.i - WINDOW_HEITH / 2
+		game->draws.dis = game->draws.i - WINDOW_HEIGTH / 2
 			+ game->draws.wall_heigth / 2;
 		game->offset_y = game->draws.dis * ((float)BOX_SIZE
 				/ game->draws.wall_heigth);

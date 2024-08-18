@@ -80,34 +80,6 @@ char	*check_chars(char *s)
 	return (s);
 }
 
-void	parse_entry(t_cube *game, int i)
-{
-	char	*s1;
-	char	*s2;
-
-	while (game->map_2d[i] && i < 6)
-	{
-		s1 = check_chars(ft_substr(ft_strtrim(game->map_2d[i], " "), 0x0, 2));
-		if (!s1)
-			error_message(game, 10);
-		if (!ft_strcmp(s1, "C ") || !ft_strcmp(s1, "F "))
-		{
-			s2 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x2,
-					ft_strlen(game->map_2d[i]) - 1);
-			if (parse_numbers(s2))
-				error_message(game, 10);
-			if (!ft_strcmp(s1, "C "))
-				fill_colors(game, s2, 0);
-			else if (!ft_strcmp(s1, "F "))
-				fill_colors(game, s2, 1);
-		}
-		if (!ft_strcmp(s1, "NO") || !ft_strcmp(s1, "SO") || !ft_strcmp(s1, "EA")
-			|| !ft_strcmp(s1, "WE"))
-			get_path(game, i, s1);
-		i++;
-	}
-}
-
 int	check_one(t_cube *game, char *s)
 {
 	if (!(s[game->twilzat.i] == '1' || s[game->twilzat.i] == '0'

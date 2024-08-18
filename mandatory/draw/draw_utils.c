@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:22:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:57:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:53:02 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_handle_image(t_cube *game, t_ray *ray, int x)
 {
 	while (x > 0)
 	{
-		game->draws.dis = game->draws.i - WINDOW_HEITH / 2
+		game->draws.dis = game->draws.i - WINDOW_HEIGTH / 2
 			+ game->draws.wall_heigth / 2;
 		game->offset_y = game->draws.dis * ((float)BOX_SIZE
 				/ game->draws.wall_heigth);
@@ -34,7 +34,7 @@ void	ft_handle_image(t_cube *game, t_ray *ray, int x)
 
 void	draw_plus(t_cube *game)
 {
-	game->draws.dis = game->draws.i - WINDOW_HEITH / 2
+	game->draws.dis = game->draws.i - WINDOW_HEIGTH / 2
 		+ game->draws.wall_heigth / 2;
 	game->offset_y = game->draws.dis * ((float)BOX_SIZE
 			/ game->draws.wall_heigth);

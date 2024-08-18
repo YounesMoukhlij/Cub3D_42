@@ -68,7 +68,7 @@ void	get_path(t_cube *game, int i, char *str)
 	char	*s;
 
 	s = check_bef(ft_strtrim(ft_substr(game->map_2d[i],
-				3, ft_strlen(game->map_2d[i]) - 1), " "));
+					3, ft_strlen(game->map_2d[i]) - 1), " "));
 	if (!s)
 		error_message(game, 6);
 	if (!ft_strcmp(str, "NO"))

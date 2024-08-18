@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:17:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:52:54 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define PI 3.14159265358979323846
 # define WALL_WIDTH 1
 # define WINDOW_WIDTH 1500
-# define WINDOW_HEITH 1000
+# define WINDOW_HEIGTH 1000
 # define PLAYER_SIZE_MINI_MAP 6
 # define BOX_MINI 10
 

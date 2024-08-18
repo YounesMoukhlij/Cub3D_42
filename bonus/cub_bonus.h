@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:20:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:55:04 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB_BONUS_H
 
 # include "MLX42/MLX42.h"
-# include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -30,7 +29,7 @@
 # define PI 3.14159265358979323846
 # define WALL_WIDTH 1
 # define WINDOW_WIDTH 1500
-# define WINDOW_HEITH 1000
+# define WINDOW_HEIGTH 1000
 # define PLAYER_SIZE_MINI_MAP 6
 # define BOX_MINI 10
 
@@ -164,7 +163,7 @@ typedef struct s_draws
 
 typedef struct s_cube
 {
-	int 			found_door;
+	int				found_door;
 	float			mouse_speed;
 	float			rotation_speed;
 	int				start_x;
@@ -225,6 +224,9 @@ typedef struct s_cube
 	t_text			texture_walls;
 }					t_cube;
 
+char				**ft_maping(t_cube *game, char **s, int i);
+char				*check_chars(char *s);
+void				ft_strcpy(char *s1, char *s2);
 void				ft_handle_image(t_cube *game, t_ray *ray, int x);
 void				ft_handle_mouse(void *param);
 int					case_1(char **s, int i, int j);

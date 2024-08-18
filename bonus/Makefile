@@ -26,11 +26,11 @@ SRC = cub3d.c \
 	  utils/utils_4.c \
 	  utils/utils_5.c \
 	  utils/utils_6.c \
+	  utils/utils_7.c \
 	  utils/handle_mouse.c \
 	  utils/ft_split.c \
 	  utils/error_msg.c \
 	  utils/movment.c \
-	  utils/tools.c \
 	  draw/draw.c \
 	  draw/draw_utils.c \
 	  draw/draw_utils_1.c \
@@ -41,10 +41,10 @@ SRC = cub3d.c \
  
 OBJ = $(SRC:.c=.o)
 HEADER = cub_bonus.h
-NAME = Cub3D_bonus
-CFLAGS =  -Ofast -g  -Wall -Wextra -Werror -fsanitize=address
+NAME = cub3D_bonus
+CFLAGS = -Ofast -Wall -Wextra -Werror
 
-all : $(NAME)
+bonus : $(NAME)
 
 %.o : %.c $(HEADER)
 	@cc  ${CFLAGS} -c $< -o $@

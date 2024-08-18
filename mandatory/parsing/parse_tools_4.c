@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tools_4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:34:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 14:54:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:52:29 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ mlx_image_t	*open_image(char *path, t_cube *game)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		mlx_delete_texture(texture);
+		write(2, "Error\nInvalid Path.\n", 21);
 		ft_malloc(0, 0);
 		exit(1);
 	}
 	img = mlx_texture_to_image(game->mlx, texture);
 	if (!img)
 	{
-		mlx_delete_texture(texture);
+		write(2, "Error\nInvalid Path.\n", 21);
 		ft_malloc(0, 0);
 		exit(1);
 	}

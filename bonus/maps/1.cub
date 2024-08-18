@@ -1,5 +1,3 @@
-C 104,17,17
-F 84,84,0
 
 
 
@@ -7,8 +5,10 @@ F 84,84,0
 
 NO ./assets/png_1.png
 SO ./assets/png_2.png
-EA ./assets/png_3.png
 WE ./assets/png_4.png
+EA ./assets/png_3.png
+F 84,84,0
+C 104,17,17
 
 1111111111111111111111111             
 1000000000000000000000001                          

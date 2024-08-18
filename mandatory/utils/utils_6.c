@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_6.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:33:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 11:45:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:53:02 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ void	ft_check_move(void *tmp)
 
 void	init_image(t_cube *game)
 {
-	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEITH);
+	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGTH);
 	game->img_mini_map = mlx_new_image(game->mlx, 200, 200);
-	game->mini_heigth = WINDOW_HEITH / 4;
+	game->mini_heigth = WINDOW_HEIGTH / 4;
 	game->mini_width = WINDOW_WIDTH / 4;
 	game->player_turn = 0;
 	game->player_walk = 0;
