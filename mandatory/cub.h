@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 13:00:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:17:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB_H
 
 # include "MLX42/MLX42.h"
-# include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -224,18 +223,16 @@ typedef struct s_cube
 	t_text			texture_walls;
 }					t_cube;
 
+void				check_order(char **s, int i);
 int					case_1(char **s, int i, int j);
 int					case_2(char **s, int i, int j);
 int					case_3(char **s, int i, int j);
 int					case_4(char **s, int i, int j);
 int					peter_csezsh(char **s, int i, int j);
 int					ultra_check(t_cube *game, int mode);
-
-
 void				extra_one(t_cube *game, double *x, double *y);
 void				extra_two(t_cube *game, double *x, double *y);
 void				extra_tree(t_cube *game, double *x, double *y);
-void				extra_four(t_cube *game, double *x, double *y);
 void				ft_check_move(void *tmp);
 void				init_image(t_cube *game);
 char				*check_chars(char *s);
@@ -282,49 +279,39 @@ void				get_path(t_cube *game, int i, char *str);
 int					check_extension(char *file, int mode);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
-void				ft_put_player(t_cube *game);
-void				ft_drawing_map(t_cube *game);
 void				get_x(t_cube *game, t_ray *ray);
 int					ft_color(int r, int g, int b, int a);
 float				ft_max(float a, float b);
 float				ft_min(float a, float b);
-
 void				draw_line_dda(t_cube *game);
-
-void				init_tools(t_ray_tools rays_tools);
-
 void				fifth_chapter(t_cube *game, t_ray *ray);
 void				sixth_extra_chapter(t_cube *game, t_ray *ray);
 int					check_color(t_cube *game, char **str);
-
 void				sixth_chapter(t_cube *game, t_ray *ray);
-void				parse_s(t_cube *game, char *s);
+void				parse_s(t_cube *game, char *s, int i);
 int					get_length_heigth(char **str, int mode, int i);
 char				*get_next_line(int fd);
 void				error_reading_map(int mode);
 void				error_message(t_cube *var, int mode);
 void				parse(int ac, char *file, t_cube *var);
-
+int					player_num(t_cube *game);
 int					check_view(t_cube *game, t_ray *ray);
-
 char				*fix_the_map(char *s, int i, int flag, int j);
 int					check_walls(char *s, int i, int stat, t_cube *game);
-
 void				ray_cast(int colum, t_cube *game);
 float				ft_normalize(float angel);
-void				ft_test(t_cube *game);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				draw_line_dda(t_cube *game);
 int					ft_check_walls(t_cube *game, int x, int y);
 char				*get_next_line(int fd);
 void				error_reading_map(int mode);
+char				**ft_maping(t_cube *game, char **s, int i);
 char				**read_map_from_file(char *map_1d, int fd, int is_map);
 void				check_textures(t_cube *game);
 void				ft_load_textures(t_cube *game);
 void				error_message(t_cube *var, int mode);
 void				parse(int ac, char *file, t_cube *var);
-
 t_delete			*last_cmd_garbage(t_delete *lst);
 void				add_back_garbage(t_delete **head, t_delete *node);
 void				free_list(t_delete **head);
@@ -332,7 +319,7 @@ t_delete			*lstnew_garbage(void *str);
 void				*ft_malloc(size_t size, int mode);
 void				lstaddfront_garbage(t_delete **head, t_delete *node);
 int					check_me(int x, int y, int width, int heigth);
-
+char				*fill_spaces(char *s, int big_len, char *str);
 int					ft_calcule_distance(float x1, float y1, float x2, float y2);
 void				ft_free(char **s);
 int					ft_strlen(char *s);
@@ -343,27 +330,21 @@ int					ft_strcmp(char *s1, char *s2);
 void				*ft_calloc(int num, int size);
 char				*ft_strjoin(char *s1, char *s2);
 char				*ft_strtrim(char *s1, char *set);
-
+char				**final_map(t_cube *game, char **str);
 char				*ft_substr(char *s, int start, int len);
 void				ft_get_player_position(t_cube *game);
-void  				ft_drawing_map_element(t_cube *game, int i, int j);
 void				ft_draw_square(t_cube *game, int x, int y);
-void				ft_drawing_map(t_cube *game);
-void				set_values(t_cube *game);
-void				ft_put_player(t_cube *game);
 void				ft_draw_floor(t_cube *game, int x, int y);
 int					ft_check_walls(t_cube *game, int x, int y);
 mlx_image_t			*open_image(char *path, t_cube *game);
-
 int					parse_numbers(char *s);
 void				check_player(t_cube *game, char **s);
 void				ft_load_textures(t_cube *game);
 mlx_image_t			*open_image(char *path, t_cube *game);
 char				**final_map(t_cube *game, char **str);
-
 int					get_length_heigth(char **str, int mode, int i);
 char				*fix_the_map(char *s, int i, int flag, int j);
-
+int					get_length_heigth(char **str, int mode, int i);
 void				check_valid_members(t_cube *game, int i, int j);
 void				player_vision(char **s, t_cube *game);
 void				init_counter(t_cube *game);

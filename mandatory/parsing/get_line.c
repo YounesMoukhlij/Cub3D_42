@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 13:11:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:35:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,12 @@ static char	*ft_read_from_fd(char *str, int fd, int indice)
 	{
 		my_buffer = ft_malloc(sizeof(char) * (BUFFER_SIZE + 1), 1);
 		if (!my_buffer)
-			return (NULL);
+			return (str = NULL, NULL);
 		indice = read(fd, my_buffer, BUFFER_SIZE);
 		if (indice < 0)
 			return (NULL);
 		if (indice == 0)
-		{
 			break ;
-		}
 		my_buffer[indice] = '\0';
 		str = ft_strjoin(str, my_buffer);
 		if (!str)

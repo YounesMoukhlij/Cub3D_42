@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:52:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:10:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	error_message(t_cube *var, int mode)
 	else if (mode == 0x4)
 		write(STDERR_FILENO, "Map's Members are not Valid\n", 29);
 	else if (mode == 5)
-		write(STDERR_FILENO, "malloc failed\n", 12);
+		write(STDERR_FILENO, "malloc failed\n", 15);
 	else if (mode == 6)
-		write(STDERR_FILENO, "Textures cant be Loaded\n", 12);
-	else if (mode == 7)
-		write(STDERR_FILENO, "Problem Concerning Doors\n", 26);
+		write(STDERR_FILENO, "Textures cant be Loaded\n", 25);
 	else if (mode == 8)
 		write(STDERR_FILENO, "Walls Aren't Correctly build.\n", 31);
 	else if (mode == 9)
 		write(STDERR_FILENO, "Player's Problem.\n", 19);
+	else if (mode == 100)
+		write(STDERR_FILENO, "Data aren't is the demanded order.\n", 36);
 	else
 		error_msg(mode);
 	ft_malloc(0, 0);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:14:53 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:33:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:37:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	case_1(char **s, int i, int j)
 		&& s[i + 1][j] != 'N')
 		return (1);
 	if (s[i - 1][j] != '1' && s[i - 1][j] != '0'
-		&& s[i - 1][j] != 'D' && s[i - 1][j] != 'N')
+		&& s[i - 1][j] != 'N')
 		return (1);
 	if (s[i][j + 1] != '1' && s[i][j + 1] != '0'
-		&& s[i][j + 1] != 'D' && s[i][j + 1] != 'N')
+		&& s[i][j + 1] != 'N')
 		return (1);
 	if (s[i][j - 1] != '1' && s[i][j - 1] != '0'
-		&& s[i][j - 1] != 'D' && s[i][j - 1] != 'N')
+		&& s[i][j - 1] != 'N')
 		return (1);
 	return (0x0);
 }
@@ -35,13 +35,13 @@ int	case_2(char **s, int i, int j)
 		&& s[i + 1][j] != 'S')
 		return (1);
 	if (s[i - 1][j] != '1' && s[i - 1][j] != '0'
-		&& s[i - 1][j] != 'D' && s[i - 1][j] != 'S')
+		&& s[i - 1][j] != 'S')
 		return (1);
 	if (s[i][j + 1] != '1' && s[i][j + 1] != '0'
-		&& s[i][j + 1] != 'D' && s[i][j + 1] != 'S')
+		&& s[i][j + 1] != 'S')
 		return (1);
 	if (s[i][j - 1] != '1' && s[i][j - 1] != '0'
-		&& s[i][j - 1] != 'D' && s[i][j - 1] != 'S')
+		&& s[i][j - 1] != 'S')
 		return (1);
 	return (0);
 }
@@ -52,13 +52,13 @@ int	case_3(char **s, int i, int j)
 		&& s[i + 1][j] != 'W')
 		return (1);
 	if (s[i - 1][j] != '1' && s[i - 1][j] != '0'
-		&& s[i - 1][j] != 'D' && s[i - 1][j] != 'W')
+		&& s[i - 1][j] != 'W')
 		return (1);
 	if (s[i][j + 1] != '1' && s[i][j + 1] != '0'
-		&& s[i][j + 1] != 'D' && s[i][j + 1] != 'W')
+		&& s[i][j + 1] != 'W')
 		return (1);
 	if (s[i][j - 1] != '1' && s[i][j - 1] != '0'
-		&& s[i][j - 1] != 'D' && s[i][j - 1] != 'W')
+		&& s[i][j - 1] != 'W')
 		return (1);
 	return (0);
 }
@@ -69,13 +69,13 @@ int	case_4(char **s, int i, int j)
 		&& s[i + 1][j] != 'E')
 		return (1);
 	if (s[i - 1][j] != '1' && s[i - 1][j] != '0'
-		&& s[i - 1][j] != 'D' && s[i - 1][j] != 'E')
+		&& s[i - 1][j] != 'E')
 		return (1);
 	if (s[i][j + 1] != '1' && s[i][j + 1] != '0'
-		&& s[i][j + 1] != 'D' && s[i][j + 1] != 'E')
+		&& s[i][j + 1] != 'E')
 		return (1);
 	if (s[i][j - 1] != '1' && s[i][j - 1] != '0'
-		&& s[i][j - 1] != 'D' && s[i][j - 1] != 'E')
+		&& s[i][j - 1] != 'E')
 		return (1);
 	return (0);
 }

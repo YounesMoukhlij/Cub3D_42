@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:05:06 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:54:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:48:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ void	parse_entry(t_cube *game, int i)
 	while (game->map_2d[i] && i < 6)
 	{
 		s1 = check_chars(ft_substr(ft_strtrim(game->map_2d[i], " "), 0x0, 2));
+		if (!s1)
+			error_message(game, 10);
 		if (!ft_strcmp(s1, "C ") || !ft_strcmp(s1, "F "))
 		{
 			s2 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x2,
 					ft_strlen(game->map_2d[i]) - 1);
 			if (parse_numbers(s2))
-				error_message(game, 0);
+				error_message(game, 10);
 			if (!ft_strcmp(s1, "C "))
 				fill_colors(game, s2, 0);
 			else if (!ft_strcmp(s1, "F "))
@@ -90,32 +92,4 @@ int	check_one(t_cube *game, char *s)
 			|| s[game->twilzat.i] == 'E' || s[game->twilzat.i] == 'W'))
 		return (0x1);
 	return (0x0);
-}
-
-char	*fill_chars(t_cube *game, char *s)
-{
-	game->twilzat.i = 0;
-	game->twilzat.j = 0;
-	game->twilzat.f = 0;
-	if (ft_strlen(s) < game->real_map_width)
-		game->twilzat.f = 1;
-	if (game->twilzat.f)
-	{
-		game->twilzat.tmp = ft_malloc(game->real_map_width + 1, 1);
-		if (!game->twilzat.tmp)
-			return (NULL);
-		while (s[game->twilzat.i])
-		{
-			if (check_one(game, s))
-				game->twilzat.tmp[game->twilzat.j] = ' ';
-			else
-				game->twilzat.tmp[game->twilzat.j] = s[game->twilzat.i];
-			game->twilzat.i++;
-			game->twilzat.j++;
-		}
-		game->twilzat.tmp[game->twilzat.j] = '\0';
-	}
-	if (!game->twilzat.f)
-		return (ft_strdup(s));
-	return (game->twilzat.tmp);
 }

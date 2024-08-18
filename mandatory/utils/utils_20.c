@@ -6,36 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:53:55 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:57:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:46:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-void	player_vision(char **s, t_cube *game)
-{
-	int	i;
-	int	j;
-
-	i = 6;
-	while (s[i])
-	{
-		j = 0;
-		while (s[i][j])
-		{
-			if (s[i][j] == 'N')
-				game->rotation_angle = (3 * PI) / 2;
-			else if (s[i][j] == 'S')
-				game->rotation_angle = PI / 2;
-			else if (s[i][j] == 'W')
-				game->rotation_angle = PI;
-			else if (s[i][j] == 'E')
-				game->rotation_angle = 0;
-			j++;
-		}
-		i++;
-	}
-}
 
 int	parse_numbers(char *s)
 {
@@ -59,29 +34,6 @@ int	parse_numbers(char *s)
 		i++;
 	}
 	return (0);
-}
-
-char	*check_chars(char *s)
-{
-	if (s[0] == 'C')
-		if (ft_strcmp(s, "C "))
-			return (NULL);
-	if (s[0] == 'F')
-		if (ft_strcmp(s, "F "))
-			return (NULL);
-	if (s[0] == 'N')
-		if (ft_strcmp(s, "NO"))
-			return (NULL);
-	if (s[0] == 'S')
-		if (ft_strcmp(s, "SO"))
-			return (NULL);
-	if (s[0] == 'W')
-		if (ft_strcmp(s, "WE"))
-			return (NULL);
-	if (s[0] == 'E')
-		if (ft_strcmp(s, "EA"))
-			return (NULL);
-	return (s);
 }
 
 int	check_view(t_cube *game, t_ray *ray)
@@ -137,4 +89,29 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 				255));
 		game->draws.butt++;
 	}
+}
+
+char	**final_map(t_cube *game, char **str)
+{
+	int		i;
+	int		j;
+	char	**s;
+
+	i = 0x0;
+	s = (char **)ft_malloc((game->real_map_heigth + 0x1) * 8, 1);
+	if (!s)
+		return (NULL);
+	j = 0x0;
+	while (str[i])
+	{
+		if (i > 0x5)
+		{
+			s[j] = fill_chars(game, str[i]);
+			if (!s[j++])
+				return (NULL);
+		}
+		i++;
+	}
+	s[j] = 0;
+	return (ft_maping(game, s, 0));
 }

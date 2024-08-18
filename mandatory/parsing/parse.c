@@ -6,79 +6,46 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:31:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:16:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-char	*fix_the_map(char *s, int i, int flag, int j)
+void	check_player(t_cube *game, char **s)
 {
-	char	*str;
-	char	*tmp;
+	int	i;
+	int	j;
 
-	tmp = ft_strtrim(s, " ");
-	while (tmp[i++])
+	i = 0;
+	while (s[i])
 	{
-		if (tmp[i] == 32 || tmp[i] == 9)
-			flag = 0x1;
-	}
-	if (flag == 0x1)
-	{
-		i = 0x0;
-		str = ft_calloc(0x1, ft_strlen(s) + 0x1);
-		if (!str)
-			return (NULL);
-		while (tmp[i++])
+		j = 0;
+		while (s[i][j])
 		{
-			if (!(tmp[i] == 32 || tmp[i] == 9))
-				str[j++] = tmp[i];
-		}
-	}
-	if (flag)
-		return (str);
-	return (tmp);
-}
-
-int	get_length_heigth(char **str, int mode, int i)
-{
-	if (!mode)
-	{
-		while (str[i])
-			i++;
-		i -= 6;
-	}
-	if (mode)
-	{
-		while (str[mode][i])
-			i++;
-	}
-	return (i);
-}
-
-char	**final_map(t_cube *game, char **str)
-{
-	int		i;
-	int		j;
-	char	**s;
-
-	i = 0x0;
-	s = (char **)ft_malloc((game->real_map_heigth + 0x1) * 8, 1);
-	if (!s)
-		return (NULL);
-	j = 0x0;
-	while (str[i])
-	{
-		if (i > 0x5)
-		{
-			s[j] = fill_chars(game, str[i]);
-			if (!s[j++])
-				return (NULL);
+			if (s[i][j] == 'N')
+				game->parse_p.n++;
+			else if (s[i][j] == 'E')
+				game->parse_p.e++;
+			else if (s[i][j] == 'W')
+				game->parse_p.w++;
+			else if (s[i][j] == 'S')
+				game->parse_p.s++;
+			j++;
 		}
 		i++;
 	}
-	s[j] = 0;
-	return (s);
+	if (ultra_check(game, 1))
+		error_message(game, 9);
+}
+
+void	check_textures(t_cube *game)
+{
+	if (!check_extension(game->texture_walls.ea, 0x1)
+		|| !check_extension(game->texture_walls.we, 0x1)
+		|| !check_extension(game->texture_walls.no, 0x1)
+		|| !check_extension(game->texture_walls.so, 0x1))
+		error_message(game, 0x2);
 }
 
 void	check_position(t_cube *game, char **s, int i, int j)
@@ -118,6 +85,7 @@ void	parse(int ac, char *file, t_cube *game)
 	game->map_2d = read_map_from_file(file, 0x0, 0x0);
 	if (!game->map_2d)
 		error_message(game, 0x3);
+	check_order(game->map_2d, 0x0);
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);

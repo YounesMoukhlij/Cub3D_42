@@ -6,19 +6,19 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/18 13:05:17 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/18 14:45:17 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = cub3d.c \
 	  parsing/get_line.c \
 	  parsing/parse.c \
+	  parsing/parse_tools.c \
 	  parsing/parse_tools_2.c \
 	  parsing/parse_tools_3.c \
+	  parsing/parse_tools_4.c \
 	  parsing/parse_tools_5.c \
-	  parsing/parse_tools.c \
 	  parsing/load_map.c \
-	  parsing/parse_tools_1.c \
 	  parsing/check_extension.c \
 	  utils/utils_1.c \
 	  utils/utils_2.c \

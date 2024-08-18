@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 19:52:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:16:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,7 +365,7 @@ char				**final_map(t_cube *game, char **str);
 
 int					get_length_heigth(char **str, int mode, int i);
 char				*fix_the_map(char *s, int i, int flag, int j);
-
+void				check_order(char **s, int i);
 void				check_valid_members(t_cube *game, int i, int j);
 void				player_vision(char **s, t_cube *game);
 

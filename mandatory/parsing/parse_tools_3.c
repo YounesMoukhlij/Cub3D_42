@@ -5,41 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 10:11:09 by abechcha          #+#    #+#             */
-/*   Updated: 2024/08/18 13:03:48 by youmoukh         ###   ########.fr       */
+/*   Created: 2024/08/16 14:32:33 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/08/18 14:49:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-void	fill_colors(t_cube *game, char *s, int mode)
-{
-	char	**str;
-	int		i;
-
-	i = 0;
-	parse_s(game, s);
-	str = ft_split(ft_strtrim(s, " "), ',');
-	if (!str)
-		return ;
-	check_color(game, str);
-	while (str[i])
-	{
-		if (!mode && !i)
-			game->colors.r_c = ft_atoi(str[i]);
-		else if (!mode && i == 1)
-			game->colors.g_c = ft_atoi(str[i]);
-		else if (!mode && i == 2)
-			game->colors.b_c = ft_atoi(str[i]);
-		else if (mode && !i)
-			game->colors.r_f = ft_atoi(str[i]);
-		else if (mode && i == 1)
-			game->colors.g_f = ft_atoi(str[i]);
-		else if (mode && i == 2)
-			game->colors.b_f = ft_atoi(str[i]);
-		i++;
-	}
-}
 
 void	check_valid_members(t_cube *game, int i, int j)
 {
@@ -51,15 +22,64 @@ void	check_valid_members(t_cube *game, int i, int j)
 		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
 		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
-			error_message(game, 200);
+			error_message(game, 8);
 		while (str[j])
 		{
-			if (!(str[j] == '0' || str[j] == '1'
-					|| str[j] == 'N' || str[j] == 'S' || str[j] == 'W'
-					|| str[j] == 'E'))
-				error_message(game, 0x4);
+			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
+					|| str[j] == 'N' || str[j] == 'S'
+					|| str[j] == 'W' || str[j] == 'E'))
+				error_message(game, 8);
 			j++;
 		}
+		i++;
+	}
+}
+
+void	player_vision(char **s, t_cube *game)
+{
+	int	i;
+	int	j;
+
+	i = 6;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] == 'N')
+				game->rotation_angle = (3 * PI) / 2;
+			else if (s[i][j] == 'S')
+				game->rotation_angle = PI / 2;
+			else if (s[i][j] == 'W')
+				game->rotation_angle = PI;
+			else if (s[i][j] == 'E')
+				game->rotation_angle = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
+int	check_color(t_cube *game, char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (i > 3)
+		error_message(game, 10);
+	return (0x0);
+}
+
+void	parse_s(t_cube *game, char *s, int i)
+{
+	while (s[i])
+	{
+		if (s[i] == ',' && s[i + 1] == ',' && s[i + 1])
+			error_message(game, 10);
+		if (s[ft_strlen(s) - 1] == ',')
+			error_message(game, 10);
 		i++;
 	}
 }

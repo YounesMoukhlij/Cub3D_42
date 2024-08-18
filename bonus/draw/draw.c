@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:29:48 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:16:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,26 @@ void	ft_drawing_map_element(t_cube *game, int i, int j)
 			j++;
 		}
 		game->start_y++;
+		i++;
+	}
+}
+
+void	check_order(char **s, int i)
+{
+	while (s[i] && i < 6)
+	{
+		if (!i && ft_strcmp("NO", ft_substr(s[i], 0, 2)))
+			error_message(0x0, 6);
+		else if (i == 1 && ft_strcmp("SO", ft_substr(s[i], 0, 2)))
+			error_message(0x0, 6);
+		else if (i == 2 && ft_strcmp("WE", ft_substr(s[i], 0, 2)))
+			error_message(0x0, 6);
+		else if (i == 3 && ft_strcmp("EA", ft_substr(s[i], 0, 2)))
+			error_message(0x0, 6);
+		else if (i == 4 && ft_strcmp("F", ft_substr(s[i], 0, 1)))
+			error_message(0x0, 6);
+		else if (i == 5 && ft_strcmp("C", ft_substr(s[i], 0, 1)))
+			error_message(0x0, 6);
 		i++;
 	}
 }
