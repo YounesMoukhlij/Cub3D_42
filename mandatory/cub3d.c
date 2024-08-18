@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:35:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:05:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	main(int ac, char **av)
 	mlx_image_to_window(game.mlx, game.img_mini_map, 0, 0);
 	mlx_loop_hook(game.mlx, ft_check_move, &game);
 	mlx_loop(game.mlx);
+	ft_malloc(0, 0);
 	return (0x0);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 20:07:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:25:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	error_message(t_cube *var, int mode)
 	else if (mode == 5)
 		write(STDERR_FILENO, "malloc failed\n", 12);
 	else if (mode == 6)
-		write(STDERR_FILENO, "Textures cant be Loaded\n", 12);
+		write(STDERR_FILENO, "Textures cant be Loaded\n", 25);
 	else if (mode == 7)
 		write(STDERR_FILENO, "Problem Concerning Doors\n", 26);
 	else if (mode == 8)

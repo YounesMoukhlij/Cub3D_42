@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:07:38 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 14:18:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:25:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,22 @@ void	fill_colors(t_cube *game, char *s, int mode)
 	}
 }
 
+char	*check_bef(char *s)
+{
+	if (ft_strlen(s) < 3)
+		return (NULL);
+	if (s[0] != '.' && s[1] != '/')
+		return (NULL);
+	return (s);
+}
+
 void	get_path(t_cube *game, int i, char *str)
 {
 	char	*s;
 
-	s = ft_substr(game->map_2d[i], 3, ft_strlen(game->map_2d[i]) - 1);
+	s = check_bef(ft_substr(game->map_2d[i], 3, ft_strlen(game->map_2d[i]) - 1));
 	if (!s)
-		return ;
+		error_message(game, 6);
 	if (!ft_strcmp(str, "NO"))
 		game->texture_walls.no = ft_strtrim(ft_strdup(s), " ");
 	else if (!ft_strcmp(str, "SO"))

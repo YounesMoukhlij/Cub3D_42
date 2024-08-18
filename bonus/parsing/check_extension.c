@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:05:06 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 17:06:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:23:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,29 @@ int	check_walls(char *s, int i, int stat, t_cube *game)
 	return (0x0);
 }
 
+char	*check_chars(char *s)
+{
+	if (s[0] == 'C')
+		if (ft_strcmp(s, "C "))
+			return (NULL);
+	if (s[0] == 'F')
+		if (ft_strcmp(s, "F "))
+			return (NULL);
+	if (s[0] == 'N')
+		if (ft_strcmp(s, "NO"))
+			return (NULL);
+	if (s[0] == 'S')
+		if (ft_strcmp(s, "SO"))
+			return (NULL);
+	if (s[0] == 'W')
+		if (ft_strcmp(s, "WE"))
+			return (NULL);
+	if (s[0] == 'E')
+		if (ft_strcmp(s, "EA"))
+			return (NULL);
+	return (s);
+}
+
 void	parse_entry(t_cube *game, int i)
 {
 	char	*s1;
@@ -64,7 +87,9 @@ void	parse_entry(t_cube *game, int i)
 
 	while (game->map_2d[i] && i < 6)
 	{
-		s1 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x0, 2);
+		s1 = check_chars(ft_substr(ft_strtrim(game->map_2d[i], " "), 0x0, 2));
+		if (!s1)
+			error_message(game, 10);
 		if (!ft_strcmp(s1, "C ") || !ft_strcmp(s1, "F "))
 		{
 			s2 = ft_substr(ft_strtrim(game->map_2d[i], " "), 0x2,
