@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:34:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 14:23:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:14:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,52 @@ int	get_length_heigth(char **str, int mode, int i)
 	return (i);
 }
 
+void	ft_strcpy(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s2[i])
+	{
+		s1[i] = s2[i];
+		i++;
+	}
+	s1[i] = '\0';
+}
+
+char	*fill_spaces(char *s, int big_len, char *str)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	tmp = ft_strlen(s);
+	str = ft_malloc(big_len + 2, 1);
+	if (!s)
+		return (NULL);
+	ft_strcpy(str, s);
+	while (tmp < big_len + 1)
+	{
+		str[tmp] = ' ';
+		tmp++;
+	}
+	str[tmp] = '\0';
+	return (str);
+}
+
+char	**ft_maping(t_cube *game, char **s, int i)
+{
+	while (s[i])
+	{
+		s[i] = fill_spaces(s[i], game->real_map_width, 0x0);
+		printf("[%s]\n", s[i]);
+		i++;
+	}
+	return (s);
+}
+
+
+
 char	**final_map(t_cube *game, char **str)
 {
 	int		i;
@@ -78,7 +124,7 @@ char	**final_map(t_cube *game, char **str)
 		i++;
 	}
 	s[j] = 0;
-	return (s);
+	return (ft_maping(game, s, 0));
 }
 
 mlx_image_t	*open_image(char *path, t_cube *game)
