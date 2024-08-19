@@ -27,6 +27,43 @@ int	check_color(t_cube *game, char **str)
 /////
 
 
+______ >>> Go to parsing/parse_tools_3
+/////
+	1 - Go to --> check_valid_members(t_cube *game, int i, int j)
+	2 - change it by :
+
+void	check_valid_members(t_cube *game, int i, int j)
+{
+	char	*str;
+
+	i = 0x6;
+	while (game->map_2d[i] && i > 0x5)
+	{
+		j = 0x0;
+		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
+		if (check_rr(game->map_2d[i]))
+			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
+				error_message(game, 8);
+		while (str[j])
+		{
+			if (!(str[j] == '0' || str[j] == '1'
+					|| str[j] == 'N' || str[j] == 'S'
+					|| str[j] == 'W' || str[j] == 'E'))
+				error_message(game, 8);
+			j++;
+		}
+		i++;
+	}
+}
+	3 - add this function before check_valid_members in the same file :
+
+int	check_rr(char *s)
+{
+	if (s[0] == ' ')
+		return (0x0);
+	return (0x1);
+}
+
 
 
 

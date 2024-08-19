@@ -12,13 +12,6 @@
 
 #include "../cub.h"
 
-int	check_rr(char *s)
-{
-	if (s[0] == ' ')
-		return (0x0);
-	return (0x1);
-}
-
 void	check_valid_members(t_cube *game, int i, int j)
 {
 	char	*str;
@@ -28,7 +21,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 	{
 		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
-		if (check_rr(game->map_2d[i]))
+		if (game->map_2d[i][0] != ' ')
 			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
 				error_message(game, 8);
 		while (str[j])
