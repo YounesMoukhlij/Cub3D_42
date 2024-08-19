@@ -1,0 +1,15 @@
+----------------I- Chapiter ONE----------------
+[       Go to parsing                         ]
+[       Go to parse.c                         ]
+[       ADD This Before the function          ]
+[             ft_load_textures                ]
+
+       if (!check_extension(file, 0x1))
+			error_message(game, 0x2);
+
+[                                             ]
+[              Copy  && Paste                 ]
+[                                             ]
+[                                             ]
+-----------------------FIN---------------------
+

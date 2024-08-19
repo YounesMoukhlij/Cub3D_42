@@ -80,7 +80,7 @@ void	parse(int ac, char *file, t_cube *game)
 {
 	if (ac <= 1 || ac >= 3)
 		error_message(game, 0x1);
-	if (check_extension(file, 0x0) == 0)
+	if (!check_extension(file, 0x0))
 		error_message(game, 0x2);
 	game->map_2d = read_map_from_file(file, 0x0, 0x0);
 	if (!game->map_2d)
@@ -92,6 +92,8 @@ void	parse(int ac, char *file, t_cube *game)
 	check_valid_members(game, 0x0, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
+	if (!check_extension(file, 0x1))
+		error_message(game, 0x2);
 	ft_load_textures(game);
 	game->map = final_map(game, game->map_2d);
 	check_player(game, game->map);
