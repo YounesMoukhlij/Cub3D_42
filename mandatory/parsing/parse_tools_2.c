@@ -41,17 +41,21 @@ void	fill_colors(t_cube *game, char *s, int mode)
 	}
 }
 
-char	*check_bef(char *s)
+char	*check_bef(char *s, int i, int flag)
 {
-	int	i;
-
-	i = 0;
-	if (ft_strlen(s) < 3)
+	if (ft_strlen(s) < 3 || (s[i] != '.' && s[1] != '/'))
+		return (NULL);
+	while (s[i])
 	{
-		return (NULL);
+		if (s[i] == '.' && s[i + 1] == 'p'
+			&& s[i + 2] == 'n' && s[i + 3] == 'g'
+			&& s[i + 4] == '\0')
+			flag = 1;
+		i++;
 	}
-	if (s[0] != '.' && s[1] != '/')
-		return (NULL);
+	if (!flag)
+		return (0x0);
+	i = 0;
 	while (s[i])
 	{
 		if (s[i] == '.' && s[i + 1] == '/')
@@ -68,7 +72,7 @@ void	get_path(t_cube *game, int i, char *str)
 	char	*s;
 
 	s = check_bef(ft_strtrim(ft_substr(game->map_2d[i],
-					3, ft_strlen(game->map_2d[i]) - 1), " "));
+					3, ft_strlen(game->map_2d[i]) - 1), " "), 0x0, 0x0);
 	if (!s)
 		error_message(game, 6);
 	if (!ft_strcmp(str, "NO"))
