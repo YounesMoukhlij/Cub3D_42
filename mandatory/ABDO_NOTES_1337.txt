@@ -1,55 +1,27 @@
-!!!!! ONE !!!!!!!
 
-1 - go to parsing folder
-2 - go to parse_tools_2.C
-3 - change the (check_bef) function by this (copy && paste):
+______ >>> delete function check_order from parsing and from the header file.
 
-char	*check_bef(char *s, int i, int flag)
+
+______ >>> Go to parsing/parse_tools_3
+/////
+	1 - change this function check_color by this new one :
+
+int	check_color(t_cube *game, char **str)
 {
-	if (ft_strlen(s) < 3 || (s[i] != '.' && s[1] != '/'))
-		return (NULL);
-	while (s[i])
-	{
-		if (s[i] == '.' && s[i + 1] == 'p'
-			&& s[i + 2] == 'n' && s[i + 3] == 'g'
-			&& s[i + 4] == '\0')
-			flag = 1;
-		i++;
-	}
-	if (!flag)
-		return (0x0);
+	int	i;
+
 	i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		if (s[i] == '.' && s[i + 1] == '/')
-			break ;
-		if (s[i] != ' ' && s[i] != '.')
-			return (NULL);
+		if (ft_strlen(str[i]) > 3)
+			error_message(game, 10);
 		i++;
 	}
-	return (s);
+	if (i > 3)
+		error_message(game, 10);
+	return (0x0);
 }
-
-4 - change in following function name (get_path):
-
-s = check_bef(ft_strtrim(ft_substr(game->map_2d[i],
-					3, ft_strlen(game->map_2d[i]) - 1), " "), 0x0, 0x0);
-
-!!!!!! TWO !!!!!!!
-
-1 - in draw folder
-2 - in draw.c
-3 - I deleted in function casse_la_tete this :
-
-else if (game->map[game->start_y / BOX_MINI][game->start_x
-		/ BOX_MINI] == 'D')
-		mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 255, 0,
-				255));
-
-4 - dont change it in the bonus
-
-!!!!!! TREE !!!!!
-
+/////
 
 
 
@@ -66,33 +38,29 @@ Notes :
 	~ Maybe we'll change the error message in mlx_load_png.
 
 
- _ _ _ _ _ _ _ __ _ _ _ ____ __ _ _ _ CHECK THIS      _ __ __ _ _ _ _ __ _ _ _ __ _
 
- THE ERRORS YOU FOUND :
-1------------>
-1111111111111111111111111
-1000000000000000000000001
-1000000000000000000000001
-1000000000000000000000001
-1000000000000000000000001
-1000000001D11000000000001
-1000000000000000000000001
-1000000000000000000000001
-1000000000000000000000001
-1000000000000000000000001
-10000000S0000000000000001
-1000000000000000000000001
-1000000000000000000000001
-10000001D1000000000000001
-1000000000000000000000001
-1111111111111111111111111
 
-1111111111111111111111111
-1111111111111111111111111
 
-FIXED √
 
-2------------------> int max + 1 and add any integer less than 255 shoud be not over flow so not working
-C 104,117,214748364817
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
