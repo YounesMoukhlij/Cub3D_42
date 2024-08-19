@@ -46,6 +46,8 @@ else if (game->map[game->start_y / BOX_MINI][game->start_x
 		mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 255, 0,
 				255));
 
+4 - dont change it in the bonus
+
 !!!!!! TREE !!!!!
 
 
