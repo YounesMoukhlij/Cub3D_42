@@ -41,7 +41,7 @@ void	check_valid_members(t_cube *game, int i, int j)
 	{
 		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
-		if (check_rr(game->map_2d[i]))
+		if (game->map_2d[i][0] != ' ')
 			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
 				error_message(game, 8);
 		while (str[j])
@@ -55,13 +55,6 @@ void	check_valid_members(t_cube *game, int i, int j)
 		i++;
 	}
 }
-	3 - add this function before check_valid_members in the same file :
-
-int	check_rr(char *s)
-{
-	if (s[0] == ' ')
-		return (0x0);
-	return (0x1);
 }
 
 
