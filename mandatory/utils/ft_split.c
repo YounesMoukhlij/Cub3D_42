@@ -89,7 +89,7 @@ char	**ft_split(char *s, char c)
 		{
 			r[i] = ft_create(s, c);
 			if (!r[i++])
-				return (ft_free(r), NULL);
+				return (NULL);
 		}
 		while (*s && *s != c)
 			s++;

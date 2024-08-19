@@ -81,16 +81,13 @@ char	**read_map_from_file(char *map_1d, int fd, int is_map)
 		if (s_read == NULL)
 			break ;
 		if (!is_map)
-		{
 			if (small_check(ft_strtrim(s_read, " "), 0x0, 0x0))
 				is_map = 0x1;
-		}
 		if (is_map && s_read[0x0] == '\n')
 			return (close(fd), NULL);
 		str = ft_strjoin(str, s_read);
 		if (!str)
 			return (close(fd), NULL);
 	}
-	close(fd);
-	return (ft_split(str, '\n'));
+	return (close(fd), ft_split(str, '\n'));
 }

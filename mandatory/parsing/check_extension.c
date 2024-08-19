@@ -42,6 +42,11 @@ int	check_extension(char *file, int mode)
 
 int	check_walls(char *s, int i, int stat, t_cube *game)
 {
+	if (s[0] == ' ')
+	{
+		printf("%s\n", s);
+		return (0x0);
+	}
 	if (stat == 0x6 || stat == game->real_map_heigth + 0x5)
 	{
 		while (s[i])
