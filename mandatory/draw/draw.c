@@ -20,10 +20,6 @@ int	casse_la_tete(t_cube *game, int i, int j)
 	else if (game->map[game->start_y / BOX_MINI][game->start_x
 		/ BOX_MINI] == '1')
 		mlx_put_pixel(game->img_mini_map, j, i, 0xFF0000FF);
-	else if (game->map[game->start_y / BOX_MINI][game->start_x
-		/ BOX_MINI] == 'D')
-		mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 255, 0,
-				255));
 	else
 		mlx_put_pixel(game->img_mini_map, j, i, 0xFFFFFFFF);
 	return (0);
