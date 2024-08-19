@@ -115,7 +115,6 @@ void	parse(int ac, char *file, t_cube *game)
 	if (!game->map_2d)
 		error_message(game, 0x3);
 	game->found_door = 0;
-	check_order(game->map_2d, 0x0);
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
