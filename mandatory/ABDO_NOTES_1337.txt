@@ -1,5 +1,8 @@
 
-______ >>> delete function check_order from parsing and from the header file.
+______ >>> Go to parsing/parse.c
+/////
+	1 - delete function check_order from parsing and from the header file.
+/////
 
 
 ______ >>> Go to parsing/parse_tools_3
