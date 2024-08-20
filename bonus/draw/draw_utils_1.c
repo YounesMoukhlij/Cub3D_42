@@ -67,10 +67,9 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	}
 }
 
-void	ft_handle_image(t_cube *game, t_ray *ray, int x)
+void ft_handle_image(t_cube *game , t_ray *ray , int x)
 {
-	while (x > 0)
-	{
+	while(x > 0){
 		game->draws.dis = game->draws.i - WINDOW_HEIGTH / 2
 			+ game->draws.wall_heigth / 2;
 		game->offset_y = game->draws.dis * ((float)BOX_SIZE
@@ -82,7 +81,7 @@ void	ft_handle_image(t_cube *game, t_ray *ray, int x)
 		game->draws.a = game->img_wall->pixels[game->draws.j + 3];
 		mlx_put_pixel(game->img, ray->index, game->draws.i,
 			ft_color(game->draws.r, game->draws.g, game->draws.b,
-				game->draws.a));
+			game->draws.a));
 		x--;
 	}
 }

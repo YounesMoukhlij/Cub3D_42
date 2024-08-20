@@ -34,7 +34,7 @@ void	ft_draw_wall(t_cube *game, t_ray *ray, int z, int x)
 		z = check_view(game, ray);
 		if (z == 0)
 			x = BOX_SIZE / game->img_wall->width;
-		if (!x)
+		if (z)
 		{
 			draw_plus(game);
 			mlx_put_pixel(game->img, ray->index, game->draws.i,
