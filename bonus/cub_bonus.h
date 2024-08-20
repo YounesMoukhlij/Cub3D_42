@@ -176,9 +176,9 @@ typedef struct s_cube
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
-	int				player_x;
+	double				player_x;
+	double				player_y;
 	float			rotation_angle;
-	int				player_y;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
 	int				player_vision;

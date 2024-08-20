@@ -49,6 +49,7 @@ WE ./assets/card4.png
 2------------->fix the textures skilling 
 
 go to draw/draw_utils_1 and remove ft_handle_image
+change the datatype on t_cube struct of the offset_x and y to double 
 replace the following functions
 void    draw_plus(t_cube *game)
 void    ft_draw_wall(t_cube *game, t_ray *ray)
@@ -84,3 +85,7 @@ void    ft_draw_wall(t_cube *game, t_ray *ray)
         game->draws.i++;
     }
 }
+
+
+3------------> player movment fixing 
+change data type of player_x and player_y to double 
