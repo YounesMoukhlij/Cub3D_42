@@ -76,6 +76,7 @@ void	check_position(t_cube *game, char **s, int i, int j)
 	}
 }
 
+
 void	parse(int ac, char *file, t_cube *game)
 {
 	if (ac <= 1 || ac >= 3)
@@ -85,7 +86,6 @@ void	parse(int ac, char *file, t_cube *game)
 	game->map_2d = read_map_from_file(file, 0x0, 0x0);
 	if (!game->map_2d)
 		error_message(game, 0x3);
-	check_order(game->map_2d, 0x0);
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);

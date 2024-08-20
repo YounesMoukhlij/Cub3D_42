@@ -1,0 +1,99 @@
+
+______ >>> Go to parsing/parse.c
+/////
+	1 - delete function check_order from parsing and from the header file.
+/////
+
+
+______ >>> Go to parsing/parse_tools_3
+/////
+	1 - change this function check_color by this new one :
+
+int	check_color(t_cube *game, char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_strlen(str[i]) > 3)
+			error_message(game, 10);
+		i++;
+	}
+	if (i > 3)
+		error_message(game, 10);
+	return (0x0);
+}
+/////
+
+
+______ >>> Go to parsing/parse_tools_3
+/////
+	1 - Go to --> check_valid_members(t_cube *game, int i, int j)
+	2 - change it by :
+
+void	check_valid_members(t_cube *game, int i, int j)
+{
+	char	*str;
+
+	i = 0x6;
+	while (game->map_2d[i] && i > 0x5)
+	{
+		j = 0x0;
+		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
+		if (game->map_2d[i][0] != ' ')
+			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
+				error_message(game, 8);
+		while (str[j])
+		{
+			if (!(str[j] == '0' || str[j] == '1'
+					|| str[j] == 'N' || str[j] == 'S'
+					|| str[j] == 'W' || str[j] == 'E'))
+				error_message(game, 8);
+			j++;
+		}
+		i++;
+	}
+}
+}
+
+
+
+
+
+
+
+
+
+
+Notes :
+
+	~ Maybe we'll change the error message in mlx_load_png.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

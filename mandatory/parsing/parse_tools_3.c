@@ -21,11 +21,12 @@ void	check_valid_members(t_cube *game, int i, int j)
 	{
 		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
-		if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
-			error_message(game, 8);
+		if (game->map_2d[i][0] != ' ')
+			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
+				error_message(game, 8);
 		while (str[j])
 		{
-			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
+			if (!(str[j] == '0' || str[j] == '1'
 					|| str[j] == 'N' || str[j] == 'S'
 					|| str[j] == 'W' || str[j] == 'E'))
 				error_message(game, 8);
@@ -66,7 +67,11 @@ int	check_color(t_cube *game, char **str)
 
 	i = 0;
 	while (str[i])
+	{
+		if (ft_strlen(str[i]) > 3)
+			error_message(game, 10);
 		i++;
+	}
 	if (i > 3)
 		error_message(game, 10);
 	return (0x0);

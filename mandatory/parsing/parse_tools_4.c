@@ -55,10 +55,8 @@ void	ft_strcpy(char *s1, char *s2)
 
 char	*fill_spaces(char *s, int big_len, char *str)
 {
-	int	i;
 	int	tmp;
 
-	i = 0;
 	tmp = ft_strlen(s);
 	str = ft_malloc(big_len + 2, 1);
 	if (!s)

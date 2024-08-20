@@ -223,7 +223,6 @@ typedef struct s_cube
 	t_text			texture_walls;
 }					t_cube;
 
-void				check_order(char **s, int i);
 int					case_1(char **s, int i, int j);
 int					case_2(char **s, int i, int j);
 int					case_3(char **s, int i, int j);
