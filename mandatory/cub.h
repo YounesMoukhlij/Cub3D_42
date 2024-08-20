@@ -175,12 +175,11 @@ typedef struct s_cube
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
-	int				player_x;
+	double			player_x;
 	float			rotation_angle;
-	int				player_y;
+	double			player_y;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
-
 	int				raduis;
 	t_extra			extra;
 	t_pparse		parse_p;
@@ -211,8 +210,8 @@ typedef struct s_cube
 	char			*map_1d;
 	char			**map_2d;
 	char			**map;
-	int				offset_x;
-	int				offset_y;
+	double			offset_x;
+	double			offset_y;
 	uint32_t		*color;
 	int				real_map_width;
 	int				real_map_heigth;
@@ -244,7 +243,7 @@ int					ft_check_sprit(t_cube *game, int next_horizontal_x,
 void				get_path(t_cube *game, int i, char *str);
 
 void				fill_colors(t_cube *game, char *s, int mode);
-void				ft_draw_wall(t_cube *game, t_ray *ray, int x, int z);
+void				ft_draw_wall(t_cube *game, t_ray *ray);
 void				player_vision(char **s, t_cube *game);
 void				draw_wall_one(t_cube *game, t_ray *ray);
 int					parse_numbers(char *s);
