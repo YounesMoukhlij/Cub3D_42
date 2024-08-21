@@ -47,13 +47,13 @@ void	ft_put_player(t_cube *game)
 	int	pixel;
 	int	pixel1;
 
-	pixel = 0;
-	while (pixel <= PLAYER_SIZE_MINI_MAP)
+	pixel = 200 /2 - PLAYER_SIZE_MINI_MAP/2;
+	while (pixel <= 200 /2 + PLAYER_SIZE_MINI_MAP/2)
 	{
-		pixel1 = 0;
-		while (pixel1 <= PLAYER_SIZE_MINI_MAP)
+		pixel1 = 200 /2 - PLAYER_SIZE_MINI_MAP/2;
+		while (pixel1 <= 200 / 2 + PLAYER_SIZE_MINI_MAP/2)
 		{
-			mlx_put_pixel(game->img_mini_map, 101 + pixel1, 100 + pixel,
+			mlx_put_pixel(game->img_mini_map,  pixel1 , pixel ,
 				ft_color(50, 50, 0, 255));
 			pixel1++;
 		}

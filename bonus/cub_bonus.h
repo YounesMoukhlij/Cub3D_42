@@ -118,12 +118,36 @@ typedef struct s_text
 	char			*f;
 }					t_text;
 
+typedef struct s_draws
+{
+	int				dis;
+	int				j;
+	int				butt;
+	int				topp;
+	int				incr;
+	int				wall_heigth;
+	int				top;
+	int				bottom;
+	int				i;
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+
+}					t_draws;
+
 typedef struct s_ray
 {
+	float			is_facingdown;
+	float			is_facingleft;
+	float			is_facingup;
+	float			is_facingright;
 	float			wall_x;
 	float			wall_y;
 	float			distance;
 	int				coloum;
+	t_draws			draws;
+	int 			hit_v;
 	int				index;
 }					t_ray;
 
@@ -143,23 +167,6 @@ typedef struct s_png
 
 }					t_png;
 
-typedef struct s_draws
-{
-	int				dis;
-	int				j;
-	int				butt;
-	int				topp;
-	int				incr;
-	int				wall_heigth;
-	int				top;
-	int				bottom;
-	int				i;
-	int				r;
-	int				g;
-	int				b;
-	int				a;
-
-}					t_draws;
 
 typedef struct s_cube
 {
@@ -172,7 +179,6 @@ typedef struct s_cube
 	int				player_speed;
 	int				mouse_stat;
 	t_tools			twilzat;
-	t_draws			draws;
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
@@ -190,12 +196,7 @@ typedef struct s_cube
 	int				was_vertical;
 	float			player_new_y;
 	float			player_new_x;
-	float			is_facingdown;
-	float			is_facingleft;
-	int				hit_v;
 	t_png			png;
-	float			is_facingup;
-	float			is_facingright;
 	float			move;
 	int				player_walk;
 	int				player_turn;
@@ -222,12 +223,12 @@ typedef struct s_cube
 	t_colors		colors;
 	t_ray_tools		r_tools;
 	t_text			texture_walls;
+	t_ray			arr[WINDOW_WIDTH];
 }					t_cube;
 
 char				**ft_maping(t_cube *game, char **s, int i);
 char				*check_chars(char *s);
 void				ft_strcpy(char *s1, char *s2);
-void				ft_handle_image(t_cube *game, t_ray *ray, int x);
 void				ft_handle_mouse(void *param);
 int					case_1(char **s, int i, int j);
 int					case_2(char **s, int i, int j);
