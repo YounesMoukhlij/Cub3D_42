@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:46:20 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:55:24 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:05:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,30 @@ int	check_view(t_cube *game, t_ray *ray)
 	return (game->img_wall->width / BOX_SIZE);
 }
 
+void	get_info(t_ray *ray, t_cube *game)
+{
+	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance
+				* cos(game->rotation_angle - ray->ray_angle)))
+		* ((WINDOW_WIDTH / 2) / tan(PI / 6));
+	ray->draws.top = ft_max((WINDOW_HEIGTH / 2)
+			- (ray->draws.wall_heigth / 2), 0);
+	ray->draws.bottom = ft_min((WINDOW_HEIGTH / 2)
+			+ (ray->draws.wall_heigth / 2), WINDOW_HEIGTH);
+	get_x(game, ray);
+}
+
 void	draw_wall_one(t_cube *game, t_ray *ray)
 {
-	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance * cos(game->rotation_angle - ray->ray_angle))) * ((WINDOW_WIDTH / 2) / tan(PI / 6));
-	ray->draws.top = ft_max((WINDOW_HEIGTH / 2) - (ray->draws.wall_heigth / 2), 0);
-	ray->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (ray->draws.wall_heigth / 2),
-			WINDOW_HEIGTH);
-	get_x(game, ray);
-	ray->draws.i = ray->draws.top;
-	ray->draws.butt = ray->draws.bottom;
-	ray->draws.topp = ray->draws.top;
-	ray->draws.incr = 0;
-	while (ray->draws.incr++ < ray->draws.topp)
+	get_info(ray, game);
+	(1) && (ray->draws.i = ray->draws.top, ray->draws.butt = ray->draws.bottom);
+	(1) && (ray->draws.topp = ray->draws.top, ray->draws.incr = 0);
+	while (ray->draws.incr < ray->draws.topp)
+	{
 		mlx_put_pixel(game->img, ray->index, ray->draws.incr,
 			ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c,
 				255));
+		ray->draws.incr++;
+	}
 	ray->draws.incr = WINDOW_HEIGTH;
 	while (ray->draws.incr > ray->draws.butt)
 	{

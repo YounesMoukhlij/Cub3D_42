@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_20.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:53:55 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:56:18 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:48:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,13 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	ray->draws.butt = ray->draws.bottom;
 	ray->draws.topp = ray->draws.top;
 	ray->draws.incr = 0;
-	while (ray->draws.incr++ < ray->draws.topp)
+	while (ray->draws.incr < ray->draws.topp)
+	{
 		mlx_put_pixel(game->img, ray->index, ray->draws.incr,
 			ft_color(game->colors.r_c, game->colors.g_c,
 				game->colors.b_c, 255));
+		ray->draws.incr++;
+	}
 	ray->draws.incr = WINDOW_HEIGTH;
 	while (ray->draws.incr > ray->draws.butt)
 	{

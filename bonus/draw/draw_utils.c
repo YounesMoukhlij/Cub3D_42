@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:22:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:55:14 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:07:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void    draw_plus(t_cube *game, t_ray *ray)
 {
-    ray->draws.dis = ray->draws.i + ray->draws.wall_heigth / 2  -  WINDOW_HEIGTH / 2;
+    ray->draws.dis = ray->draws.i + (ray->draws.wall_heigth / 2) - (WINDOW_HEIGTH / 2);
   	game->offset_y = ray->draws.dis * ((float)BOX_SIZE / ray->draws.wall_heigth) / BOX_SIZE;
-    ray->draws.j = ((int)(game->offset_x * game->img_wall->width) + (int)(game->offset_y * game->img_wall->height) * game->img_wall->width) * 4;
-
+    ray->draws.j = ((int)(game->offset_x * game->img_wall->width)
+        + (int)(game->offset_y * game->img_wall->height) * game->img_wall->width) * 4;
     ray->draws.r = game->img_wall->pixels[ray->draws.j];
     ray->draws.g = game->img_wall->pixels[ray->draws.j + 1];
     ray->draws.b = game->img_wall->pixels[ray->draws.j + 2];
@@ -43,20 +43,17 @@ void    ft_draw_wall(t_cube *game, t_ray *ray)
     }
 }
 
-void	draw_line_dda(t_cube *game)
+void	draw_line_dda(t_cube *game, int i, int colum)
 {
-	int	i;
-	int	colun;
-    t_ray ray;
-	colun = 0;
-	i = 0;
+    t_ray   ray;
+
 	ray.ray_angle = (game->rotation_angle - (game->field_of_view_angle / 2));
 	while (i < game->num_ray)
 	{
-		ray_cast(colun, game , &ray);
+		ray_cast(colum, game , &ray);
 		ray.ray_angle += (game->field_of_view_angle / game->num_ray);
 		i++;
-		colun++;
+		colum++;
 	}
     i = 0;
     while (i < game->num_ray)
