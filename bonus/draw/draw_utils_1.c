@@ -39,7 +39,7 @@ int	check_view(t_cube *game, t_ray *ray)
 
 void	draw_wall_one(t_cube *game, t_ray *ray)
 {
-	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance * cos(game->rotation_angle - game->ray_angle))) * ((WINDOW_WIDTH / 2) / tan(PI / 6));
+	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance * cos(game->rotation_angle - ray->ray_angle))) * ((WINDOW_WIDTH / 2) / tan(PI / 6));
 	ray->draws.top = ft_max((WINDOW_HEIGTH / 2) - (ray->draws.wall_heigth / 2), 0);
 	ray->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (ray->draws.wall_heigth / 2),
 			WINDOW_HEIGTH);

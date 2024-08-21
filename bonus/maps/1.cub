@@ -3,18 +3,18 @@
 
 
 
-NO ./assets/small.png
+NO ./assets/png_1.png
 
 
-SO  ./assets/big.png
+SO  ./assets/png_2.png
 
 
-WE ./assets/big.png
+WE ./assets/png_3.png
 
 
 
 
-EA ./assets/big.png
+EA ./assets/png_4.png
 
 
 F 0,0,0

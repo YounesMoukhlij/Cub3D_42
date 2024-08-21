@@ -47,14 +47,14 @@ void	draw_line_dda(t_cube *game)
 {
 	int	i;
 	int	colun;
-
+    t_ray ray;
 	colun = 0;
 	i = 0;
-	game->ray_angle = (game->rotation_angle - (game->field_of_view_angle / 2));
+	ray.ray_angle = (game->rotation_angle - (game->field_of_view_angle / 2));
 	while (i < game->num_ray)
 	{
-		ray_cast(colun, game);
-		game->ray_angle += (game->field_of_view_angle / game->num_ray);
+		ray_cast(colun, game , &ray);
+		ray.ray_angle += (game->field_of_view_angle / game->num_ray);
 		i++;
 		colun++;
 	}
