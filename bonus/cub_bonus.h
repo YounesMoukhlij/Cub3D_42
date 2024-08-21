@@ -176,9 +176,9 @@ typedef struct s_cube
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
-	int				player_x;
+	double				player_x;
+	double				player_y;
 	float			rotation_angle;
-	int				player_y;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
 	int				player_vision;
@@ -212,8 +212,8 @@ typedef struct s_cube
 	char			*map_1d;
 	char			**map_2d;
 	char			**map;
-	int				offset_x;
-	int				offset_y;
+	double 				offset_x;
+	double 				offset_y;
 	uint32_t		*color;
 	int				real_map_width;
 	int				real_map_heigth;
@@ -317,7 +317,7 @@ int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				draw_line_dda(t_cube *game);
 int					ft_check_walls(t_cube *game, int x, int y);
-void				ft_draw_wall(t_cube *game, t_ray *ray, int z, int x);
+void				ft_draw_wall(t_cube *game, t_ray *ray);
 
 char				*get_next_line(int fd);
 void				error_reading_map(int mode);

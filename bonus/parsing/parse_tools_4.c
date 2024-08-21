@@ -99,11 +99,11 @@ void	ft_load_textures(t_cube *game)
 	game->png.so = open_image(game->texture_walls.so, game);
 	game->png.no = open_image(game->texture_walls.no, game);
 	game->png.we = open_image(game->texture_walls.we, game);
-	if (game->found_door)
+	if (!game->found_door)
 	{
 		game->png.door = open_image("./assets/door.png", game);
 	}
-	if (!game->png.door && game->found_door)
+	if (game->png.door && game->found_door)
 		error_message(game, 0x6);
 	if (!game->png.ea || !game->png.no || !game->png.so
 		|| !game->png.we)
