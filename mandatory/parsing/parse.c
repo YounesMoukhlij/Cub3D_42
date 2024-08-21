@@ -88,7 +88,7 @@ void	parse(int ac, char *file, t_cube *game)
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
-	check_valid_members(game, 0x0, 0x0);
+	check_valid_members(game, 0x6, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
 	ft_load_textures(game);

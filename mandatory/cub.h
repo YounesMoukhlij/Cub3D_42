@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -114,8 +113,6 @@ typedef struct s_text
 	char			*so;
 	char			*we;
 	char			*ea;
-	char			*c;
-	char			*f;
 }					t_text;
 
 typedef struct s_draws

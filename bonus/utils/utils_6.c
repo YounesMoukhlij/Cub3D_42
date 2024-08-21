@@ -104,7 +104,7 @@ void	ft_check_move(void *tmp)
 			game->mouse_stat = 1;
 	}
 	ft_drawing_map(game);
-	draw_line_dda(game);
+	draw_line_dda(game, 0, 0);
 }
 
 void	init_image(t_cube *game)

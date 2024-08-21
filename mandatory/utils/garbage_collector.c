@@ -43,7 +43,6 @@ void	*ft_malloc(size_t size, int mode)
 {
 	static t_delete	*collecte;
 	void			*str;
-	t_delete		*lst;
 
 	str = NULL;
 	if (mode == 0x1)

@@ -41,7 +41,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = cub3D
-CFLAGS =  -Ofast 
+CFLAGS =  -Ofast -Wall -Wextra -Werror
 
 all : $(NAME)
 

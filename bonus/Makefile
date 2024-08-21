@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = cub3d.c \
+SRC = cub3d_bonus.c \
 	  parsing/get_line.c \
 	  parsing/parse.c \
 	  parsing/parse_tools.c \
@@ -42,7 +42,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub_bonus.h
 NAME = cub3D_bonus
-CFLAGS = -Ofast -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Ofast -Wall -Wextra -Werror #-g -fsanitize=address
 
 bonus : $(NAME)
 
@@ -63,6 +63,6 @@ fclean : clean
 	@rm -rf $(NAME)
 	@echo "\033[1;33m Executable has been deleted Successfully. \033[0m"
 
-re : fclean all
+re : fclean bonus
 
 .PHONY : clean

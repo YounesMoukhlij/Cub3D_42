@@ -12,10 +12,16 @@
 
 #include "cub_bonus.h"
 
+void	show()
+{
+	system("leaks cub3D_bonus");
+}
+
 int	main(int ac, char **av)
 {
 	t_cube	game;
 
+	atexit(show);
 	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGTH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
 	init_image(&game);

@@ -12,12 +12,32 @@
 
 #include "../cub_bonus.h"
 
+int	check_last(char *s, int i)
+{
+	char	*str;
+
+	while (s[i])
+	{
+		if (s[i] == ' ')
+			break ;
+		i++;
+	}
+	str = ft_substr(s, 0, i);
+	if (!str)
+		return (1);
+	if (ft_strlen(str) > 0x2)
+		return (1);
+	return (0);
+}
+
 void	check_texture_intra(t_cube *game, int i)
 {
 	char	*str;
 
 	while (game->map_2d[i] && i < 0x6)
 	{
+		if (check_last(game->map_2d[i], 0))
+			error_message(game, 0x4);
 		str = ft_substr(game->map_2d[i], 0x0, 2);
 		if (!ft_strcmp(str, "NO"))
 			game->cnt.a1++;

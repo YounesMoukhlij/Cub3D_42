@@ -12,6 +12,23 @@
 
 #include "../cub_bonus.h"
 
+int	check_text(char *s)
+{
+	if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "NO"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "SO"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "WE"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "EA"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "C "))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "F "))
+		return (0x1);
+	return (0x0);
+}
+
 void	check_valid_members(t_cube *game, int i, int j)
 {
 	char	*str;
@@ -23,7 +40,11 @@ void	check_valid_members(t_cube *game, int i, int j)
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
 		if (game->map_2d[i][0] != ' ')
 			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
+			{
+				if (check_text(ft_strtrim(game->map_2d[i], " ")))
+					error_message(game, 4);
 				error_message(game, 8);
+			}
 		while (str[j])
 		{
 			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'
@@ -59,7 +80,6 @@ void	player_vision(char **s, t_cube *game)
 		}
 		i++;
 	}
-	game->rotation_angle = 3 * PI / 4;
 }
 
 int	parse_numbers(char *s)

@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
-// # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -114,8 +113,6 @@ typedef struct s_text
 	char			*so;
 	char			*we;
 	char			*ea;
-	char			*c;
-	char			*f;
 }					t_text;
 
 typedef struct s_draws
@@ -241,7 +238,6 @@ void				extra_tree(t_cube *game, double *x, double *y);
 void				ft_check_move(void *tmp);
 void				init_image(t_cube *game);
 void				draw_wall_one(t_cube *game, t_ray *ray);
-void				draw_line_dda(t_cube *game);
 int					check_me(int x, int y, int width, int heigth);
 
 int					ft_check_sprit(t_cube *game, int next_horizontal_x,
@@ -290,7 +286,6 @@ void				get_x(t_cube *game, t_ray *ray);
 int					ft_color(int r, int g, int b, int a);
 float				ft_max(float a, float b);
 float				ft_min(float a, float b);
-void				draw_line_dda(t_cube *game);
 void				fifth_chapter(t_cube *game, t_ray *ray);
 void				sixth_extra_chapter(t_cube *game, t_ray *ray);
 int					check_color(t_cube *game, char **str);
@@ -315,7 +310,7 @@ void				ray_cast(int colum, t_cube *game, t_ray *ray);
 float				ft_normalize(float angel);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
-void				draw_line_dda(t_cube *game);
+void				draw_line_dda(t_cube *game , int i , int coloum);
 int					ft_check_walls(t_cube *game, int x, int y);
 void				ft_draw_wall(t_cube *game, t_ray *ray);
 
