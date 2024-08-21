@@ -33,7 +33,7 @@ float	ft_min(float a, float b)
 
 void	get_x(t_cube *game, t_ray *ray)
 {
-	if (game->hit_v)
+	if (ray->hit_v)
 		game->offset_x = (int)ray->wall_y % BOX_SIZE;
 	else
 		game->offset_x = (int)ray->wall_x % BOX_SIZE;

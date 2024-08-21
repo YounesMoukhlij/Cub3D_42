@@ -6,47 +6,47 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:33:23 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 13:00:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:42:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void	first_chapter(t_cube *game)
+void	first_chapter(t_cube *game , t_ray *ray)
 {
-	game->ray_angle = ft_normalize(game->ray_angle);
-	game->is_facingdown = game->ray_angle > 0 && game->ray_angle < PI;
-	game->is_facingup = !game->is_facingdown;
-	game->is_facingright = game->ray_angle < (0.5 * PI)
-		|| game->ray_angle > (1.5 * PI);
-	game->is_facingleft = !game->is_facingright;
+	ray->ray_angle = ft_normalize(ray->ray_angle);
+	ray->is_facingdown = ray->ray_angle > 0 && ray->ray_angle < PI;
+	ray->is_facingup = !ray->is_facingdown;
+	ray->is_facingright = ray->ray_angle < (0.5 * PI)
+		|| ray->ray_angle > (1.5 * PI);
+	ray->is_facingleft = !ray->is_facingright;
 	game->r_tools.intercept_y = 0;
 	game->r_tools.intercept_x = 0;
 	game->r_tools.step_x = 0;
 	game->r_tools.step_y = 0;
 }
 
-void	second_chapter(t_cube *game)
+void	second_chapter(t_cube *game , t_ray *ray)
 {
 	game->r_tools.intercept_y = floor((game->player_x / BOX_SIZE)) * BOX_SIZE;
-	if (game->is_facingdown)
+	if (ray->is_facingdown)
 		game->r_tools.intercept_y += BOX_SIZE;
 	game->r_tools.intercept_x = game->player_y + (game->r_tools.intercept_y
-			- game->player_x) / tan(game->ray_angle);
+			- game->player_x) / tan(ray->ray_angle);
 	game->r_tools.step_y = BOX_SIZE;
-	if (game->is_facingup)
+	if (ray->is_facingup)
 		game->r_tools.step_y *= -1;
-	game->r_tools.step_x = BOX_SIZE / (tan(game->ray_angle));
-	if (game->is_facingleft && game->r_tools.step_x > 0)
+	game->r_tools.step_x = BOX_SIZE / (tan(ray->ray_angle));
+	if (ray->is_facingleft && game->r_tools.step_x > 0)
 		game->r_tools.step_x *= -1;
-	if (game->is_facingright && game->r_tools.step_x < 0)
+	if (ray->is_facingright && game->r_tools.step_x < 0)
 		game->r_tools.step_x *= -1;
 	game->r_tools.wall_horizontal_y = 0;
 	game->r_tools.wall_horizontal_x = 0;
 	game->r_tools.found_horizontal_wall = 0;
 	game->r_tools.next_horizontal_x = game->r_tools.intercept_x;
 	game->r_tools.next_horizontal_y = game->r_tools.intercept_y;
-	if (game->is_facingup)
+	if (ray->is_facingup)
 		game->r_tools.next_horizontal_y--;
 }
 
@@ -83,37 +83,35 @@ void	fourth_chapter(t_cube *game, t_ray *ray)
 	game->r_tools.wall_vertical_y = 0;
 	game->r_tools.wall_vertical_x = 0;
 	game->r_tools.intercept_x = floor((game->player_y / BOX_SIZE)) * BOX_SIZE;
-	if (game->is_facingright)
+	if (ray->is_facingright)
 		game->r_tools.intercept_x += BOX_SIZE;
 	game->r_tools.intercept_y = game->player_x + (game->r_tools.intercept_x
-			- game->player_y) * tan(game->ray_angle);
+			- game->player_y) * tan(ray->ray_angle);
 	game->r_tools.step_x = BOX_SIZE;
-	if (game->is_facingleft)
+	if (ray->is_facingleft)
 		game->r_tools.step_x *= -1;
-	game->r_tools.step_y = BOX_SIZE * (tan(game->ray_angle));
-	if (game->is_facingup && game->r_tools.step_y > 0)
+	game->r_tools.step_y = BOX_SIZE * (tan(ray->ray_angle));
+	if (ray->is_facingup && game->r_tools.step_y > 0)
 		game->r_tools.step_y *= -1;
-	if (game->is_facingdown && game->r_tools.step_y < 0)
+	if (ray->is_facingdown && game->r_tools.step_y < 0)
 		game->r_tools.step_y *= -1;
 	game->r_tools.next_vertical_x = game->r_tools.intercept_x;
 	game->r_tools.next_vertical_y = game->r_tools.intercept_y;
-	if (game->is_facingleft)
+	if (ray->is_facingleft)
 		game->r_tools.next_vertical_x--;
 }
 
-void	ray_cast(int colum, t_cube *game)
+void	ray_cast(int colum, t_cube *game , t_ray *ray)
 {
-	t_ray	ray;
-
-	first_chapter(game);
-	second_chapter(game);
+	first_chapter(game, ray);
+	second_chapter(game, ray);
 	third_chapter(game);
-	fourth_chapter(game, &ray);
-	fifth_chapter(game, &ray);
-	sixth_chapter(game, &ray);
-	ray.index = colum;
+	fourth_chapter(game, ray);
+	fifth_chapter(game, ray);
+	sixth_chapter(game, ray);
+	ray->index = colum;
 	game->was_vertical = 0;
 	game->was_vertical = (game->r_tools.vertical_wall_distance
 			< game->r_tools.horizontal_wall_distance);
-	ft_draw_wall(game, &ray);
+	game->arr[colum] = *ray; 
 }

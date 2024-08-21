@@ -118,12 +118,37 @@ typedef struct s_text
 	char			*f;
 }					t_text;
 
+typedef struct s_draws
+{
+	int				dis;
+	int				j;
+	int				butt;
+	int				topp;
+	int				incr;
+	int				wall_heigth;
+	int				top;
+	int				bottom;
+	int				i;
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+
+}					t_draws;
+
 typedef struct s_ray
 {
+	float			ray_angle;
+	float			is_facingdown;
+	float			is_facingleft;
+	float			is_facingup;
+	float			is_facingright;
 	float			wall_x;
 	float			wall_y;
 	float			distance;
 	int				coloum;
+	t_draws			draws;
+	int 			hit_v;
 	int				index;
 }					t_ray;
 
@@ -143,26 +168,9 @@ typedef struct s_png
 
 }					t_png;
 
-typedef struct s_draws
-{
-	int				dis;
-	int				j;
-	int				butt;
-	int				topp;
-	int				incr;
-	int				wall_heigth;
-	int				top;
-	int				bottom;
-	int				i;
-	int				r;
-	int				g;
-	int				b;
-	int				a;
-
-}					t_draws;
-
 typedef struct s_cube
 {
+	int				found_door;
 	float			mouse_speed;
 	float			rotation_speed;
 	int				start_x;
@@ -171,15 +179,15 @@ typedef struct s_cube
 	int				player_speed;
 	int				mouse_stat;
 	t_tools			twilzat;
-	t_draws			draws;
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
-	double			player_x;
+	double				player_x;
+	double				player_y;
 	float			rotation_angle;
-	double			player_y;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
+	int				player_vision;
 	int				raduis;
 	t_extra			extra;
 	t_pparse		parse_p;
@@ -188,19 +196,14 @@ typedef struct s_cube
 	int				was_vertical;
 	float			player_new_y;
 	float			player_new_x;
-	float			is_facingdown;
-	float			is_facingleft;
-	int				hit_v;
 	t_png			png;
-	float			is_facingup;
-	float			is_facingright;
 	float			move;
 	int				player_walk;
 	int				player_turn;
 	int				map_widht;
 	int				map_height;
 	mlx_t			*mlx;
-	int				player_vision;
+
 	mlx_texture_t	*texture;
 
 	mlx_image_t		*img_wall;
@@ -210,16 +213,16 @@ typedef struct s_cube
 	char			*map_1d;
 	char			**map_2d;
 	char			**map;
-	double			offset_x;
-	double			offset_y;
+	double 				offset_x;
+	double 				offset_y;
 	uint32_t		*color;
 	int				real_map_width;
 	int				real_map_heigth;
-	float			ray_angle;
 	t_counter		cnt;
 	t_colors		colors;
 	t_ray_tools		r_tools;
 	t_text			texture_walls;
+	t_ray			arr[WINDOW_WIDTH];
 }					t_cube;
 
 int					case_1(char **s, int i, int j);
@@ -296,7 +299,7 @@ int					player_num(t_cube *game);
 int					check_view(t_cube *game, t_ray *ray);
 char				*fix_the_map(char *s, int i, int flag, int j);
 int					check_walls(char *s, int i, int stat, t_cube *game);
-void				ray_cast(int colum, t_cube *game);
+void				ray_cast(int colum, t_cube *game ,t_ray *ray);
 float				ft_normalize(float angel);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
