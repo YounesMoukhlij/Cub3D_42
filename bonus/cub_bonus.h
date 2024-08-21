@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:55:04 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:01:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,8 +176,8 @@ typedef struct s_cube
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
-	double				player_x;
-	double				player_y;
+	double			player_x;
+	double			player_y;
 	float			rotation_angle;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
@@ -243,27 +243,17 @@ void				init_image(t_cube *game);
 void				draw_wall_one(t_cube *game, t_ray *ray);
 void				draw_line_dda(t_cube *game);
 int					check_me(int x, int y, int width, int heigth);
-
 int					ft_check_sprit(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				get_path(t_cube *game, int i, char *str);
-
 void				fill_colors(t_cube *game, char *s, int mode);
-
 void				player_vision(char **s, t_cube *game);
-
 int					parse_numbers(char *s);
-
 void				check_valid_members(t_cube *game, int i, int j);
-
 int					check_walls(char *s, int i, int stat, t_cube *game);
-
 void				parse_entry(t_cube *game, int i);
-
 int					check_one(t_cube *game, char *s);
-
 int					ultra_check(t_cube *game, int mode);
-
 char				*fill_chars(t_cube *game, char *s);
 
 void				check_texture_intra(t_cube *game, int i);
@@ -278,9 +268,7 @@ int					ft_strlen_ii(char *s);
 int					parse_numbers(char *s);
 int					check_colesion(t_cube *game, int x, int y);
 void				fill_colors(t_cube *game, char *s, int mode);
-
 void				get_path(t_cube *game, int i, char *str);
-
 int					check_extension(char *file, int mode);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
@@ -294,7 +282,6 @@ void				draw_line_dda(t_cube *game);
 void				fifth_chapter(t_cube *game, t_ray *ray);
 void				sixth_extra_chapter(t_cube *game, t_ray *ray);
 int					check_color(t_cube *game, char **str);
-
 void				sixth_chapter(t_cube *game, t_ray *ray);
 void				parse_s(t_cube *game, char *s, int i);
 int					get_length_heigth(char **str, int mode, int i);
@@ -302,13 +289,8 @@ char				*get_next_line(int fd);
 void				error_reading_map(int mode);
 void				error_message(t_cube *var, int mode);
 void				parse(int ac, char *file, t_cube *var);
-
 int					check_view(t_cube *game, t_ray *ray);
-
 char				*fix_the_map(char *s, int i, int flag, int j);
-
-// ********** RAY_CAST ********
-
 int					check_walls(char *s, int i, int stat, t_cube *game);
 
 void				ray_cast(int colum, t_cube *game);

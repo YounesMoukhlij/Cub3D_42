@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:46:20 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:55:24 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:01:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_view(t_cube *game, t_ray *ray)
 {
-	(void)ray;
 	if (game->map[(int)(ray->wall_y / BOX_SIZE)][(int)(ray->wall_x
 			/ BOX_SIZE)] == 'D')
 		game->img_wall = game->png.door;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:22:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:55:14 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:02:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void    draw_plus(t_cube *game)
 {
-    game->draws.dis = game->draws.i + game->draws.wall_heigth / 2  -  WINDOW_HEIGTH / 2;
+    game->draws.dis = game->draws.i
+        + (game->draws.wall_heigth / 2)
+        - ( WINDOW_HEIGTH / 2);
   	game->offset_y = game->draws.dis * ((float)BOX_SIZE / game->draws.wall_heigth) / BOX_SIZE;
-    game->draws.j = ((int)(game->offset_x * game->img_wall->width) + (int)(game->offset_y * game->img_wall->height) * game->img_wall->width) * 4;
-
+    game->draws.j = ((int)(game->offset_x * game->img_wall->width)
+        + (int)(game->offset_y * game->img_wall->height)
+        * game->img_wall->width) * 4;
     game->draws.r = game->img_wall->pixels[game->draws.j];
     game->draws.g = game->img_wall->pixels[game->draws.j + 1];
     game->draws.b = game->img_wall->pixels[game->draws.j + 2];

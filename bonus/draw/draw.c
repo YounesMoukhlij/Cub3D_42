@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:16:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:00:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ void	ft_drawing_map_element(t_cube *game, int i, int j)
 		i++;
 	}
 }
-
