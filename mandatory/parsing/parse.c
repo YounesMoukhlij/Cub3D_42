@@ -76,7 +76,6 @@ void	check_position(t_cube *game, char **s, int i, int j)
 	}
 }
 
-
 void	parse(int ac, char *file, t_cube *game)
 {
 	if (ac <= 1 || ac >= 3)

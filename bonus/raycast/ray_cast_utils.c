@@ -39,7 +39,6 @@ void	fifth_chapter(t_cube *game, t_ray *ray)
 
 void	sixth_extra_chapter(t_cube *game, t_ray *ray)
 {
-
 	if (game->r_tools.horizontal_wall_distance
 		< game->r_tools.vertical_wall_distance)
 	{

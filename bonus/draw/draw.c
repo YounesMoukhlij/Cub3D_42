@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 14:05:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:19:35 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	casse_la_tete(t_cube *game, int i, int j)
 {
-	if (!game->map[game->start_y / BOX_MINI][game->start_x
-		/ BOX_MINI])
+	if (!game->map[game->start_y / BOX_MINI][game->start_x / BOX_MINI])
 		return (0x1);
 	else if (game->map[game->start_y / BOX_MINI][game->start_x
 		/ BOX_MINI] == '1')
 		mlx_put_pixel(game->img_mini_map, j, i, 0xFF0000FF);
 	else if (game->map[game->start_y / BOX_MINI][game->start_x
 		/ BOX_MINI] == 'D')
-		mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 255, 0,
-				255));
+		mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 255, 0, 255));
 	else
 		mlx_put_pixel(game->img_mini_map, j, i, 0xFFFFFFFF);
 	return (0);
@@ -40,15 +38,15 @@ void	ft_drawing_map_element(t_cube *game, int i, int j)
 		game->start_x = game->player_x_mini_map - 100;
 		while (game->start_x < game->player_x_mini_map + 100)
 		{
-			if (check_me(game->start_x, game->start_y,
-					game->map_widht, game->map_height))
+			if (check_me(game->start_x, game->start_y, game->map_widht,
+					game->map_height))
 			{
 				if (casse_la_tete(game, i, j))
 					break ;
 			}
 			else
-				mlx_put_pixel(game->img_mini_map, j, i,
-					ft_color(0, 32, 0, 255));
+				mlx_put_pixel(game->img_mini_map, j, i, ft_color(0, 32, 0,
+						255));
 			game->start_x++;
 			j++;
 		}

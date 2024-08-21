@@ -6,7 +6,7 @@
 /*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:52:54 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:24:52 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ typedef struct s_ray
 	float			distance;
 	int				coloum;
 	t_draws			draws;
-	int 			hit_v;
+	int				hit_v;
 	int				index;
 }					t_ray;
 
@@ -182,8 +182,8 @@ typedef struct s_cube
 	char			**final_map;
 	int				mini_heigth;
 	int				mini_width;
-	double				player_x;
-	double				player_y;
+	double			player_x;
+	double			player_y;
 	float			rotation_angle;
 	int				player_y_mini_map;
 	int				player_x_mini_map;
@@ -213,8 +213,8 @@ typedef struct s_cube
 	char			*map_1d;
 	char			**map_2d;
 	char			**map;
-	double 				offset_x;
-	double 				offset_y;
+	double			offset_x;
+	double			offset_y;
 	uint32_t		*color;
 	int				real_map_width;
 	int				real_map_heigth;
@@ -299,7 +299,7 @@ int					player_num(t_cube *game);
 int					check_view(t_cube *game, t_ray *ray);
 char				*fix_the_map(char *s, int i, int flag, int j);
 int					check_walls(char *s, int i, int stat, t_cube *game);
-void				ray_cast(int colum, t_cube *game ,t_ray *ray);
+void				ray_cast(int colum, t_cube *game, t_ray *ray);
 float				ft_normalize(float angel);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);

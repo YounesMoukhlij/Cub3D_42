@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:53:55 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 13:48:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:25:49 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	parse_numbers(char *s)
 
 int	check_view(t_cube *game, t_ray *ray)
 {
-	(void)ray;
 	if (!ray->hit_v)
 	{
 		if (ray->is_facingup)
@@ -61,9 +60,10 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance
 				* cos(game->rotation_angle - ray->ray_angle))) * ((WINDOW_WIDTH
 				/ 2) / tan(PI / 6));
-	ray->draws.top = ft_max((WINDOW_HEIGTH / 2) - (ray->draws.wall_heigth / 2), 0);
-	ray->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (ray->draws.wall_heigth / 2),
-			WINDOW_HEIGTH);
+	ray->draws.top = ft_max((WINDOW_HEIGTH / 2) - (ray->draws.wall_heigth / 2),
+			0);
+	ray->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (ray->draws.wall_heigth
+				/ 2), WINDOW_HEIGTH);
 	get_x(game, ray);
 	ray->draws.i = ray->draws.top;
 	ray->draws.butt = ray->draws.bottom;
@@ -72,8 +72,8 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	while (ray->draws.incr < ray->draws.topp)
 	{
 		mlx_put_pixel(game->img, ray->index, ray->draws.incr,
-			ft_color(game->colors.r_c, game->colors.g_c,
-				game->colors.b_c, 255));
+			ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c,
+				255));
 		ray->draws.incr++;
 	}
 	ray->draws.incr = WINDOW_HEIGTH;

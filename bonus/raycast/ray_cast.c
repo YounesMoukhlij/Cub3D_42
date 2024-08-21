@@ -12,7 +12,7 @@
 
 #include "../cub_bonus.h"
 
-void	first_chapter(t_cube *game , t_ray *ray)
+void	first_chapter(t_cube *game, t_ray *ray)
 {
 	ray->ray_angle = ft_normalize(ray->ray_angle);
 	ray->is_facingdown = ray->ray_angle > 0 && ray->ray_angle < PI;
@@ -26,7 +26,7 @@ void	first_chapter(t_cube *game , t_ray *ray)
 	game->r_tools.step_y = 0;
 }
 
-void	second_chapter(t_cube *game , t_ray *ray)
+void	second_chapter(t_cube *game, t_ray *ray)
 {
 	game->r_tools.intercept_y = floor((game->player_x / BOX_SIZE)) * BOX_SIZE;
 	if (ray->is_facingdown)
@@ -101,7 +101,7 @@ void	fourth_chapter(t_cube *game, t_ray *ray)
 		game->r_tools.next_vertical_x--;
 }
 
-void	ray_cast(int colum, t_cube *game , t_ray *ray)
+void	ray_cast(int colum, t_cube *game, t_ray *ray)
 {
 	first_chapter(game, ray);
 	second_chapter(game, ray);
@@ -113,5 +113,5 @@ void	ray_cast(int colum, t_cube *game , t_ray *ray)
 	game->was_vertical = 0;
 	game->was_vertical = (game->r_tools.vertical_wall_distance
 			< game->r_tools.horizontal_wall_distance);
-	game->arr[colum] = *ray; 
+	game->arr[colum] = *ray;
 }

@@ -6,19 +6,19 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:33:23 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/17 19:42:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:25:28 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void	first_chapter(t_cube *game , t_ray *ray)
+void	first_chapter(t_cube *game, t_ray *ray)
 {
 	ray->ray_angle = ft_normalize(ray->ray_angle);
 	ray->is_facingdown = ray->ray_angle > 0 && ray->ray_angle < PI;
 	ray->is_facingup = !ray->is_facingdown;
-	ray->is_facingright = ray->ray_angle < (0.5 * PI)
-		|| ray->ray_angle > (1.5 * PI);
+	ray->is_facingright = ray->ray_angle < (0.5 * PI) || ray->ray_angle > (1.5
+			* PI);
 	ray->is_facingleft = !ray->is_facingright;
 	game->r_tools.intercept_y = 0;
 	game->r_tools.intercept_x = 0;
@@ -26,7 +26,7 @@ void	first_chapter(t_cube *game , t_ray *ray)
 	game->r_tools.step_y = 0;
 }
 
-void	second_chapter(t_cube *game , t_ray *ray)
+void	second_chapter(t_cube *game, t_ray *ray)
 {
 	game->r_tools.intercept_y = floor((game->player_x / BOX_SIZE)) * BOX_SIZE;
 	if (ray->is_facingdown)
@@ -50,7 +50,7 @@ void	second_chapter(t_cube *game , t_ray *ray)
 		game->r_tools.next_horizontal_y--;
 }
 
-void	third_chapter(t_cube *game )
+void	third_chapter(t_cube *game)
 {
 	while (game->r_tools.next_horizontal_x >= 0
 		&& game->r_tools.next_horizontal_x <= game->map_widht
@@ -101,7 +101,7 @@ void	fourth_chapter(t_cube *game, t_ray *ray)
 		game->r_tools.next_vertical_x--;
 }
 
-void	ray_cast(int colum, t_cube *game , t_ray *ray)
+void	ray_cast(int colum, t_cube *game, t_ray *ray)
 {
 	first_chapter(game, ray);
 	second_chapter(game, ray);
@@ -113,5 +113,5 @@ void	ray_cast(int colum, t_cube *game , t_ray *ray)
 	game->was_vertical = 0;
 	game->was_vertical = (game->r_tools.vertical_wall_distance
 			< game->r_tools.horizontal_wall_distance);
-	game->arr[colum] = *ray; 
+	game->arr[colum] = *ray;
 }

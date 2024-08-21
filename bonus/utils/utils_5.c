@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 18:49:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 12:22:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:19:23 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	ft_check_door(t_cube *game, int next_horizontal_x, int next_horizontal_y)
 		/ BOX_SIZE > game->map_height)
 		return (0);
 	if ((game->map[(next_horizontal_y / BOX_SIZE)]
-			[(next_horizontal_x / BOX_SIZE)]
-			== 'D' && (x > BOX_SIZE / 2 || y > BOX_SIZE / 2)))
+			[(next_horizontal_x / BOX_SIZE)] == 'D'
+			&& (x > BOX_SIZE / 2 || y > BOX_SIZE / 2)))
 		return (1);
 	return (0);
 }
@@ -47,14 +47,14 @@ void	ft_put_player(t_cube *game)
 	int	pixel;
 	int	pixel1;
 
-	pixel = 200 /2 - PLAYER_SIZE_MINI_MAP/2;
-	while (pixel <= 200 /2 + PLAYER_SIZE_MINI_MAP/2)
+	pixel = 200 / 2 - PLAYER_SIZE_MINI_MAP / 2;
+	while (pixel <= 200 / 2 + PLAYER_SIZE_MINI_MAP / 2)
 	{
-		pixel1 = 200 /2 - PLAYER_SIZE_MINI_MAP/2;
-		while (pixel1 <= 200 / 2 + PLAYER_SIZE_MINI_MAP/2)
+		pixel1 = 200 / 2 - PLAYER_SIZE_MINI_MAP / 2;
+		while (pixel1 <= 200 / 2 + PLAYER_SIZE_MINI_MAP / 2)
 		{
-			mlx_put_pixel(game->img_mini_map,  pixel1 , pixel ,
-				ft_color(50, 50, 0, 255));
+			mlx_put_pixel(game->img_mini_map, pixel1, pixel, ft_color(50, 50, 0,
+					255));
 			pixel1++;
 		}
 		pixel++;
