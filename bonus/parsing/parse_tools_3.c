@@ -59,6 +59,7 @@ void	player_vision(char **s, t_cube *game)
 		}
 		i++;
 	}
+	game->rotation_angle = 3 * PI / 4;
 }
 
 int	parse_numbers(char *s)

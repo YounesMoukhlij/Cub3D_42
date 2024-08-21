@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:46:20 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 12:01:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:55:24 by abechcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	check_view(t_cube *game, t_ray *ray)
 		game->img_wall = game->png.door;
 	else
 	{
-		if (!game->hit_v)
+		if (!ray->hit_v)
 		{
-			if (game->is_facingup)
+			if (ray->is_facingup)
 				game->img_wall = game->png.so;
-			else if (game->is_facingdown)
+			else if (ray->is_facingdown)
 				game->img_wall = game->png.no;
 		}
 		else
 		{
-			if (game->is_facingleft)
+			if (ray->is_facingleft)
 				game->img_wall = game->png.ea;
-			if (game->is_facingright)
+			if (ray->is_facingright)
 				game->img_wall = game->png.we;
 		}
 	}
@@ -39,29 +39,27 @@ int	check_view(t_cube *game, t_ray *ray)
 
 void	draw_wall_one(t_cube *game, t_ray *ray)
 {
-	game->draws.wall_heigth = (BOX_SIZE / (ray->distance
-				* cos(game->rotation_angle - game->ray_angle))) * ((WINDOW_WIDTH
-				/ 2) / tan(PI / 6));
-	game->draws.top = ft_max((WINDOW_HEIGTH / 2) - (game->draws.wall_heigth / 2), 0);
-	game->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (game->draws.wall_heigth / 2),
+	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance * cos(game->rotation_angle - game->ray_angle))) * ((WINDOW_WIDTH / 2) / tan(PI / 6));
+	ray->draws.top = ft_max((WINDOW_HEIGTH / 2) - (ray->draws.wall_heigth / 2), 0);
+	ray->draws.bottom = ft_min((WINDOW_HEIGTH / 2) + (ray->draws.wall_heigth / 2),
 			WINDOW_HEIGTH);
 	get_x(game, ray);
-	game->draws.i = game->draws.top;
-	game->draws.butt = game->draws.bottom;
-	game->draws.topp = game->draws.top;
-	game->draws.incr = 0;
-	while (game->draws.incr++ < game->draws.topp)
-		mlx_put_pixel(game->img, ray->index, game->draws.incr,
+	ray->draws.i = ray->draws.top;
+	ray->draws.butt = ray->draws.bottom;
+	ray->draws.topp = ray->draws.top;
+	ray->draws.incr = 0;
+	while (ray->draws.incr++ < ray->draws.topp)
+		mlx_put_pixel(game->img, ray->index, ray->draws.incr,
 			ft_color(game->colors.r_c, game->colors.g_c, game->colors.b_c,
 				255));
-	game->draws.incr = WINDOW_HEIGTH;
-	while (game->draws.incr > game->draws.butt)
+	ray->draws.incr = WINDOW_HEIGTH;
+	while (ray->draws.incr > ray->draws.butt)
 	{
-		if (game->draws.butt < 0)
-			game->draws.butt = 0;
-		mlx_put_pixel(game->img, ray->index, game->draws.butt,
+		if (ray->draws.butt < 0)
+			ray->draws.butt = 0;
+		mlx_put_pixel(game->img, ray->index, ray->draws.butt,
 			ft_color(game->colors.r_f, game->colors.g_f, game->colors.b_f,
 				255));
-		game->draws.butt++;
+		ray->draws.butt++;
 	}
 }
