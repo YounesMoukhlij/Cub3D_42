@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:27:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:56:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ void	check_player(t_cube *game, char **s)
 
 void	check_door(char **s, t_cube *game, int i, int j)
 {
-	int	flag;
-
-	flag = 0x0;
 	while (s[i])
 	{
 		j = 0x0;
@@ -51,16 +48,11 @@ void	check_door(char **s, t_cube *game, int i, int j)
 		{
 			if (s[i][j] == 'D')
 			{
+				if (!((s[i][j - 1] == '1' && s[i][j + 1] == '1') || (s[i - 1][j] == '1' && s[i + 1][j] == '1')))
+					error_message(game, 0x7);
 				if ((s[i][j + 0x1] == 'D' || s[i][j - 0x1] == 'D')
 					&& s[i][j + 0x1] && s[i][j - 1])
 					error_message(game, 0x7);
-				if (s[i][j - 1] == '1' && s[i][j + 1] == '1')
-					flag = 0x1;
-				else
-					error_message(game, 0x7);
-				if (i != 0 && !flag)
-					if (s[i - 1][j] != '1' || s[i + 1][j] != '1')
-						error_message(game, 0x7);
 			}
 			j++;
 		}
