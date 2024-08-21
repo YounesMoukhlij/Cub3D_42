@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:55:14 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:09:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-void	show()
-{
-	system("leaks cub3D_bonus");
-}
-
 int	main(int ac, char **av)
 {
 	t_cube	game;
 
-	atexit(show);
 	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGTH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
 	init_image(&game);

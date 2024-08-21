@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:27:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:27:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:06:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	parse(int ac, char *file, t_cube *game)
 	init_counter(game);
 	heigth_width(game);
 	check_texture_intra(game, 0x0);
-	check_valid_members(game, 0x0, 0x0);
+	check_valid_members(game, 0x6, 0x0);
 	player_vision(game->map_2d, game);
 	parse_entry(game, 0x0);
 	ft_load_textures(game);

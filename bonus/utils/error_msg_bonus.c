@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:33:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:12:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,35 @@ void	error_reading_map(int mode)
 		write(STDERR_FILENO, "Map Not Loaded\n", 16);
 	ft_malloc(0, 0);
 	exit(0x1);
+}
+
+void	init_counter(t_cube *game)
+{
+	game->cnt.a1 = 0;
+	game->cnt.a2 = 0;
+	game->cnt.a3 = 0;
+	game->cnt.a4 = 0;
+	game->cnt.a5 = 0;
+	game->cnt.a6 = 0;
+	game->parse_p.n = 0;
+	game->parse_p.s = 0;
+	game->parse_p.w = 0;
+	game->parse_p.e = 0;
+}
+
+int	check_text(char *s)
+{
+	if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "NO"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "SO"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "WE"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "EA"))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "C "))
+		return (0x1);
+	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "F "))
+		return (0x1);
+	return (0x0);
 }

@@ -1,7 +1,7 @@
-NO ./assets/png_1.png
-SO ./assets/png_2.png
-WE ./assets/png_4.png
-EA ./assets/png_3.png
+NO ./bonus/assets/png_1.png
+SO ./bonus/assets/png_2.png
+WE ./bonus/assets/png_4.png
+EA ./bonus/assets/png_3.png
 
 F  255,45,5
 C 135,206,235

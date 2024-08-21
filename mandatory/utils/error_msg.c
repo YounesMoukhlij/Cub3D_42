@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:48:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:10:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:10:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,18 @@ void	error_reading_map(int mode)
 		write(STDERR_FILENO, "Map Not Loaded\n", 16);
 	ft_malloc(0, 0);
 	exit(0x1);
+}
+
+void	init_counter(t_cube *game)
+{
+	game->cnt.a1 = 0;
+	game->cnt.a2 = 0;
+	game->cnt.a3 = 0;
+	game->cnt.a4 = 0;
+	game->cnt.a5 = 0;
+	game->cnt.a6 = 0;
+	game->parse_p.n = 0;
+	game->parse_p.s = 0;
+	game->parse_p.w = 0;
+	game->parse_p.e = 0;
 }

@@ -6,45 +6,29 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:32:33 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 15:27:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:07:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
 
-int	check_text(char *s)
-{
-	if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "NO"))
-		return (0x1);
-	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "SO"))
-		return (0x1);
-	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "WE"))
-		return (0x1);
-	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "EA"))
-		return (0x1);
-	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "C "))
-		return (0x1);
-	else if (!ft_strcmp(ft_substr(s, 0x0, 0x2), "F "))
-		return (0x1);
-	return (0x0);
-}
-
 void	check_valid_members(t_cube *game, int i, int j)
 {
 	char	*str;
 
-	i = 0x6;
 	while (game->map_2d[i] && i > 0x5)
 	{
 		j = 0x0;
 		str = fix_the_map(game->map_2d[i], 0x0, 0x0, 0x0);
 		if (game->map_2d[i][0] != ' ')
+		{
 			if (check_walls(ft_strtrim(game->map_2d[i], " "), 0x0, i, game))
 			{
 				if (check_text(ft_strtrim(game->map_2d[i], " ")))
 					error_message(game, 4);
 				error_message(game, 8);
 			}
+		}
 		while (str[j])
 		{
 			if (!(str[j] == '0' || str[j] == '1' || str[j] == 'D'

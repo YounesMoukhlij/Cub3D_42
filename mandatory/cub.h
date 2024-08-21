@@ -6,14 +6,14 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:00:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:35:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# include "MLX42/MLX42.h"
+# include "../MLX42/MLX42.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -226,6 +226,7 @@ int					case_1(char **s, int i, int j);
 int					case_2(char **s, int i, int j);
 int					case_3(char **s, int i, int j);
 int					case_4(char **s, int i, int j);
+int					check_text(char *s);
 int					peter_csezsh(char **s, int i, int j);
 int					ultra_check(t_cube *game, int mode);
 void				extra_one(t_cube *game, double *x, double *y);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:06:27 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 14:35:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:06:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,6 @@ void	check_texture_intra(t_cube *game, int i)
 	}
 	if (ultra_check(game, 0))
 		error_message(game, 0x4);
-}
-
-void	init_counter(t_cube *game)
-{
-	game->cnt.a1 = 0;
-	game->cnt.a2 = 0;
-	game->cnt.a3 = 0;
-	game->cnt.a4 = 0;
-	game->cnt.a5 = 0;
-	game->cnt.a6 = 0;
-	game->parse_p.n = 0;
-	game->parse_p.s = 0;
-	game->parse_p.w = 0;
-	game->parse_p.e = 0;
 }
 
 int	ft_strlen_ii(char *s)

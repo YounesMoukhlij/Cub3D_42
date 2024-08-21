@@ -6,14 +6,14 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 14:48:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:36:24 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_BONUS_H
 # define CUB_BONUS_H
 
-# include "MLX42/MLX42.h"
+# include "../MLX42/MLX42.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -261,8 +261,8 @@ int					check_one(t_cube *game, char *s);
 int					ultra_check(t_cube *game, int mode);
 
 char				*fill_chars(t_cube *game, char *s);
-
 void				check_texture_intra(t_cube *game, int i);
+int					check_text(char *s);
 void				init_counter(t_cube *game);
 int					player_num(t_cube *game);
 
@@ -297,20 +297,14 @@ char				*get_next_line(int fd);
 void				error_reading_map(int mode);
 void				error_message(t_cube *var, int mode);
 void				parse(int ac, char *file, t_cube *var);
-
 int					check_view(t_cube *game, t_ray *ray);
-
 char				*fix_the_map(char *s, int i, int flag, int j);
-
-// ********** RAY_CAST ********
-
 int					check_walls(char *s, int i, int stat, t_cube *game);
-
 void				ray_cast(int colum, t_cube *game, t_ray *ray);
 float				ft_normalize(float angel);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
-void				draw_line_dda(t_cube *game , int i , int coloum);
+void				draw_line_dda(t_cube *game, int i, int coloum);
 int					ft_check_walls(t_cube *game, int x, int y);
 void				ft_draw_wall(t_cube *game, t_ray *ray);
 
