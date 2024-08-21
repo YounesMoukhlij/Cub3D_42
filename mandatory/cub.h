@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:17:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 14:24:52 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:00:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,9 +238,7 @@ void				ft_check_move(void *tmp);
 void				init_image(t_cube *game);
 char				*check_chars(char *s);
 void				draw_wall_one(t_cube *game, t_ray *ray);
-void				draw_line_dda(t_cube *game);
 int					check_me(int x, int y, int width, int heigth);
-
 int					ft_check_sprit(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
 void				get_path(t_cube *game, int i, char *str);
@@ -284,7 +282,6 @@ void				get_x(t_cube *game, t_ray *ray);
 int					ft_color(int r, int g, int b, int a);
 float				ft_max(float a, float b);
 float				ft_min(float a, float b);
-void				draw_line_dda(t_cube *game);
 void				fifth_chapter(t_cube *game, t_ray *ray);
 void				sixth_extra_chapter(t_cube *game, t_ray *ray);
 int					check_color(t_cube *game, char **str);
@@ -303,7 +300,7 @@ void				ray_cast(int colum, t_cube *game, t_ray *ray);
 float				ft_normalize(float angel);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
-void				draw_line_dda(t_cube *game);
+void				draw_line_dda(t_cube *game, int i, int colum);
 int					ft_check_walls(t_cube *game, int x, int y);
 char				*get_next_line(int fd);
 void				error_reading_map(int mode);

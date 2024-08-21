@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:53:55 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 14:25:49 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:35:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_view(t_cube *game, t_ray *ray)
 	return (game->img_wall->width / BOX_SIZE);
 }
 
-void	draw_wall_one(t_cube *game, t_ray *ray)
+void	get_info(t_cube *game, t_ray *ray)
 {
 	ray->draws.wall_heigth = (BOX_SIZE / (ray->distance
 				* cos(game->rotation_angle - ray->ray_angle))) * ((WINDOW_WIDTH
@@ -69,6 +69,11 @@ void	draw_wall_one(t_cube *game, t_ray *ray)
 	ray->draws.butt = ray->draws.bottom;
 	ray->draws.topp = ray->draws.top;
 	ray->draws.incr = 0;
+}
+
+void	draw_wall_one(t_cube *game, t_ray *ray)
+{
+	get_info(game, ray);
 	while (ray->draws.incr < ray->draws.topp)
 	{
 		mlx_put_pixel(game->img, ray->index, ray->draws.incr,

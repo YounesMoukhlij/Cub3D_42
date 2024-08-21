@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 13:35:58 by youmoukh          #+#    #+#              #
-#    Updated: 2024/08/18 14:45:17 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/08/21 14:57:22 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SRC = cub3d.c \
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 NAME = cub3D
-CFLAGS =  -Ofast -Wall -Wextra -Werror
+CFLAGS =  -Ofast 
 
 all : $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_6.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:33:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:53:02 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:42:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_check_move(void *tmp)
 		else if (game->mouse_stat == 0)
 			game->mouse_stat = 1;
 	}
-	draw_line_dda(game);
+	draw_line_dda(game, 0, 0);
 }
 
 void	init_image(t_cube *game)

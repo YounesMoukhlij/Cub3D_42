@@ -3,19 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:51:04 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/21 14:25:00 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:47:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+void	func(void)
+{
+	system("leaks cub3D");
+}
+
 int	main(int ac, char **av)
 {
 	t_cube	game;
 
+	atexit(func);
 	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGTH, "cub3D", 0);
 	parse(ac, av[0x1], &game);
 	init_image(&game);

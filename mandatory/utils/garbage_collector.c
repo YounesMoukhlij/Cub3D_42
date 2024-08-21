@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abechcha <abechcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:27:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 17:52:14 by abechcha         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:58:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	*ft_malloc(size_t size, int mode)
 {
 	static t_delete	*collecte;
 	void			*str;
+	t_delete		*lst;
 
 	str = NULL;
 	if (mode == 0x1)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 11:07:38 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/08/18 14:55:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:47:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ int	ultra_check(t_cube *game, int mode)
 			|| game->cnt.a4 > 0x1
 			|| game->cnt.a5 > 0x1
 			|| game->cnt.a6 > 0x1)
+			return (0x1);
+		if (!game->cnt.a1 || !game->cnt.a2
+			|| !game->cnt.a3 || !game->cnt.a4
+			|| !game->cnt.a5 || !game->cnt.a6)
 			return (0x1);
 	}
 	else
