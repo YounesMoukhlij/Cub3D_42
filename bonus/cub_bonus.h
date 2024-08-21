@@ -138,6 +138,7 @@ typedef struct s_draws
 
 typedef struct s_ray
 {
+	float			ray_angle;
 	float			is_facingdown;
 	float			is_facingleft;
 	float			is_facingup;
@@ -218,7 +219,6 @@ typedef struct s_cube
 	uint32_t		*color;
 	int				real_map_width;
 	int				real_map_heigth;
-	float			ray_angle;
 	t_counter		cnt;
 	t_colors		colors;
 	t_ray_tools		r_tools;
@@ -312,7 +312,7 @@ char				*fix_the_map(char *s, int i, int flag, int j);
 
 int					check_walls(char *s, int i, int stat, t_cube *game);
 
-void				ray_cast(int colum, t_cube *game);
+void				ray_cast(int colum, t_cube *game , t_ray *ray);
 float				ft_normalize(float angel);
 int					ft_check_door(t_cube *game, int next_horizontal_x,
 						int next_horizontal_y);
